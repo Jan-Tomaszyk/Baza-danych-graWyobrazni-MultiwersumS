@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="3D4CF885-08DF-7F25-F0E7-FE7B30B4AB8F" name="FKArc_1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<mandatory>false</mandatory>
+<reverseArc>true</reverseArc>
+<table>6CC02066-F463-9789-1FAA-A7CA00034FBB</table>
+<fkeys>
+<fkeyID>E91B0103-DE71-6249-ABAF-A7A6DDCE135A</fkeyID>
+<fkeyID>1AC853AA-CB00-EA8C-55A1-AF5C02D56D76</fkeyID>
+<fkeyID>B922719B-7DAD-3852-31B9-4867BC1D7EEF</fkeyID>
+<fkeyID>AF585868-A2F9-96CF-D9CF-DB9726815817</fkeyID>
+<fkeyID>852EA3D3-62AE-52E9-7CFB-FD1A1D580D40</fkeyID>
+</fkeys>
+</FKArc>

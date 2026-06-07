@@ -1,0 +1,214 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B1DB86E4-B188-F6AF-79E3-F6DB78F8B69A" name="Pancerz lub strój">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-03 23:10:32 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<hierarchicalParent>4EF04BDD-97D1-58AB-FD7E-C8A0767AC96B</hierarchicalParent>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>Pancerze i stroje</preferredAbbreviation>
+<shortName>Pancerz</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Miejsce noszenia" id="23C3BF43-FA01-2E6C-45F1-E3190916A201">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:04:24 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Pancerz Ogólny" id="302D0DF4-A7D0-A1E8-BCED-3316A6BD7EFD">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-05 23:29:21 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Pancerz miękki" id="8A8ACCD1-7499-0B6C-E277-A0DF522BACDB">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-05 23:29:21 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Pancerz twardy" id="E2FCD075-2325-3E4F-4F08-F7C38B596D76">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-05 23:29:21 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Inne pancerze" id="6A46B4DB-B6BD-0462-F112-AF1C045033F4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:06:57 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="?Ochrona przed zimnem" id="0B8D1D3B-7971-9C3B-FD29-1238004F320B">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:06:57 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do siły" id="1FCA6751-D6FF-6FF1-6B4E-FFEF04EE30AA">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do wytrzymałości" id="4A826B1C-4AD5-82CB-2008-2212D9A9F43C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do kondycji" id="1D1A053B-15F0-F9D8-6735-39AD1C4E3B2B">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do zręczności" id="EB06E4C1-6D94-94C1-4D6D-CA2DF5C6C03D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do zwinności" id="1BB2DD49-A470-0143-6EDA-99951EA1EE6C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do mądrości" id="8B49AC22-9A57-B5F9-6C3F-CD4B4F9CDDC5">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do inteligencji" id="34B249B4-0CA0-9A82-0D9F-A9D26F3012A2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do charyzmy" id="16B1240E-C0E8-DBDD-D6EF-7119F98606B8">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do pobożności" id="174F9B93-4A94-D4F6-E642-ADFA10B392AD">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bonus do woli" id="08A1D568-42BC-7F42-BD9E-0FAEA8DEB332">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 22:05:35 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

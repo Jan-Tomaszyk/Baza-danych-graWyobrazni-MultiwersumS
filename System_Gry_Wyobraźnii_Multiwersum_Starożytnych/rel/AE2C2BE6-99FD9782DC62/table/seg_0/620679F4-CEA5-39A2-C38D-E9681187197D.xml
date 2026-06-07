@@ -1,0 +1,315 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="620679F4-CEA5-39A2-C38D-E9681187197D" name="Techniki">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>C7B594AA-7DCC-DE56-63D0-EE17CF5F2B9A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<abbreviation>Technika</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nazwa" id="14247CED-9E55-A0DD-1331-BA0718A72241">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>BF56A06E-81BA-BB9D-6BA6-77CA2890FBF9</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="typ" id="FC824AB7-3EE5-E47F-18A0-252D57000134">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>18CDD6C1-F98A-3EDB-814D-B1BB179563E7</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="rodzaj" id="072DF5E2-4EFB-5111-C773-1FD80407C8C2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>87C49663-3AA4-EBE6-790C-886AF0049E7E</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bazowy_koszt_w_manie" id="A40226DF-0A7F-52C8-08B1-2C4E8425831A">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>C1C14EC1-732F-857E-2E4B-DED395FF5968</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="modyfikatory_kosztu_w_manie" id="5F4B6E37-95F8-B1A9-E49A-2C87DD89F194">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>D68271A3-8A3A-D8F8-E206-145BC192A5A3</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bazowy_koszt_w_energii" id="4B9C7781-CCE6-E681-567D-C959CC3A28F8">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>E0C02647-5C89-1C42-2B59-31D31FFC18CE</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="modyfikatory_kosztu_w_energii" id="D86668EB-812B-4D96-A701-54807642912F">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>612939DF-A041-C357-DCB2-664F30759F70</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="efekt" id="3FBB480A-2B80-063C-D537-BCCDCF003F59">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>FF6FFB4A-6475-11F1-6BC9-AD9CDEE5264D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="test_sukcesu" id="34200372-FAFB-BC6C-8910-5AC2A743CE66">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>84469FB9-6346-F56C-0D28-87DED90965F0</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="test_trafienia" id="65E5D382-B3A4-C792-C476-B08B4F1BE39D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>620DFF5F-227D-0070-D879-D71EB9463BCA</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="test/testy_obrażeń" id="187C2250-AE5D-4573-9DAB-ECBA1992EB8D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>DB3BFF37-1384-7F6E-8CB7-AD713D68AEC9</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="test_na_zniszczenie" id="FD4AF9EF-5193-4CA1-D293-D5DC0C847137">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>2EE3C608-8D7F-5E45-FAE6-0331153E25F6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ew__inne_testy" id="DEA1CFC5-2222-D888-8037-2AB13D94A134">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>08FFD9CA-4D4E-67A8-C37D-9D26ABDA2A3F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Umiejętności_Nazwa" id="9F134E7D-18BD-53F9-4EA4-81CF6BBA2439">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>437F02A8-141C-B9B0-5764-9A67C8740C6E</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CE9ED366-A2CE-B7BF-C644-2140A263C844" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
+</associations>
+</Column>
+<Column name="Bronie_Umiejętności_Nazwa" id="94AAEFC1-B182-0623-FA40-3546B32CBA98">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>7843ECAF-DD21-4352-8CE4-62E0CAA4DBB3</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EC1E656C-AC78-738D-4859-206D523EDD97" referredColumn="E742AEAA-087B-281D-2AEB-764FAA459988"/>
+</associations>
+</Column>
+<Column name="minimalny_poziom_(nauki)" id="C15EC24C-3726-1D2D-3BD5-C68179833107">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>04C07689-B5FD-BE3D-116E-C762E14DCEA7</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+<Column name="stopień_zaawansowania_(przedział_poziomów)" id="DCFBAC97-5BD2-FA08-9460-19A80F6C7390">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>A319F1F5-D9D0-022A-AF9C-2F6AAFCD26CB</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+<Column name="Księgi_do_nauki" id="6C50B5CF-78A1-3DF3-7465-ABC7E9E7E33C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>17E1670A-A2C9-8FCD-D45F-C84415DE9336</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+<Column name="Wymaga_nauki_z_księgii?" id="0898A5F8-B5BF-9838-7C72-2A14ACB99346">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>5AC2138D-EF30-0888-1032-4984373286A8</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+<Column name="Wymaga_nauczyciela?" id="F8EBA907-1A4B-DDA2-5859-97FE528993FD">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>8F728D42-C029-DA9A-D7FB-FD67DA8D44D5</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+<Column name="Wymaga_dodatkowego_treningu?" id="1F6A0C01-13C5-A20D-7925-EC3933FCC1A1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>5B5AFC3A-D68F-A2D0-74EF-8A9BAF34EFEF</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+<dependOnForeignKeyID>CE9ED366-A2CE-B7BF-C644-2140A263C844</dependOnForeignKeyID>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2D2555B7-8E61-196B-8761-D6756CE4811A" name="Techniki_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>7DFCD5F3-1196-D0D8-8773-8A7B70F3B65A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="14247CED-9E55-A0DD-1331-BA0718A72241"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2520EDD3-C96C-DADA-3D94-E2906138A117" name="Techniki_Umiejętności_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>AA52BFA7-87C1-F471-FA43-3E56FFCB05E1</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F134E7D-18BD-53F9-4EA4-81CF6BBA2439"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0016E1AD-5F06-4DF8-A78A-47C8F5EACE33" name="Techniki_Bronie_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>262F86E1-3475-02F0-C315-D1EB5707C3BA</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="94AAEFC1-B182-0623-FA40-3546B32CBA98"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="91487081-AF9D-7D82-187B-1E2AF4F5392A" containerWithKeyObject="FBA25153-9C69-1182-4D63-E2010220C249" localFKIndex="C5347051-D6BD-33EC-6670-1373CCA1C4F1" name="Podległość_Umiejętności_FKv1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>8F81E72E-2FF2-FFDD-14D5-A2F01947C32D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Umiejętności</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B25C86D9-4619-C357-553A-3AEE159BD57B</referredTableID>
+<keyObject>E1C7D12E-2666-757F-5523-01B653A4FD3E</keyObject>
+<referredKeyID>E1C7D12E-2666-757F-5523-01B653A4FD3E</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

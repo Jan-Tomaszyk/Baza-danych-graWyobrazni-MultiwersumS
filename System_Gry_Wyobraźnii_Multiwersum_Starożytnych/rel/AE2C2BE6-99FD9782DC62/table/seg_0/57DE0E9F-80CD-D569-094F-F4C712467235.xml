@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="57DE0E9F-80CD-D569-094F-F4C712467235" name="Punkty Klasowe">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>D6520E5C-12E0-AFC0-00DA-FEC0B8650945</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Warunek" id="37FD52DE-A7DB-AF06-8C8C-10DC34AE6945">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>2AAA4BC6-07EC-6D81-B8C5-8E5D56D07D29</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="minimalne_punkty" id="0D71D670-6729-FCC0-4B36-F4180139CF9A">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>42315ED9-B23E-3BC5-05CA-73C1F9E25923</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="maksymalne_punkty" id="04751943-44CC-7154-68D6-2B9A9F4E6B30">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>38932C37-092E-3771-E287-30264D0848EE</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Klasy_nazwa" id="0D64C704-AC4B-BF07-01AB-0FC2596ABF5A">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>B3F57138-5B22-26CF-506E-37DDB2503906</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="063DD75A-6B26-F623-9454-A7F233B0C113" referredColumn="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B3609C53-1651-3CCF-DAFA-51EF7B4158B6" name="Punkty_Klasowe_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>66061001-DC0A-49E6-19EC-E2093E4EDC9D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D64C704-AC4B-BF07-01AB-0FC2596ABF5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95598044-1C70-D177-BEEC-821A34B4D99B" name="Punkty_Klasowe_Klasy_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>A07E2824-0B60-249E-864D-E306DD2D9D6F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D64C704-AC4B-BF07-01AB-0FC2596ABF5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

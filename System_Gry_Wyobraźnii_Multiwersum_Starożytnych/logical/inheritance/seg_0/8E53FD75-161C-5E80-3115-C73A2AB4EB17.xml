@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<InheritanceRelation class="oracle.dbtools.crest.model.design.logical.InheritanceRelation" name="Hierarchy_3" directorySegmentName="seg_0" id="8E53FD75-161C-5E80-3115-C73A2AB4EB17">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-03 23:11:26 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>Super Type</nameOnSource>
+<nameOnTarget>Sub Type</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceEntity>4EF04BDD-97D1-58AB-FD7E-C8A0767AC96B</sourceEntity>
+<targetEntity>98E05AF1-73B5-0A4D-CAFD-3887D017F059</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</InheritanceRelation>

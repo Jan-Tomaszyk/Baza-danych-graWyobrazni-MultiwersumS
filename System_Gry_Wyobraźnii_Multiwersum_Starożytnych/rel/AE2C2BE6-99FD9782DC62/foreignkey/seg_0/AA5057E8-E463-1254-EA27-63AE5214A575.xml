@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AA5057E8-E463-1254-EA27-63AE5214A575" containerWithKeyObject="ACB12E85-196F-176D-F637-30D1DB6E3AE0" localFKIndex="5F1FFE2D-CF10-56B6-006B-F5A43C416E42" name="umiejętności_uczone_z_ksiąg_Umiejętności_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>7CDB8F9D-C9EB-3424-24A9-928FF91A2499</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Umiejętności</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B25C86D9-4619-C357-553A-3AEE159BD57B</referredTableID>
+<keyObject>E1C7D12E-2666-757F-5523-01B653A4FD3E</keyObject>
+<referredKeyID>E1C7D12E-2666-757F-5523-01B653A4FD3E</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

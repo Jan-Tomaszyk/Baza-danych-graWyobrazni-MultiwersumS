@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="BB0ED707-C23E-23EC-BBF0-BD0AF979B52C" mainViewID="30D60762-71B9-70A9-F55A-F052546FD88B">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-03 21:43:55 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

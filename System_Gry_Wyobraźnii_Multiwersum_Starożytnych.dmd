@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="System_Gry_Wyobraźnii_Multiwersum_Starożytnych" id="BE6274B0-88B6-72EB-FCC0-BE4A9A95A6E9" version="3.5">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-03 21:43:55 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>BE6274B0-88B6-72EB-FCC0-BE4A9A95A6E9</designId>
+</OSDM_Design>

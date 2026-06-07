@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="specjalne techniki" directorySegmentName="seg_0" id="262F86E1-3475-02F0-C315-D1EB5707C3BA">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:30:48 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<sourcePk>4F9D44BC-04A0-C243-D182-CC85AC48234F</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>broń wymagana do techniki</nameOnSource>
+<nameOnTarget>specjalna technika</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D61E56B0-F265-23C4-2D76-4319EA793495</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C7B594AA-7DCC-DE56-63D0-EE17CF5F2B9A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

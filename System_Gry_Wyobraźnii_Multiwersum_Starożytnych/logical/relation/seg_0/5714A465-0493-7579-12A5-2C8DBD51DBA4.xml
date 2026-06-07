@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Własności" directorySegmentName="seg_0" id="5714A465-0493-7579-12A5-2C8DBD51DBA4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:48:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<sourcePk>A6417DC0-CB09-A72C-AD74-DD1561F2ED73</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>posiada</nameOnSource>
+<nameOnTarget>jest posiadany</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9F9E558F-5F7A-A983-7170-BE39B6E8162C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4EF04BDD-97D1-58AB-FD7E-C8A0767AC96B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="jest noszony/używany" id="C913ED02-CA44-972B-675C-81AF2FE066D0">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 18:55:37 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

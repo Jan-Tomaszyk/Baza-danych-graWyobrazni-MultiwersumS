@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_24" directorySegmentName="seg_0" id="28118F81-1E29-11FB-54F4-04BE9A78BA73">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 23:14:58 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<sourcePk>1AC1C95E-055B-E46A-9E8C-C1D7773DD06D</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>posiada</nameOnSource>
+<nameOnTarget>jest posiadany</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>06BB782E-F304-7BC6-C47A-11D041950CAB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4EF04BDD-97D1-58AB-FD7E-C8A0767AC96B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

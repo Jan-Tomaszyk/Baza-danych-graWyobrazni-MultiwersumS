@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B093987D-2161-4DFC-4D26-383C874648E3" containerWithKeyObject="4414FA78-2E67-3394-4B3E-26F754944928" localFKIndex="FD55D0B7-360A-DE9D-1F59-6C084DE3A9E6" name="Rangi_klasowe_Rangi_klasowe_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>9DD11DF5-01BD-8CCB-D649-8CDD2097689A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Rangi klasowe</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4414FA78-2E67-3394-4B3E-26F754944928</referredTableID>
+<keyObject>BD8D9547-2B07-E028-2FE5-64C741C50471</keyObject>
+<referredKeyID>BD8D9547-2B07-E028-2FE5-64C741C50471</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Nazwa,Klasy_nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

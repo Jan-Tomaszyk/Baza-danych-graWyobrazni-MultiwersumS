@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Opanowane" directorySegmentName="seg_0" id="C6C8F078-DDCE-283E-01F1-F7DF612F4C75">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 23:33:18 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>jest posiadana</nameOnSource>
+<nameOnTarget>umie</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>E0B44E34-0525-EE8C-2EA5-447198C19EC1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9F9E558F-5F7A-A983-7170-BE39B6E8162C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="poziom" id="6959254A-4E32-B871-4695-486229791C3D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 18:36:26 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

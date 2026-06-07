@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="94053176-682A-F51E-F1A6-78128AA79216" name="klasa postaci">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 19:14:30 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ilość punktów klasowych " id="E766F937-0791-1488-797B-3017263E6E80">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:46:37 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Imię" id="9290F600-A9BC-F3CD-CC11-054B3552DE23">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:48:28 UTC</createdTime>
+<generatorID>A9B16455-D155-B95A-14BA-AD0C966F75DC</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>2B54F2D4-9E1E-D1EF-8C76-CE982A95DBF4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwisko" id="D7B588E9-0A31-B2E1-695F-73713E604DBE">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:48:28 UTC</createdTime>
+<generatorID>A9B16455-D155-B95A-14BA-AD0C966F75DC</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>FC9D96ED-6141-CA63-F435-3E123E4B8DE4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazwa" id="287B244C-C76D-0508-2CE0-A6C1704748CD">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:49:36 UTC</createdTime>
+<generatorID>BFFC364D-9E86-5283-5121-C3C236CA64D2</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>F10F2E4B-F463-52B2-7652-9A4F806271D6</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwa1" id="D3A2DBEB-2217-EA74-6050-90E84C283FC0">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:55:09 UTC</createdTime>
+<generatorID>2BE06E2D-8B03-FC0F-C8FE-47716BF7DAC0</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>60BAC5A5-2B56-25A9-5863-F05E9C1FB113</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazwa11" id="D151F7B4-5EAA-6076-693F-872E9D93B686">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:55:14 UTC</createdTime>
+<generatorID>2BE06E2D-8B03-FC0F-C8FE-47716BF7DAC0</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>BCEBD3A6-00F4-8AA7-DC2E-9A3E5B89FFD5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="89A47047-D883-3843-C361-820497364819" name="klasa postaci PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:48:28 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>9290F600-A9BC-F3CD-CC11-054B3552DE23</attributeRef>
+<attributeRef>D7B588E9-0A31-B2E1-695F-73713E604DBE</attributeRef>
+<attributeRef>287B244C-C76D-0508-2CE0-A6C1704748CD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

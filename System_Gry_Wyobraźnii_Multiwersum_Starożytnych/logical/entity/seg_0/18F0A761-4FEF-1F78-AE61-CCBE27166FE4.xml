@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="18F0A761-4FEF-1F78-AE61-CCBE27166FE4" name="Pieniądz">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 17:55:26 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>Pieniądze</preferredAbbreviation>
+<shortName>Piendz</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Waluta" id="D57F384B-18E1-CB7E-0BCE-E0D3EF86766C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 21:48:38 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Ilość" id="EDE9A6E5-FF5A-5DE8-EB91-44B9C915EFA2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 21:48:09 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Imię" id="75EB3DF2-0D47-2983-71C7-D7D19FDA5E42">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 23:32:43 UTC</createdTime>
+<generatorID>AC63B8F0-2FF2-E8B0-1E27-0C53BC20CBEF</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>2B54F2D4-9E1E-D1EF-8C76-CE982A95DBF4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwisko" id="AAE845D8-5DAC-6BAE-C258-059D42DBB51F">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 23:32:43 UTC</createdTime>
+<generatorID>AC63B8F0-2FF2-E8B0-1E27-0C53BC20CBEF</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<referedAttribute>FC9D96ED-6141-CA63-F435-3E123E4B8DE4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1301C70B-6B8E-55F6-1900-5AF27C31C6AF" name="Pieniądz PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 21:48:59 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D57F384B-18E1-CB7E-0BCE-E0D3EF86766C</attributeRef>
+<attributeRef>75EB3DF2-0D47-2983-71C7-D7D19FDA5E42</attributeRef>
+<attributeRef>AAE845D8-5DAC-6BAE-C258-059D42DBB51F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

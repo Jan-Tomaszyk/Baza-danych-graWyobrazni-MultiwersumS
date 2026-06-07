@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Rasy pochodzenia" directorySegmentName="seg_0" id="57F2DC86-AB3A-C18A-B238-846B984A8BF3">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-04 18:40:59 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<sourcePk>9FDE8CF9-EB6C-AC35-D2E7-EA203581076D</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>z niej pochodzi</nameOnSource>
+<nameOnTarget>jest z</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E36F4EE0-A82B-BB2B-FF34-0DDA400B9CB5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9F9E558F-5F7A-A983-7170-BE39B6E8162C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

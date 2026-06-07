@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="1AC853AA-CB00-EA8C-55A1-AF5C02D56D76" containerWithKeyObject="BFC53DF9-E324-0128-632D-631F58E19905" localFKIndex="72EEB789-A035-F2E6-1BBA-9698851BC766" name="Rózności_Przedmioty_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>480F3470-FCA6-851D-A110-5FEF64FDF36F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Przedmioty</referredTableLongName>
+<arc>3D4CF885-08DF-7F25-F0E7-FE7B30B4AB8F</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6CC02066-F463-9789-1FAA-A7CA00034FBB</referredTableID>
+<keyObject>2CBD333A-1CCD-8D8C-38B8-D36F641661DC</keyObject>
+<referredKeyID>2CBD333A-1CCD-8D8C-38B8-D36F641661DC</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Przed_Nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

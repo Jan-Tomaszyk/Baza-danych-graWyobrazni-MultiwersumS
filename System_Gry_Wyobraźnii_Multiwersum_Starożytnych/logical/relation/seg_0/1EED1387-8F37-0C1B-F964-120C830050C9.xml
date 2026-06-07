@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="zna" directorySegmentName="seg_0" id="1EED1387-8F37-0C1B-F964-120C830050C9">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-05 21:05:25 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<nameOnSource>znana przez</nameOnSource>
+<nameOnTarget>zna</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>C7B594AA-7DCC-DE56-63D0-EE17CF5F2B9A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9F9E558F-5F7A-A983-7170-BE39B6E8162C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<attribute name="poziom umiejętności" id="0992D21B-9B52-DF26-5200-D6C02B4F6300">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 20:20:29 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</attribute>
+</attributes>
+</Relation>

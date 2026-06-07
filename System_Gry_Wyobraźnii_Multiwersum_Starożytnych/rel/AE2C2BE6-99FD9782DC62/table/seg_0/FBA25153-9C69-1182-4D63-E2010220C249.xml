@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FBA25153-9C69-1182-4D63-E2010220C249" name="Podległość">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Umiejętności_Nazwa" id="3C75F812-AE0C-0EE5-0695-081E840B1053">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="15E2E990-6E6A-7955-2F7C-DCF7E6EA0574" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
+</associations>
+</Column>
+<Column name="Umiejętności_Nazwa1" id="A920C100-7702-6D8F-3E92-0A8CFB9A2922">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91487081-AF9D-7D82-187B-1E2AF4F5392A" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="80F1901D-1949-B1A1-87D8-F87EF3D7F63E" name="Podległość_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C75F812-AE0C-0EE5-0695-081E840B1053"/>
+<colUsage columnID="A920C100-7702-6D8F-3E92-0A8CFB9A2922"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="377CB1BB-45DA-6C39-BB46-B050604BFC46" name="Podległość_Umiejętności_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>8F81E72E-2FF2-FFDD-14D5-A2F01947C32D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C75F812-AE0C-0EE5-0695-081E840B1053"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C5347051-D6BD-33EC-6670-1373CCA1C4F1" name="Podległość_Umiejętności_FKv1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>8F81E72E-2FF2-FFDD-14D5-A2F01947C32D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A920C100-7702-6D8F-3E92-0A8CFB9A2922"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

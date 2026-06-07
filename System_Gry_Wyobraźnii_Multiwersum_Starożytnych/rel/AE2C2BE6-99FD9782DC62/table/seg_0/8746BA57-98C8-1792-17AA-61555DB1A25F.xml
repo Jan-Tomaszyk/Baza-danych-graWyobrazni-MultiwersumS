@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8746BA57-98C8-1792-17AA-61555DB1A25F" name="Klasy">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>3BB56E46-F76F-6DBB-0D72-0D665544288A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<abbreviation>Klasa</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nazwa" id="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>F10F2E4B-F463-52B2-7652-9A4F806271D6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="premiowane_cechy" id="41169927-A622-2366-9E16-7F2E2C58E06E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>31A9299B-E84C-3337-7458-E72E1D9B8C46</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FF4FD8C0-E83F-F8FC-99B1-EE384CD73076" name="Klasy_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>D605D08D-7A8A-AC6C-8B9B-73F470E7468B</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

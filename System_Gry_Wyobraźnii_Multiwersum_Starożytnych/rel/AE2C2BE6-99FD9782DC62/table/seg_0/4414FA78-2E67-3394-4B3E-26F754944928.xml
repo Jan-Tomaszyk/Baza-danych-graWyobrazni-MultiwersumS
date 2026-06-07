@@ -1,0 +1,157 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4414FA78-2E67-3394-4B3E-26F754944928" name="Rangi klasowe">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>57E5627C-6AD0-5FCE-3CB1-55D8E801EF41</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<abbreviation>Ranga</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Nazwa" id="D1C9CB3B-1779-DA08-7ED3-4478205B36A4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>60BAC5A5-2B56-25A9-5863-F05E9C1FB113</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="bonusy_za_rangę" id="67C0E0BF-44EE-B9C3-AFE2-352744228F6D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>AE8052F7-1194-B091-C9D6-6A6A11D67C8D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="minimalne_punkty_klasowe" id="DDD30EC0-DA07-C8A4-2AAA-0CF387D65F3E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>80FC3D50-3186-144F-18E6-C581E5231B39</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="?maksymalne_punkty_klasowe_(wymagane_do_awansu)" id="953B7617-A2CC-2EAE-2C13-6369F1382E36">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>E0CFDFD7-D3CA-3FF4-552C-C5DC79068652</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Klasy_nazwa" id="C150E362-D1B3-88A5-AB92-37E97AC1B626">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>BCEBD3A6-00F4-8AA7-DC2E-9A3E5B89FFD5</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B8D0151F-A3AC-D777-C2A3-5A192FB78172" referredColumn="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E"/>
+</associations>
+</Column>
+<Column name="Rangi klasowe_Nazwa" id="20722FF6-9BE0-591C-6360-A55F37DB5DC8">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>3A1C987E-BECE-5844-EB22-79A5738A99A9</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B093987D-2161-4DFC-4D26-383C874648E3" referredColumn="D1C9CB3B-1779-DA08-7ED3-4478205B36A4"/>
+</associations>
+</Column>
+<Column name="Rangi klasowe_nazwa1" id="8497EFF8-07C9-1DF4-0070-D59249649A87">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>C7811218-3FC4-CF0A-D7EE-79C10453108D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B093987D-2161-4DFC-4D26-383C874648E3" referredColumn="C150E362-D1B3-88A5-AB92-37E97AC1B626"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BD8D9547-2B07-E028-2FE5-64C741C50471" name="Rangi_klasowe_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>E29D25F4-CC38-F70B-7DCD-3A878AFCE746</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D1C9CB3B-1779-DA08-7ED3-4478205B36A4"/>
+<colUsage columnID="C150E362-D1B3-88A5-AB92-37E97AC1B626"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE6CFC72-BA7A-907B-46C5-30CFDFAFA4BF" name="Rangi klasowe__IDX">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>9DD11DF5-01BD-8CCB-D649-8CDD2097689A</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="20722FF6-9BE0-591C-6360-A55F37DB5DC8"/>
+<colUsage columnID="8497EFF8-07C9-1DF4-0070-D59249649A87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD55D0B7-360A-DE9D-1F59-6C084DE3A9E6" name="Rangi_klasowe_Rangi_klasowe_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>9DD11DF5-01BD-8CCB-D649-8CDD2097689A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="20722FF6-9BE0-591C-6360-A55F37DB5DC8"/>
+<colUsage columnID="8497EFF8-07C9-1DF4-0070-D59249649A87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5CA715D-8C7C-02D5-35BC-D3D1514BC51D" name="Rangi_klasowe_Klasy_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>9201EE2A-95DE-C8AC-33C3-0CD7CBDEA49B</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C150E362-D1B3-88A5-AB92-37E97AC1B626"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

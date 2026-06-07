@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="00A37E5B-8DB2-62AB-D474-235E427CA687" name="przeciwnicy_znają">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Klasy_Przeciwników_nazwa" id="5BED4AEC-06CC-C388-C604-AD8F7DF2647D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E7E6F1D2-CDD9-44B4-EE45-CC15050F4C14" referredColumn="3003CC10-B524-E823-8B35-918265421D06"/>
+</associations>
+</Column>
+<Column name="Techniki_nazwa" id="13ECD440-97D4-C823-8D38-4C8563970432">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE5EF0ED-812C-708F-23CD-61D3F1077AFC" referredColumn="14247CED-9E55-A0DD-1331-BA0718A72241"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="842202AD-24A3-B128-6070-76CDCE85235D" name="przeciwnicy_znają_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BED4AEC-06CC-C388-C604-AD8F7DF2647D"/>
+<colUsage columnID="13ECD440-97D4-C823-8D38-4C8563970432"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EC9E3718-6D4D-23D9-2C70-95F82FA55996" name="przeciwnicy_znają_Klasy_Przeciwników_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>3D8614BE-428E-7776-A2E4-A0D08C6425B6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BED4AEC-06CC-C388-C604-AD8F7DF2647D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5DB9596-2EBC-2646-A709-8DC316525644" name="przeciwnicy_znają_Techniki_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>3D8614BE-428E-7776-A2E4-A0D08C6425B6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13ECD440-97D4-C823-8D38-4C8563970432"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

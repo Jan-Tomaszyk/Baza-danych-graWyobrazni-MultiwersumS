@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B922719B-7DAD-3852-31B9-4867BC1D7EEF" containerWithKeyObject="04934A1D-ED1B-4C57-A031-7707138185BE" localFKIndex="98BAF527-A35C-C8E6-0173-F90A192F3C70" name="Księgi_i_Pisma_Przedmioty_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>61901226-6A62-54F0-9964-DBC8DF59A11A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Przedmioty</referredTableLongName>
+<arc>3D4CF885-08DF-7F25-F0E7-FE7B30B4AB8F</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6CC02066-F463-9789-1FAA-A7CA00034FBB</referredTableID>
+<keyObject>2CBD333A-1CCD-8D8C-38B8-D36F641661DC</keyObject>
+<referredKeyID>2CBD333A-1CCD-8D8C-38B8-D36F641661DC</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Przed_Nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

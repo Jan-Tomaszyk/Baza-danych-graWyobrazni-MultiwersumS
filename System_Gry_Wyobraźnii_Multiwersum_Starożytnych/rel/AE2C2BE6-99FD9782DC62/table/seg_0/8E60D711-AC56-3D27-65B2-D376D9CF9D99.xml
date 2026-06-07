@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8E60D711-AC56-3D27-65B2-D376D9CF9D99" name="Pieniądze">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>18F0A761-4FEF-1F78-AE61-CCBE27166FE4</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<abbreviation>Piendz</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Waluta" id="ADC2BE31-ABD7-4B19-7347-CE3B017CB9BC">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>D57F384B-18E1-CB7E-0BCE-E0D3EF86766C</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ilość" id="A6369E64-4F49-B26B-6775-971A8593A88C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>EDE9A6E5-FF5A-5DE8-EB91-44B9C915EFA2</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Postacie_Imię" id="B47776C2-ABE8-E53D-96B9-E545D1F4DA2B">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>75EB3DF2-0D47-2983-71C7-D7D19FDA5E42</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F3478FC8-1621-593A-8AE1-19AFF04EB5B6" referredColumn="AF8D121F-809B-621D-1648-03B80DCFACB8"/>
+</associations>
+</Column>
+<Column name="Postacie_Nazwisko" id="F15E3537-5E82-44C0-9D65-68D00AE878D3">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>AAE845D8-5DAC-6BAE-C258-059D42DBB51F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F3478FC8-1621-593A-8AE1-19AFF04EB5B6" referredColumn="73EE666E-A3B1-9DFA-A549-1DC9074E9003"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="68B8DC0D-EE50-759D-0084-5886F32B6FC0" name="Pieniądze_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>1301C70B-6B8E-55F6-1900-5AF27C31C6AF</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADC2BE31-ABD7-4B19-7347-CE3B017CB9BC"/>
+<colUsage columnID="B47776C2-ABE8-E53D-96B9-E545D1F4DA2B"/>
+<colUsage columnID="F15E3537-5E82-44C0-9D65-68D00AE878D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="898B4036-ADB7-8F94-B532-694152B11214" name="Pieniądze_Postacie_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>AC63B8F0-2FF2-E8B0-1E27-0C53BC20CBEF</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B47776C2-ABE8-E53D-96B9-E545D1F4DA2B"/>
+<colUsage columnID="F15E3537-5E82-44C0-9D65-68D00AE878D3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

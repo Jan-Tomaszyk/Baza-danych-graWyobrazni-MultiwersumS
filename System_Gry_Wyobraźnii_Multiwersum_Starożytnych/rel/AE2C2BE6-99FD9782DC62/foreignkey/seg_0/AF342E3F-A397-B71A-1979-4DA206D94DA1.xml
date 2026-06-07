@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AF342E3F-A397-B71A-1979-4DA206D94DA1" containerWithKeyObject="5FD3EFF8-A0AF-9EF3-1506-594C043C9046" localFKIndex="2DF79999-D4C0-A56A-41BB-6C17EA033486" name="zna_Postacie_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>1EED1387-8F37-0C1B-F964-120C830050C9</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Postacie</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E330E3A8-F405-E7A1-0913-8B059BCBC91E</referredTableID>
+<keyObject>1840FB27-B941-E210-990A-774706C4F541</keyObject>
+<referredKeyID>1840FB27-B941-E210-990A-774706C4F541</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Imię,Nazwisko</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

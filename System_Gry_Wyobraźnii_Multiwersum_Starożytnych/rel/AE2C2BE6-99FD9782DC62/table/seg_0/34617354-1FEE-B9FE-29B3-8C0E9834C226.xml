@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="34617354-1FEE-B9FE-29B3-8C0E9834C226" name="umiejętności_przeciwników">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Klasy_Przeciwników_nazwa" id="C59EB01F-124A-01CC-6CAA-3901D38DF7D0">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="842946D2-66C4-DE31-FF56-FEE1260EE68F" referredColumn="3003CC10-B524-E823-8B35-918265421D06"/>
+</associations>
+</Column>
+<Column name="Umiejętności_Nazwa" id="61B8AC10-097D-626E-1381-D555EE4D81B7">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C0BBC0C2-5FBA-9A33-64BA-38AB257935BF" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="45607459-C9EB-4AC0-355B-81166A5E88A3" name="umiejętności_przeciwników_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C59EB01F-124A-01CC-6CAA-3901D38DF7D0"/>
+<colUsage columnID="61B8AC10-097D-626E-1381-D555EE4D81B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D637CCDE-2ED4-0561-9547-DA19847BC21C" name="umiejętności_przeciwników_Klasy_Przeciwników_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>07527381-ADD1-2145-C30E-B59311BAA5DD</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C59EB01F-124A-01CC-6CAA-3901D38DF7D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FC1922D3-7E2B-E9D9-9421-34289BD4A2ED" name="umiejętności_przeciwników_Umiejętności_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>07527381-ADD1-2145-C30E-B59311BAA5DD</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="61B8AC10-097D-626E-1381-D555EE4D81B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

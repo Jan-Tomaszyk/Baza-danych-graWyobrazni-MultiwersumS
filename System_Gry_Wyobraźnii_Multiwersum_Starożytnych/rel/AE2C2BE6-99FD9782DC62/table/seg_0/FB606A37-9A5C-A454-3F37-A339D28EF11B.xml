@@ -1,0 +1,308 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FB606A37-9A5C-A454-3F37-A339D28EF11B" name="Klasy_Przeciwników">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>06BB782E-F304-7BC6-C47A-11D041950CAB</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<abbreviation>KP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nazwa" id="3003CC10-B524-E823-8B35-918265421D06">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>6FE59279-712D-BA23-DC8B-2428EE63BB1E</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="minimalny_poziom" id="F5481BA6-1BB1-43FA-E301-1EAA84927392">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>459C10B0-7F40-DB05-DA4A-68D9D9926B1E</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="maksymalny_poziom" id="609268B9-2D4C-80E8-A849-12FBB396EC84">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>A4E739D2-5914-AA5C-A311-4752525EB2C1</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Siła_z_pierwszego_poziomu" id="86DC16F9-9EF4-2B60-4F0D-8551A52DF825">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>A881D94C-D5EC-E7CF-820C-8EFF8FA9431D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Wytrzymałość_z_pierwszego_poziomu" id="88479FA0-C63A-FB70-4D6B-AFF106B2BCE1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>B1CE7CCD-ECF9-7752-F695-4BADE91D71B2</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kondycja_z_pierwszego_poziomu" id="60C1B76D-E2A2-1213-E554-6C0944CF1952">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>CDC133B2-F403-A081-624F-265B09550EFE</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zręczność_z_pierwszego_poziomu" id="F2211D20-7BA4-6FB1-E9C8-F1450E091853">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>0235D621-B6A7-CE20-EB87-C9D424943E34</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zwinność_z_pierwszego_poziomu" id="7FF2A461-C3A8-013D-2FA4-C4CF6C902D7E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>8F05B058-9626-3FB9-E329-ECE1AEF5EDEC</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mądrość_z_pierwszego_poziomu" id="2AE2AEE3-9B0E-4488-6294-9DF6E1A53B00">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>ADEB03B4-C17E-E863-F72E-4E7FB62F4488</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Inteligencja_z_pierwszego_poziomu" id="4BC61609-A6CC-3EF1-0EBE-A1B783381084">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>9AE2BD9D-F75F-B24B-6917-28D88717D9CD</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Charyzma_z_pierwszego_poziomu" id="74F604E7-6056-7211-843F-DFA6CB031ADB">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>C710DD08-50C8-590D-C535-69F30A483D68</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Pobożność_z_pierwszego_poziomu" id="3D36C770-3941-896F-3A86-FB1797745218">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>0FD3FCBF-CC85-EB68-09D1-3CF501B50276</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Wola_z_pierwszego_poziomu" id="16F98C1C-A245-FA5A-1033-FBBBE8DA2DE6">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>918AEB76-6F29-D235-9F47-CADAFFC006BE</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Siła_na_awans" id="7ADA4719-1054-7204-39F4-E6E94693A876">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>929A3680-01E6-C9FC-6599-522A4B0AD814</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Wytrzymałość_na_awans" id="0DE387FB-6E28-F4AE-D184-D477FD8E45D8">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>6C64CFC7-0F41-9EDE-BC70-027EF0471730</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Kondycja_na_awans" id="BD7A23F6-5BEB-3044-A7AB-0501DC4DC310">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>F34D7594-6989-9244-4F32-C95D36D10DE5</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zręczność_na_awans" id="37F0B818-1268-DCE2-562F-69F22E8864B4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>5ABCD5EA-DA28-D31D-1347-63DB57169A3F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Zwinność_na_awans" id="F69D5F27-DBA6-5C90-1E03-890048CA51A1">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>112C5D3B-8F18-FCFD-4DDF-43B66C3719EA</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Mądrość_na_awans" id="079CBC4B-6A03-DEED-5DB4-C8942C5C2CDE">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>E20518AB-C021-CA1A-8B7D-D649BDE6853F</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Inteligencja_na_awans" id="22F223C5-0EE6-8137-1B2F-732BC34DD4E7">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>E1D62C17-9A39-7391-5C2D-527558F006C6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Charyzma_na_awans" id="52CB1BD1-CE25-440E-D6C0-BEBEA47F3FE9">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>1905D8F9-4280-F103-EEAD-8C4DA3C8C442</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Pobożność_na_awans" id="7A4C29CE-C71B-7B72-3891-8B4956024913">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>F1C2A360-6022-D779-252C-C88880935B13</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Wola_na_awans" id="3CB68682-43C2-5931-E0CD-E4F77EDE4D49">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>3AE2F1CF-F46D-F24E-60D1-0A941AA4AC07</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Rasy_Nazwa" id="F80EBE1E-E594-7118-B8C2-5B59CF6A6CF2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>D7EE62C4-2CC7-7216-1B35-0F5DF7E5D23A</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3825ACF4-1714-04C6-9AD4-F8BE3B0767F7" referredColumn="187164EF-0E4F-C69D-6032-1EF8E28A28CA"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="14D775EB-14AD-D1E4-9C09-274FF9EA12DE" name="Klasy_Przeciwników_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:05 UTC</createdTime>
+<generatorID>1AC1C95E-055B-E46A-9E8C-C1D7773DD06D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3003CC10-B524-E823-8B35-918265421D06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0DBE0DD0-CE21-C653-CCA2-E1A1251C757A" name="Klasy_Przeciwników_Rasy_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>99B0F804-E1E4-86E3-FB12-CD65FEFB5707</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F80EBE1E-E594-7118-B8C2-5B59CF6A6CF2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

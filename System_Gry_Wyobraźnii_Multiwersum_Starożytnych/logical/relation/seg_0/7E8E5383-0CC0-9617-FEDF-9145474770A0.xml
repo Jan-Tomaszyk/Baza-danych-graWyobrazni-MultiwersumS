@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Kategoria Umiejęrnościowa" directorySegmentName="seg_0" id="7E8E5383-0CC0-9617-FEDF-9145474770A0">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 17:28:31 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+</engineerTo>
+<sourcePk>7E79DA88-E4DA-17E3-588B-37D8902FB5C6</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>Wymagana Umiejętność</nameOnSource>
+<nameOnTarget>Kategoria Umiejęrnościowa</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E0B44E34-0525-EE8C-2EA5-447198C19EC1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>D61E56B0-F265-23C4-2D76-4319EA793495</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

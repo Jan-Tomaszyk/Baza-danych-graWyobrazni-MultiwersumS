@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AE5EF0ED-812C-708F-23CD-61D3F1077AFC" containerWithKeyObject="00A37E5B-8DB2-62AB-D474-235E427CA687" localFKIndex="B5DB9596-2EBC-2646-A709-8DC316525644" name="przeciwnicy_znają_Techniki_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>3D8614BE-428E-7776-A2E4-A0D08C6425B6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Techniki</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>620679F4-CEA5-39A2-C38D-E9681187197D</referredTableID>
+<keyObject>2D2555B7-8E61-196B-8761-D6756CE4811A</keyObject>
+<referredKeyID>2D2555B7-8E61-196B-8761-D6756CE4811A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

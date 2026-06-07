@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E7E6F1D2-CDD9-44B4-EE45-CC15050F4C14" containerWithKeyObject="00A37E5B-8DB2-62AB-D474-235E427CA687" localFKIndex="EC9E3718-6D4D-23D9-2C70-95F82FA55996" name="przeciwnicy_znają_Klasy_Przeciwników_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>3D8614BE-428E-7776-A2E4-A0D08C6425B6</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Klasy_Przeciwników</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FB606A37-9A5C-A454-3F37-A339D28EF11B</referredTableID>
+<keyObject>14D775EB-14AD-D1E4-9C09-274FF9EA12DE</keyObject>
+<referredKeyID>14D775EB-14AD-D1E4-9C09-274FF9EA12DE</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

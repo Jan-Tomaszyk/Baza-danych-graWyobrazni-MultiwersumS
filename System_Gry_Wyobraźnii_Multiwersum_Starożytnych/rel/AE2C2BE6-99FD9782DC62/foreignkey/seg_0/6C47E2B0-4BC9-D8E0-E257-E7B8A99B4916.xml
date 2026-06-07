@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="6C47E2B0-4BC9-D8E0-E257-E7B8A99B4916" containerWithKeyObject="05DD88EE-04C0-94C8-CB94-C6685E9AD756" localFKIndex="CF600927-EECE-B9A7-2733-0255AF636D35" name="Techniki_uczone_z_ksiąg_Techniki_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>6E86EAAB-17CF-9F02-383B-15925D84CDEB</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<referredTableLongName>Techniki</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>620679F4-CEA5-39A2-C38D-E9681187197D</referredTableID>
+<keyObject>2D2555B7-8E61-196B-8761-D6756CE4811A</keyObject>
+<referredKeyID>2D2555B7-8E61-196B-8761-D6756CE4811A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nazwa</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

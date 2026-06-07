@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="694026FF-BA16-CF2D-90CD-4C2103A2C8A8" name="Opanowane">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Umiejętności_Nazwa" id="9C390F28-A72E-6B13-2529-B78F7C599BC0">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DF668CB2-08BB-C1EE-24D5-162ACA95F1A4" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
+</associations>
+</Column>
+<Column name="Postacie_Imię" id="78F2E3A2-4295-CE71-D7D2-11ED77D4BAFC">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E9E20661-7C47-F359-066F-0AAE57AB4E93" referredColumn="AF8D121F-809B-621D-1648-03B80DCFACB8"/>
+</associations>
+</Column>
+<Column name="Postacie_Nazwisko" id="D6AFDAA0-8BB7-6683-6640-15E769612927">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT035</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E9E20661-7C47-F359-066F-0AAE57AB4E93" referredColumn="73EE666E-A3B1-9DFA-A549-1DC9074E9003"/>
+</associations>
+</Column>
+<Column name="poziom" id="DC66B3E5-FCA9-C70C-565C-2C9938FE3949">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>6959254A-4E32-B871-4695-486229791C3D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isRelationshipColumn>true</isRelationshipColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6A6F81AD-247E-CA02-71DA-38E391E1AEB2" name="Opanowane_PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C390F28-A72E-6B13-2529-B78F7C599BC0"/>
+<colUsage columnID="78F2E3A2-4295-CE71-D7D2-11ED77D4BAFC"/>
+<colUsage columnID="D6AFDAA0-8BB7-6683-6640-15E769612927"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C140CA34-D5F2-551F-B6CA-18ABE39B2A0F" name="Opanowane_Umiejętności_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>C6C8F078-DDCE-283E-01F1-F7DF612F4C75</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C390F28-A72E-6B13-2529-B78F7C599BC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1A052CBC-D529-C6CB-0FEE-21BA33BFE2D8" name="Opanowane_Postacie_FK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-07 21:28:06 UTC</createdTime>
+<generatorID>C6C8F078-DDCE-283E-01F1-F7DF612F4C75</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78F2E3A2-4295-CE71-D7D2-11ED77D4BAFC"/>
+<colUsage columnID="D6AFDAA0-8BB7-6683-6640-15E769612927"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
