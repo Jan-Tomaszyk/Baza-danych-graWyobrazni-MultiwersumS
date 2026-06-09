@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="zna" directorySegmentName="seg_0" id="5FD3EFF8-A0AF-9EF3-1506-594C043C9046">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Techniki_nazwa" id="005FBA18-4159-C2E8-364B-628C14489E5F">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Postacie_Imię" id="A859207C-1CF3-537D-C8C7-6AF2F6AEA243">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Postacie_Nazwisko" id="ABF82C20-F247-1E7D-AFE2-ED18B7AE21F6">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="poziom_umiejętności" id="BD8D8927-5BEE-6D99-C102-E293A3F337F7">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="zna_Postacie_FK" id="2DF79999-D4C0-A56A-41BB-6C17EA033486">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="zna_Techniki_FK" id="E392BB45-640C-D98A-51EA-7CA839244DB7">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="zna_PK" id="924628EF-1556-2C7C-8203-D7308476937A">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>

@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="Rangi klasowe" directorySegmentName="seg_0" id="4414FA78-2E67-3394-4B3E-26F754944928">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Rangi klasowe_Nazwa" id="20722FF6-9BE0-591C-6360-A55F37DB5DC8">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="bonusy_za_rangę" id="67C0E0BF-44EE-B9C3-AFE2-352744228F6D">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Rangi klasowe_nazwa1" id="8497EFF8-07C9-1DF4-0070-D59249649A87">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="?maksymalne_punkty_klasowe_(wymagane_do_awansu)" id="953B7617-A2CC-2EAE-2C13-6369F1382E36">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Klasy_nazwa" id="C150E362-D1B3-88A5-AB92-37E97AC1B626">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Nazwa" id="D1C9CB3B-1779-DA08-7ED3-4478205B36A4">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="minimalne_punkty_klasowe" id="DDD30EC0-DA07-C8A4-2AAA-0CF387D65F3E">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.IndexProxySqlServerv2k12" name="Rangi klasowe__IDX" id="AE6CFC72-BA7A-907B-46C5-30CFDFAFA4BF">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<recomputeStatistics>ON</recomputeStatistics>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="Rangi_klasowe_Klasy_FK" id="B5CA715D-8C7C-02D5-35BC-D3D1514BC51D">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="Rangi_klasowe_Rangi_klasowe_FK" id="FD55D0B7-360A-DE9D-1F59-6C084DE3A9E6">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="Rangi_klasowe_PK" id="BD8D9547-2B07-E028-2FE5-64C741C50471">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>

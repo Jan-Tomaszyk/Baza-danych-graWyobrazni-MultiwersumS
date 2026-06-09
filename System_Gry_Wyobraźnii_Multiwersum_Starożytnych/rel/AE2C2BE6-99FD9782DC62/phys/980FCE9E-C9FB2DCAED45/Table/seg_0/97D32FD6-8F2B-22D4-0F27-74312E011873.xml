@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxySqlServerv2k5 class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.TableProxySqlServerv2k5" name="Prowiant" directorySegmentName="seg_0" id="97D32FD6-8F2B-22D4-0F27-74312E011873">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<database>DB_NULLELEMENT</database>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="czas_trwania_bonusów_i_efektów" id="0BCFF36A-B113-42A7-CD2D-61D474DA1A76">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="Przed_Nazwa" id="2BA9AF61-EB9F-104B-02D1-BD14EC40CF63">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="przywracana_mana" id="7F295EBB-CA2B-F552-5B26-4C1834C1B3C6">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="przywracane_punkty_energii" id="A77ED6A1-1810-DFF7-7D97-F167C0B7B7C0">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="rodzaj" id="A83AB2FA-4A8B-BEC9-A70D-A032CF5D99A5">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="czas_spożycia" id="B5CB12B7-8DAA-86D2-965B-C3B05D8F2AAB">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k12.ColumnProxySqlServerv2k12" name="przywracane_punkty_życia" id="D185BD1C-9618-3892-9444-E9C331958C06">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.FKProxySqlServerv2k5" name="Prowiant_Przedmioty_FK" id="CBA210D0-9CDF-BFF4-B314-84A9EC768A35">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.sqlserver.v2k5.PKProxySqlServerv2k5" name="Prowiant_PK" id="1AE28ECC-4F15-5B08-6B46-48F5986346A0">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-08 12:57:42 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<clustered>true</clustered>
+</PrimaryKey>
+</primaryKeys>
+</TableProxySqlServerv2k5>
