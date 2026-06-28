@@ -4,6 +4,7 @@
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>06BB782E-F304-7BC6-C47A-11D041950CAB</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<ordsAlias>klasy_przeciwnikow</ordsAlias>
 <abbreviation>KP</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -19,6 +20,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_nazwa</notNullConstraintName>
 </Column>
 <Column name="minimalny_poziom" id="F5481BA6-1BB1-43FA-E301-1EAA84927392">
 <createdBy>Jasiu</createdBy>
@@ -44,7 +46,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Siła_z_pierwszego_poziomu" id="86DC16F9-9EF4-2B60-4F0D-8551A52DF825">
+<Column name="Siła_z_poziom_1" id="86DC16F9-9EF4-2B60-4F0D-8551A52DF825">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>A881D94C-D5EC-E7CF-820C-8EFF8FA9431D</generatorID>
@@ -54,8 +56,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Siła_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Wytrzymałość_z_pierwszego_poziomu" id="88479FA0-C63A-FB70-4D6B-AFF106B2BCE1">
+<Column name="Wytrzymałość_poziom_1" id="88479FA0-C63A-FB70-4D6B-AFF106B2BCE1">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>B1CE7CCD-ECF9-7752-F695-4BADE91D71B2</generatorID>
@@ -65,8 +68,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Wytrzymałość_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Kondycja_z_pierwszego_poziomu" id="60C1B76D-E2A2-1213-E554-6C0944CF1952">
+<Column name="Kondycja_poziom_1" id="60C1B76D-E2A2-1213-E554-6C0944CF1952">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>CDC133B2-F403-A081-624F-265B09550EFE</generatorID>
@@ -76,8 +80,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Kondycja_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Zręczność_z_pierwszego_poziomu" id="F2211D20-7BA4-6FB1-E9C8-F1450E091853">
+<Column name="Zręczność_poziom_1" id="F2211D20-7BA4-6FB1-E9C8-F1450E091853">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>0235D621-B6A7-CE20-EB87-C9D424943E34</generatorID>
@@ -87,8 +92,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Zręczność_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Zwinność_z_pierwszego_poziomu" id="7FF2A461-C3A8-013D-2FA4-C4CF6C902D7E">
+<Column name="Zwinność_poziom_1" id="7FF2A461-C3A8-013D-2FA4-C4CF6C902D7E">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>8F05B058-9626-3FB9-E329-ECE1AEF5EDEC</generatorID>
@@ -98,8 +104,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Zwinność_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Mądrość_z_pierwszego_poziomu" id="2AE2AEE3-9B0E-4488-6294-9DF6E1A53B00">
+<Column name="Mądrość_poziom_1" id="2AE2AEE3-9B0E-4488-6294-9DF6E1A53B00">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>ADEB03B4-C17E-E863-F72E-4E7FB62F4488</generatorID>
@@ -109,8 +116,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Mądrość_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Inteligencja_z_pierwszego_poziomu" id="4BC61609-A6CC-3EF1-0EBE-A1B783381084">
+<Column name="Inteligencja_poziom_1" id="4BC61609-A6CC-3EF1-0EBE-A1B783381084">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>9AE2BD9D-F75F-B24B-6917-28D88717D9CD</generatorID>
@@ -120,8 +128,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Inteligencja_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Charyzma_z_pierwszego_poziomu" id="74F604E7-6056-7211-843F-DFA6CB031ADB">
+<Column name="Charyzma_poziom_1" id="74F604E7-6056-7211-843F-DFA6CB031ADB">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>C710DD08-50C8-590D-C535-69F30A483D68</generatorID>
@@ -131,8 +140,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Charyzma_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Pobożność_z_pierwszego_poziomu" id="3D36C770-3941-896F-3A86-FB1797745218">
+<Column name="Pobożność_poziom_1" id="3D36C770-3941-896F-3A86-FB1797745218">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>0FD3FCBF-CC85-EB68-09D1-3CF501B50276</generatorID>
@@ -142,8 +152,9 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Pobożność_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
-<Column name="Wola_z_pierwszego_poziomu" id="16F98C1C-A245-FA5A-1033-FBBBE8DA2DE6">
+<Column name="Wola_poziom_1" id="16F98C1C-A245-FA5A-1033-FBBBE8DA2DE6">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>918AEB76-6F29-D235-9F47-CADAFFC006BE</generatorID>
@@ -153,6 +164,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Wola_z_pierwszego_poziomu</notNullConstraintName>
 </Column>
 <Column name="Siła_na_awans" id="7ADA4719-1054-7204-39F4-E6E94693A876">
 <createdBy>Jasiu</createdBy>
@@ -164,6 +176,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Siła_na_awans</notNullConstraintName>
 </Column>
 <Column name="Wytrzymałość_na_awans" id="0DE387FB-6E28-F4AE-D184-D477FD8E45D8">
 <createdBy>Jasiu</createdBy>
@@ -175,6 +188,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Wytrzymałość_na_awans</notNullConstraintName>
 </Column>
 <Column name="Kondycja_na_awans" id="BD7A23F6-5BEB-3044-A7AB-0501DC4DC310">
 <createdBy>Jasiu</createdBy>
@@ -186,6 +200,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Kondycja_na_awans</notNullConstraintName>
 </Column>
 <Column name="Zręczność_na_awans" id="37F0B818-1268-DCE2-562F-69F22E8864B4">
 <createdBy>Jasiu</createdBy>
@@ -197,6 +212,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Zręczność_na_awans</notNullConstraintName>
 </Column>
 <Column name="Zwinność_na_awans" id="F69D5F27-DBA6-5C90-1E03-890048CA51A1">
 <createdBy>Jasiu</createdBy>
@@ -208,6 +224,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Zwinność_na_awans</notNullConstraintName>
 </Column>
 <Column name="Mądrość_na_awans" id="079CBC4B-6A03-DEED-5DB4-C8942C5C2CDE">
 <createdBy>Jasiu</createdBy>
@@ -219,6 +236,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Mądrość_na_awans</notNullConstraintName>
 </Column>
 <Column name="Inteligencja_na_awans" id="22F223C5-0EE6-8137-1B2F-732BC34DD4E7">
 <createdBy>Jasiu</createdBy>
@@ -230,6 +248,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Inteligencja_na_awans</notNullConstraintName>
 </Column>
 <Column name="Charyzma_na_awans" id="52CB1BD1-CE25-440E-D6C0-BEBEA47F3FE9">
 <createdBy>Jasiu</createdBy>
@@ -241,6 +260,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Charyzma_na_awans</notNullConstraintName>
 </Column>
 <Column name="Pobożność_na_awans" id="7A4C29CE-C71B-7B72-3891-8B4956024913">
 <createdBy>Jasiu</createdBy>
@@ -252,6 +272,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Pobożność_na_awans</notNullConstraintName>
 </Column>
 <Column name="Wola_na_awans" id="3CB68682-43C2-5931-E0CD-E4F77EDE4D49">
 <createdBy>Jasiu</createdBy>
@@ -263,6 +284,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Wola_na_awans</notNullConstraintName>
 </Column>
 <Column name="Rasy_Nazwa" id="F80EBE1E-E594-7118-B8C2-5B59CF6A6CF2">
 <createdBy>Jasiu</createdBy>
@@ -275,6 +297,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_KP_Rasy_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="3825ACF4-1714-04C6-9AD4-F8BE3B0767F7" referredColumn="187164EF-0E4F-C69D-6032-1EF8E28A28CA"/>
 </associations>

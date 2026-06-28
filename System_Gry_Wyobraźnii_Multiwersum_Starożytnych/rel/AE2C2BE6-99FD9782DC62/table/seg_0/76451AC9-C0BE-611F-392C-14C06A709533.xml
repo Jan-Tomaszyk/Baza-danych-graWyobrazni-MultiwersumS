@@ -18,6 +18,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_ilość_punktów_klasowych</notNullConstraintName>
 </Column>
 <Column name="Postacie_Imię" id="69CCB959-E509-80B8-D7D4-33172E50E158">
 <createdBy>Jasiu</createdBy>
@@ -30,6 +31,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_Postacie_Imię</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="9AC30710-C54F-DA40-257F-CD3EF490E5E7" referredColumn="AF8D121F-809B-621D-1648-03B80DCFACB8"/>
 </associations>
@@ -45,6 +47,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_Postacie_Nazwisko</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="9AC30710-C54F-DA40-257F-CD3EF490E5E7" referredColumn="73EE666E-A3B1-9DFA-A549-1DC9074E9003"/>
 </associations>
@@ -60,11 +63,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_Klasy_nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="2B71D31D-C0BC-0544-3303-BC167A1FB509" referredColumn="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E"/>
 </associations>
 </Column>
-<Column name="Poprzednia Ranga klasowa" id="B82C5A88-5F7C-79E7-0FEA-F8DBB102E780">
+<Column name="Rangi_klasowe_Nazwa" id="B82C5A88-5F7C-79E7-0FEA-F8DBB102E780">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>D3A2DBEB-2217-EA74-6050-90E84C283FC0</generatorID>
@@ -75,11 +79,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_Rangi klasowe_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="6F2A5EE1-F6D5-2E72-59D9-C57284679625" referredColumn="D1C9CB3B-1779-DA08-7ED3-4478205B36A4"/>
 </associations>
 </Column>
-<Column name="Następna Ranga Klasowa" id="9519CA0D-FA2A-AAA7-75AE-C6DEC91461C0">
+<Column name="Rangi_klasowe_Klasy_nazwa" id="9519CA0D-FA2A-AAA7-75AE-C6DEC91461C0">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>D151F7B4-5EAA-6076-693F-872E9D93B686</generatorID>
@@ -90,9 +95,22 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_klasa_postaci_Rangi klasowe_Klasy_nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="6F2A5EE1-F6D5-2E72-59D9-C57284679625" referredColumn="C150E362-D1B3-88A5-AB92-37E97AC1B626"/>
 </associations>
+</Column>
+<Column name="aktywna" id="28ECBA32-19E2-83FB-F88B-3B9C6A96E9A8">
+<createdBy>macie</createdBy>
+<createdTime>2026-06-28 17:02:27 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -133,7 +151,7 @@
 <colUsage columnID="E7A6BD30-6D8B-8908-5ED5-0453CBCE0273"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="9401A827-A5DC-2A8E-CBBC-0B3EEB5C5BC6" name="klasa_postaci_Rangi_klasowe_FK">
+<ind_PK_UK id="9401A827-A5DC-2A8E-CBBC-0B3EEB5C5BC6" name="klasa_postaci_Rangi klasowe_FK">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>2BE06E2D-8B03-FC0F-C8FE-47716BF7DAC0</generatorID>

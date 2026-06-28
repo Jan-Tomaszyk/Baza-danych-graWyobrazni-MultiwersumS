@@ -1,14 +1,15 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="04934A1D-ED1B-4C57-A031-7707138185BE" name="Księgi i Pisma">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="04934A1D-ED1B-4C57-A031-7707138185BE" name="Księgi_i_Pisma">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>7F5B6814-90A3-7540-E54C-4023F74856DF</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<ordsAlias>ksiegi_i_pisma</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Przed_Nazwa" id="550AAD8E-5CF7-CFF5-9096-960A3AAE38E6">
+<Column name="Przedmioty_Przed_Nazwa" id="550AAD8E-5CF7-CFF5-9096-960A3AAE38E6">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>66242D26-5B07-370A-7B57-EF3D2B3C993E</generatorID>
@@ -18,13 +19,14 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Księgi_i_Pisma_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="B922719B-7DAD-3852-31B9-4867BC1D7EEF" referredColumn="C812CFA9-B18C-5CC8-1B1F-8BFF5B7D5EBB"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="475A433A-F9D9-7398-3776-8AFBF8347FDD" name="Księgi i Pisma_PK">
+<ind_PK_UK id="475A433A-F9D9-7398-3776-8AFBF8347FDD" name="Księgi_i_Pisma_PK">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>891293CD-8750-3751-976C-7CA458C33636</generatorID>

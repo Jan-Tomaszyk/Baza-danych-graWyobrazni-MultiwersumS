@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8CF5250F-BA38-C52B-F9DF-24FE00B01678" name="Pancerze i stroje">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8CF5250F-BA38-C52B-F9DF-24FE00B01678" name="Pancerze_i_stroje">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>B1DB86E4-B188-F6AF-79E3-F6DB78F8B69A</generatorID>
@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Przed_Nazwa" id="DC4B4EB6-1AB8-9981-DB94-27DB934502E6">
+<Column name="Przedmioty_Przed_Nazwa" id="DC4B4EB6-1AB8-9981-DB94-27DB934502E6">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>66242D26-5B07-370A-7B57-EF3D2B3C993E</generatorID>
@@ -19,6 +19,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="E91B0103-DE71-6249-ABAF-A7A6DDCE135A" referredColumn="C812CFA9-B18C-5CC8-1B1F-8BFF5B7D5EBB"/>
 </associations>
@@ -33,6 +34,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Miejsce_noszenia</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Pancerz_Ogólny" id="5DEC888E-640E-2CA9-4DA6-DC68A577E97B">
 <createdBy>Jasiu</createdBy>
@@ -44,6 +46,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Pancerz_Ogólny</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Pancerz_miękki" id="85E70AB1-F478-0822-CF14-F313B6D6F3B8">
 <createdBy>Jasiu</createdBy>
@@ -55,6 +58,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Pancerz_miękki</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Pancerz_twardy" id="B91C7F38-B6B5-1222-79A3-795073C5A620">
 <createdBy>Jasiu</createdBy>
@@ -66,6 +70,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Pancerz_twardy</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Inne_pancerze" id="EB760ECD-7764-1CE4-723A-CE25843778F7">
 <createdBy>Jasiu</createdBy>
@@ -77,8 +82,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Inne_pancerze</notNullConstraintName>
 </Column>
-<Column name="Pancerz_?Ochrona_przed_zimnem" id="1392632A-376F-ADA8-BEAC-039B30C4DD12">
+<Column name="Pancerz_Ochrona_przed_zimnem" id="1392632A-376F-ADA8-BEAC-039B30C4DD12">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>0B8D1D3B-7971-9C3B-FD29-1238004F320B</generatorID>
@@ -88,6 +94,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_?Ochrona_przed_zimnem</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_siły" id="B3A2E9BA-FD86-0428-429F-A51767E7955F">
 <createdBy>Jasiu</createdBy>
@@ -99,6 +106,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_siły</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_wytrzymałości" id="F085DC4A-02F0-A5D6-83B6-B1511EA75D09">
 <createdBy>Jasiu</createdBy>
@@ -110,6 +118,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_wytrzymałości</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_kondycji" id="FEC4977D-3CF6-5D33-C1C5-99D1AF93B66E">
 <createdBy>Jasiu</createdBy>
@@ -121,6 +130,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_kondycji</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_zręczności" id="4DF6F226-2F26-BDC7-2A75-10B6595929E6">
 <createdBy>Jasiu</createdBy>
@@ -132,6 +142,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_zręczności</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_zwinności" id="4A9CFF63-F8DD-CB78-84D1-4413F2816B99">
 <createdBy>Jasiu</createdBy>
@@ -143,6 +154,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_zwinności</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_mądrości" id="5C30C1E5-5528-6C02-0945-2C95F6CF980F">
 <createdBy>Jasiu</createdBy>
@@ -154,6 +166,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_mądrości</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_inteligencji" id="9F3BBF24-D92A-5D41-27E4-A2F6F39CA8EE">
 <createdBy>Jasiu</createdBy>
@@ -165,6 +178,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_inteligencji</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_charyzmy" id="ACE594DF-9546-BAAC-B5E5-B16DF9BC0AED">
 <createdBy>Jasiu</createdBy>
@@ -176,6 +190,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_charyzmy</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_pobożności" id="5AF1B564-43A3-94D7-9DE7-9D2FB2D9B885">
 <createdBy>Jasiu</createdBy>
@@ -187,6 +202,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_pobożności</notNullConstraintName>
 </Column>
 <Column name="Pancerz_Bonus_do_woli" id="40284DAA-68DE-14F5-52FA-ADC320704F95">
 <createdBy>Jasiu</createdBy>
@@ -198,6 +214,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Pancerz_Pancerz_Bonus_do_woli</notNullConstraintName>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -213,7 +230,7 @@
 <colUsage columnID="DC4B4EB6-1AB8-9981-DB94-27DB934502E6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="197A28A6-F1DF-87B5-111E-8FA5DFEFF67F" name="Pancerze_i_stroje_Przedmioty_FK">
+<ind_PK_UK id="197A28A6-F1DF-87B5-111E-8FA5DFEFF67F" name="Pancerze i stroje_Przedmioty_FK">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>151CB391-5E39-9B38-96BF-4B75EDFEBEA0</generatorID>
