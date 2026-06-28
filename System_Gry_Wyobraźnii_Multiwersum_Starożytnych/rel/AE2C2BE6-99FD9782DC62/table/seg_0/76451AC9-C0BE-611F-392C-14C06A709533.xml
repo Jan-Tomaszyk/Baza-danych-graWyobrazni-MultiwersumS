@@ -64,7 +64,7 @@
 <colAssociation fkAssociation="2B71D31D-C0BC-0544-3303-BC167A1FB509" referredColumn="BB7D0B7E-EAE9-E924-2DF8-556FD49D383E"/>
 </associations>
 </Column>
-<Column name="Rangi klasowe_Nazwa" id="B82C5A88-5F7C-79E7-0FEA-F8DBB102E780">
+<Column name="Poprzednia Ranga klasowa" id="B82C5A88-5F7C-79E7-0FEA-F8DBB102E780">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:05 UTC</createdTime>
 <generatorID>D3A2DBEB-2217-EA74-6050-90E84C283FC0</generatorID>
@@ -79,7 +79,7 @@
 <colAssociation fkAssociation="6F2A5EE1-F6D5-2E72-59D9-C57284679625" referredColumn="D1C9CB3B-1779-DA08-7ED3-4478205B36A4"/>
 </associations>
 </Column>
-<Column name="Rangi klasowe_nazwa1" id="9519CA0D-FA2A-AAA7-75AE-C6DEC91461C0">
+<Column name="Następna Ranga Klasowa" id="9519CA0D-FA2A-AAA7-75AE-C6DEC91461C0">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>D151F7B4-5EAA-6076-693F-872E9D93B686</generatorID>
