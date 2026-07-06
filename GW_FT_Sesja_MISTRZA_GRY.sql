@@ -1,0 +1,16 @@
+-- ==========================================
+-- Widoki? Korzystanie z widoków
+-- ==========================================
+
+-- ==========================================
+---- Sesja Mistrza Gry przygotującego kampanię lub sesję 
+-- ==========================================
+-- Sesja zawiera wszelkie dodawanie i sprawdzanie wszystkiego co może być potrzebne Mistrzowi Gry
+-- podczas przygotowywania misji lub kampanii. Czyli
+-- - Tworzenie:         nowych klas przeciwników
+-- - Sprawdzanie:       klas przeciwników
+-- - Masowe Tworzenie:  postaci poziomach wyższych niż 1
+-- - Tworzenie:         przedmiotów
+-- - Tworzenie:         powiązań między postaciami a umiejętnościami i technikami
+-- - Tworzenie:         powiązań klas z postaciami
+--? - Tworzenie?        Walut?

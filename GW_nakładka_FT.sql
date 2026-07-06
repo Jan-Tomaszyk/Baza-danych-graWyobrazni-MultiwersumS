@@ -1,5 +1,25 @@
+-- ==========================================
+-- Widoki?
+-- ==========================================
 
---RANGI KLASOWE
+
+-- ==========================================
+---- DODAWANIE DANYCH NAKŁADKI UNIWERSOWEJ
+-- ==========================================
+-- Nakładka uniwersowa - Elementy składowe systemu gry specyficzne dla danego świata(uniwersum).
+-- Głównie dane specyficzne dla danego świata.
+-- w przeciwieństwie do określającego ogół mechaniki rdzenia systemu wspólnego dla wszystkich światów.
+
+-- Ten plik jest poświęcony dodawaniu do bazy danych elementów nakładki uniwersowej Uniwersum Fairy Tail, pierwszego opracowanego.
+-- Takich jak Rasy, Klasy, Umiejętności, prawdopodobnie Techniki i Przedmioty 
+-- wraz z ich powiązaniami z innymi wypełnionymi tabelami oraz być może (Klasy) Przeciwników.
+-- Waluty? 
+
+
+-- ==========================================
+-- X. RANGI KLASOWE
+-- ==========================================
+
 ALTER TABLE SBD164306.Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
 ---rangi maga
 Begin;
@@ -105,7 +125,7 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Mistrz', NULL
     );
-SELECT * FROM Rangi_klasowe
+SELECT * FROM Rangi_klasowe;
 
 Commit
 Rollback

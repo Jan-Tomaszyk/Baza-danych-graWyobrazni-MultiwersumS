@@ -13,33 +13,34 @@
 
 CREATE TABLE Rasy 
 (
-    Nazwa VARCHAR(255)) PRIMARY KEY,
+    Nazwa VARCHAR(255) PRIMARY KEY,
     Rozumność BOOLEAN NOT NULL,
-    Siła_OCENA INTEGER NOT NULL CONSTRAINT Siła_ZAKRES CHECK(BETWEEN 1 AND 30),
-    Wytrzymałość_OCENA INTEGER NOT NULL CONSTRAINT Wytrzymałość_ZAKRES CHECK(BETWEEN 1 AND 30),
-    Kondycja_OCENA INTEGER NOT NULL CONSTRAINT Kondycja_ZAKRES CHECK(BETWEEN 1 AND 30),
-    Zręczność_OCENA INTEGER NOT NULL CONSTRAINT Zręczność_ZAKRES CHECK(BETWEEN 1 AND 30),
-    Zwinność_OCENA INTEGER NOT NULL CONSTRAINT Zwinność_ZAKRES CHECK(BETWEEN 1 AND 30),
-    MAGICZNOŚĆ INTEGER NOT NULL CONSTRAINT MAGICZNOŚĆ_ZAKRES CHECK(BETWEEN 1 AND 10),
-    Mądrość_OCENA INTEGER NOT NULL CONSTRAINT Mądrość_ZAKRES CHECK(BETWEEN 1 AND 10),
-    Inteligencja_OCENA INTEGER NOT NULL Inteligencja_ZAKRES CHECK(BETWEEN 1 AND 10),
-    Charyzma_OCENA INTEGER NOT NULL CONSTRAINT Charyzma_ZAKRES CHECK(BETWEEN 1 AND 20),
-    Pobożność_OCENA INTEGER NOT NULL CONSTRAINT Pobożność_ZAKRES CHECK(BETWEEN 1 AND 20),
-    Wola_OCENA INTEGER NOT NULL CONSTRAINT Wola_ZAKRES CHECK(BETWEEN 1 AND 20),
-    Zdolności_rasowe VARCHAR(255)),
+    Siła_OCENA INTEGER NOT NULL CONSTRAINT Siła_ZAKRES CHECK(Siła_OCENA BETWEEN 1 AND 30),
+    Wytrzymałość_OCENA INTEGER NOT NULL CONSTRAINT Wytrzymałość_ZAKRES CHECK(Wytrzymałość_OCENA BETWEEN 1 AND 30),
+    Kondycja_OCENA INTEGER NOT NULL CONSTRAINT Kondycja_ZAKRES CHECK(Kondycja_OCENA BETWEEN 1 AND 30),
+    Zręczność_OCENA INTEGER NOT NULL CONSTRAINT Zręczność_ZAKRES CHECK(Zręczność_OCENA BETWEEN 1 AND 30),
+    Zwinność_OCENA INTEGER NOT NULL CONSTRAINT Zwinność_ZAKRES CHECK(Zwinność_OCENA BETWEEN 1 AND 30),
+    MAGICZNOŚĆ INTEGER NOT NULL CONSTRAINT MAGICZNOŚĆ_ZAKRES CHECK(MAGICZNOŚĆ BETWEEN 1 AND 10),
+    Mądrość_OCENA INTEGER NOT NULL CONSTRAINT Mądrość_ZAKRES CHECK(Mądrość_OCENA BETWEEN 1 AND 10),
+    Inteligencja_OCENA INTEGER NOT NULL Inteligencja_ZAKRES CHECK(Inteligencja_OCENA BETWEEN 1 AND 10),
+    Charyzma_OCENA INTEGER NOT NULL CONSTRAINT Charyzma_ZAKRES CHECK(Charyzma_OCENA BETWEEN 1 AND 20),
+    Pobożność_OCENA INTEGER NOT NULL CONSTRAINT Pobożność_ZAKRES CHECK(Pobożność_OCENA BETWEEN 1 AND 20),
+    Wola_OCENA INTEGER NOT NULL CONSTRAINT Wola_ZAKRES CHECK(Wola_OCENA BETWEEN 1 AND 20),
+    Zdolności_rasowe VARCHAR(255),
     Pancerz_Ogólny INTEGER NOT NULL,
     Pancerz_miękki INTEGER NOT NULL,
     Pancerz_twardy INTEGER NOT NULL,
-    Typ_przejęcia VARCHAR(255)),
-    Występowanie_rola_informacje VARCHAR(255)),
+    Typ_przejęcia VARCHAR(255),
+    Występowanie_rola_informacje VARCHAR(255),
     średnia_długość_życia INTEGER,
     wiek_starości INTEGER NOT NULL,
     inne_cechy TEXT
 );
 
 CREATE TABLE Postacie (
-    Imię VARCHAR(255)) NOT NULL,
-    Nazwisko VARCHAR(255)) NOT NULL,
+    ID_postaci SERIAL PRIMARY KEY,
+    Imię VARCHAR(255) NOT NULL,
+    Nazwisko VARCHAR(255),
     Poziom INTEGER NOT NULL,
     PD BIGINT NOT NULL CONSTRAINT naturalne CHECK(PD>=0),
     Wiek INTEGER CONSTRAINT dodatnie CHECK(Wiek>0),
@@ -63,37 +64,36 @@ CREATE TABLE Postacie (
     Charyzma_z_awansów INTEGER CONSTRAINT naturalne CHECK(Charyzma_z_awansów>=0),
     Pobożność_z_awansów INTEGER CONSTRAINT naturalne CHECK(Pobożność_z_awansów>=0),
     Wola_z_awansów INTEGER CONSTRAINT naturalne CHECK(Wola_z_awansów>=0),
-    Rasy_Nazwa VARCHAR(255)) NOT NULL,
-    Gracz VARCHAR(255)),
-    CONSTRAINT Postacie_PK PRIMARY KEY (Imię, Nazwisko)
+    Rasy_Nazwa VARCHAR(255) NOT NULL,
+    Gracz VARCHAR(255),
+    --CONSTRAINT Postacie_PK PRIMARY KEY (Imię, Nazwisko)
 );
 
 CREATE TABLE Umiejętności 
 (
-    Nazwa VARCHAR(255)) PRIMARY KEY,
-    Typ_umiej VARCHAR(255)) NOT NULL,
-    Natura VARCHAR(255)) NOT NULL,
-    Rodzaj VARCHAR(255)),
-    Samodzielność VARCHAR(255)) NOT NULL,
-    Dostępność VARCHAR(255)) NOT NULL,
+    Nazwa VARCHAR(255) PRIMARY KEY,
+    Typ_umiej VARCHAR(255) NOT NULL,
+    Natura VARCHAR(255) NOT NULL,
+    Rodzaj VARCHAR(255),
+    Samodzielność VARCHAR(255) NOT NULL,
+    Dostępność VARCHAR(255) NOT NULL,
     Opis_fabularny TEXT,
     Opis_praktyczny TEXT
 );
 
 CREATE TABLE Klasy
 (
-    nazwa VARCHAR(255)) PRIMARY KEY,
-    premiowane_cechy VARCHAR(255))
+    nazwa VARCHAR(255) PRIMARY KEY,
+    premiowane_cechy VARCHAR(255)
 );
 
 CREATE TABLE Przedmioty (
-    Przed_Nazwa VARCHAR(255)) PRIMARY KEY,
-    Przed_Efekty VARCHAR(255)),
-    Przed_Opis VARCHAR(255)),
+    Przed_Nazwa VARCHAR(255) PRIMARY KEY,
+    Przed_Efekty VARCHAR(255),
+    Przed_Opis VARCHAR(255),
     Przed_cena_domyślna NUMERIC(21,2),--spytać Maćka
-    Postacie_Imię VARCHAR(255))(255)),
-    Postacie_Nazwisko VARCHAR(255))(255)),
-    Klasy_Przeciwników_nazwa VARCHAR(255))(255)),
+    Postacie_ID INTEGER,
+    Klasy_Przeciwników_nazwa VARCHAR(255),
     jest_noszony BOOLEAN
 );
 
@@ -101,7 +101,7 @@ CREATE TABLE Przedmioty (
 --CONSTRAINT naturalne CHECK(Wola_z_awansów>=0),
 
 CREATE TABLE Klasy_Przeciwników (
-    nazwa VARCHAR(255))(255)) PRIMARY KEY,
+    nazwa VARCHAR(255) PRIMARY KEY,
     minimalny_poziom INTEGER CONSTRAINT dodatnie CHECK(minimalny_poziom>0),
     maksymalny_poziom INTEGER CONSTRAINT dodatnie CHECK(maksymalny_poziom>0),
     Siła_z_poziom_1 INTEGER NOT NULL,
@@ -123,8 +123,8 @@ CREATE TABLE Klasy_Przeciwników (
     Inteligencja_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(Inteligencja_na_awans>=0),
     Charyzma_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(Charyzma_na_awans>=0),
     Pobożność_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pobożność_na_awans>=0),
-    Wola_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(Wola_na_awans>=0)
-    Rasy_Nazwa VARCHAR(255))(255)) NOT NULL
+    Wola_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(Wola_na_awans>=0),
+    Rasy_Nazwa VARCHAR(255) NOT NULL
 );
 
 -- ==========================================
@@ -135,18 +135,18 @@ CREATE TABLE Klasy_Przeciwników (
 -- ====
 
 CREATE TABLE Bronie (
-    Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
-    Broń_Kategoria_Obrażeń VARCHAR(255)) NOT NULL,
-    Broń_test_trafienia_machnięcie VARCHAR(255)) NOT NULL,
-    Broń_Typ_Obrażeń_Machnięcie VARCHAR(255)) NOT NULL,
-    Broń_Test_Obrażeń_Machnięcie VARCHAR(255)) NOT NULL,
-    Broń_Typ_Obrażeń_Machnięcie_tylne VARCHAR(255)),
-    Broń_Test_Obrażeń_Machnięcie_tylne VARCHAR(255)),
-    Broń_test_trafienia_pchnięcie VARCHAR(255)) NOT NULL,
-    Broń_Typ_Obrażeń_Pchnięcie VARCHAR(255)) NOT NULL,
-    Broń_Test_Obrażeń_Pchnięcie VARCHAR(255)),
-    Broń_Typ_Obrażeń_Pchnięcie_pełne VARCHAR(255)) NOT NULL,
-    Broń_Test_Obrażeń_Pchnięcie_pełne VARCHAR(255)),
+    Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
+    Broń_Kategoria_Obrażeń VARCHAR(255) NOT NULL,
+    Broń_test_trafienia_machnięcie VARCHAR(255) NOT NULL,
+    Broń_Typ_Obrażeń_Machnięcie VARCHAR(255) NOT NULL,
+    Broń_Test_Obrażeń_Machnięcie VARCHAR(255) NOT NULL,
+    Broń_Typ_Obrażeń_Machnięcie_tylne VARCHAR(255),
+    Broń_Test_Obrażeń_Machnięcie_tylne VARCHAR(255),
+    Broń_test_trafienia_pchnięcie VARCHAR(255) NOT NULL,
+    Broń_Typ_Obrażeń_Pchnięcie VARCHAR(255) NOT NULL,
+    Broń_Test_Obrażeń_Pchnięcie VARCHAR(255),
+    Broń_Typ_Obrażeń_Pchnięcie_pełne VARCHAR(255) NOT NULL,
+    Broń_Test_Obrażeń_Pchnięcie_pełne VARCHAR(255),
     Broń_Wpływy TEXT,
     Broń_Dwuręczność BOOLEAN,
     Broń_Minimalny_poziom_Umiejętności INTEGER CONSTRAINT naturalne CHECK(Broń_Minimalny_poziom_Umiejętności>=0),
@@ -154,7 +154,7 @@ CREATE TABLE Bronie (
     Broń_długość_cm BIGINT CONSTRAINT dodatnie CHECK(Broń_długość_cm>0),
     Broń_długość_uchwytu_cm BIGINT CONSTRAINT naturalne CHECK(Broń_długość_uchwytu_cm>=0),
     Broń_zasięg BIGINT CONSTRAINT dodatnie CHECK(Broń_zasięg>0),
-    Umiejętności_Nazwa VARCHAR(255)) NOT NULL,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
     Broń_Bonus_do_siły INTEGER NOT NULL,
     Broń_Bonus_do_wytrzymałości INTEGER NOT NULL,
     Broń_Bonus_do_kondycji INTEGER NOT NULL,
@@ -170,18 +170,18 @@ CREATE TABLE Bronie (
 
 CREATE TABLE Księgi_i_Pisma
 (
-    Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
+    Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Księgi_i_Pisma_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
 );
 
 CREATE TABLE Pancerze_i_stroje (
-    Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
-    Pancerz_Miejsce_noszenia VARCHAR(255)) NOT NULL,
+    Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
+    Pancerz_Miejsce_noszenia VARCHAR(255) NOT NULL,
     Pancerz_Pancerz_Ogólny INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_Pancerz_Ogólny>=0),
     Pancerz_Pancerz_miękki INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_Pancerz_miękki>=0),
     Pancerz_Pancerz_twardy INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_Pancerz_twardy>=0),
-    Pancerz_Inne_pancerze VARCHAR(255)) NOT NULL,
-    Pancerz_Ochrona_przed_zimnem INTEGER CONSTRAINT naturalne CHECK(Pancerz_Ochrona_przed_zimnem>=0),,
+    Pancerz_Inne_pancerze VARCHAR(255) NOT NULL,
+    Pancerz_Ochrona_przed_zimnem INTEGER CONSTRAINT naturalne CHECK(Pancerz_Ochrona_przed_zimnem>=0),
     Pancerz_Bonus_do_siły INTEGER NOT NULL,
     Pancerz_Bonus_do_wytrzymałości INTEGER NOT NULL,
     Pancerz_Bonus_do_kondycji INTEGER NOT NULL,
@@ -196,102 +196,99 @@ CREATE TABLE Pancerze_i_stroje (
 );
 
 CREATE TABLE Prowiant (
-    Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
-    rodzaj VARCHAR(255)) NOT NULL,
-    czas_spożycia VARCHAR(255)) NOT NULL,
+    Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
+    rodzaj VARCHAR(255) NOT NULL,
+    czas_spożycia VARCHAR(255) NOT NULL,
     przywracane_punkty_energii INTEGER NOT NULL CONSTRAINT naturalne CHECK(przywracane_punkty_energii>=0),
     przywracane_punkty_życia INTEGER NOT NULL CONSTRAINT naturalne CHECK(przywracane_punkty_życia>=0),
     przywracana_mana INTEGER NOT NULL CONSTRAINT naturalne CHECK(przywracana_mana>=0),
-    czas_trwania_bonusów_i_efektów VARCHAR(255)),
+    czas_trwania_bonusów_i_efektów VARCHAR(255),
     CONSTRAINT Prowiant_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
 );
 
 CREATE TABLE Rózności (
-    Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
+    Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Rózności_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
 );
 
 CREATE TABLE Pieniądze (
-    Waluta VARCHAR(255)) NOT NULL,
+    Waluta VARCHAR(255) NOT NULL,
     Ilość BIGINT,
-    Postacie_Imię VARCHAR(255)) NOT NULL,
-    Postacie_Nazwisko VARCHAR(255)) NOT NULL,
-    CONSTRAINT Pieniądze_PK PRIMARY KEY (Waluta, Postacie_Imię, Postacie_Nazwisko)
+    Postacie_ID INTEGER NOT NULL,
+    CONSTRAINT Pieniądze_PK PRIMARY KEY (Waluta, Postacie_ID)
 );
 
 --2.B Techniki - Główna, zależna od umiejętności i przedmiotów
 CREATE TABLE Techniki
 (
-    nazwa VARCHAR(255)) PRIMARY KEY,
-    typ VARCHAR(255)) NOT NULL,
-    rodzaj VARCHAR(255)),
+    nazwa VARCHAR(255) PRIMARY KEY,
+    typ VARCHAR(255) NOT NULL,
+    rodzaj VARCHAR(255),
     bazowy_koszt_w_manie INTEGER NOT NULL,
-    modyfikatory_kosztu_w_manie VARCHAR(255)),
+    modyfikatory_kosztu_w_manie VARCHAR(255),
     bazowy_koszt_w_energii INTEGER NOT NULL,
-    modyfikatory_kosztu_w_energii VARCHAR(255)),
+    modyfikatory_kosztu_w_energii VARCHAR(255),
     efekt TEXT NOT NULL,
-    test_sukcesu VARCHAR(255)) NOT NULL,
-    test_trafienia VARCHAR(255)),
-    testy_obrażeń VARCHAR(255)),
-    test_na_zniszczenie VARCHAR(255)),
-    ew_inne_testy VARCHAR(255)),
-    Umiejętności_Nazwa VARCHAR(255)),
-    Bronie_Umiejętności_Nazwa VARCHAR(255)),
+    test_sukcesu VARCHAR(255) NOT NULL,
+    test_trafienia VARCHAR(255),
+    testy_obrażeń VARCHAR(255),
+    test_na_zniszczenie VARCHAR(255),
+    ew_inne_testy VARCHAR(255),
+    Umiejętności_Nazwa VARCHAR(255),
+    Bronie_Umiejętności_Nazwa VARCHAR(255),
     minimalny_poziom_nauki INTEGER,
-    stopień_zaawansowania VARCHAR(255)),
-    Wymaga_nauki_z_księgii VARCHAR(255)),
-    Wymaga_nauczyciela VARCHAR(255)),
-    Wymaga_dodatkowego_treningu VARCHAR(255))
+    stopień_zaawansowania VARCHAR(255),
+    Wymaga_nauki_z_księgii VARCHAR(255),
+    Wymaga_nauczyciela VARCHAR(255),
+    Wymaga_dodatkowego_treningu VARCHAR(255)
 );
 
 --2.C Tabele Umiejętnościowe i Technikowe:
 --2.C.1 Wewnętrzne:
 CREATE TABLE Podległość (
-    wymagana VARCHAR(255)) NOT NULL,
-    wymaga VARCHAR(255)) NOT NULL,
+    wymagana VARCHAR(255) NOT NULL,
+    wymaga VARCHAR(255) NOT NULL,
     CONSTRAINT Podległość_PK PRIMARY KEY (wymagana, wymaga)
 );
 
 --2.C.2 Postaciowe
 CREATE TABLE Opanowane (
-    Umiejętności_Nazwa VARCHAR(255)) NOT NULL,
-    Postacie_Imię VARCHAR(255)) NOT NULL,
-    Postacie_Nazwisko VARCHAR(255)) NOT NULL,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
+    Postacie_ID INTEGER NOT NULL,
     poziom INTEGER CONSTRAINT dodatnie CHECK(poziom>0),
-    CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa, Postacie_Imię, Postacie_Nazwisko)
+    CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa, Postacie_ID)
 );
 
 CREATE TABLE zna (
-    Techniki_nazwa VARCHAR(255)) NOT NULL,
-    Postacie_Imię VARCHAR(255)) NOT NULL,
-    Postacie_Nazwisko VARCHAR(255)) NOT NULL,
+    Techniki_nazwa VARCHAR(255) NOT NULL,
+    Postacie_ID INTEGER NOT NULL,
     poziom_poznania INTEGER NOT NULL CONSTRAINT naturalne CHECK(poziom_poznania>=0),-- poziom umiejętności, na którym poznało się daną technikę
-    CONSTRAINT zna_PK PRIMARY KEY (Techniki_nazwa, Postacie_Imię, Postacie_Nazwisko)
+    CONSTRAINT zna_PK PRIMARY KEY (Techniki_nazwa, Postacie_ID)
 );
 
 --2.C.3 Przeciwnikowe
 CREATE TABLE przeciwnicy_znają (
-    Klasy_Przeciwników_nazwa VARCHAR(255)) NOT NULL,
-    Techniki_nazwa VARCHAR(255)) NOT NULL,
+    Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
+    Techniki_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT przeciwnicy_znają_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Techniki_nazwa)
 );
 
 CREATE TABLE umiejętności_przeciwników (
-    Klasy_Przeciwników_nazwa VARCHAR(255)) NOT NULL,
-    Umiejętności_Nazwa VARCHAR(255)) NOT NULL,
+    Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT umiejętności_przeciwników_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Umiejętności_Nazwa)
 );
 
 --2.C.4 Księgowe
 CREATE TABLE umiejętności_uczone_z_ksiąg (
-    Umiejętności_Nazwa VARCHAR(255)) NOT NULL,
-    Księgi_i_Pisma_Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
+    Księgi_i_Pisma_Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT umiejętności_uczone_z_ksiąg_PK PRIMARY KEY (Umiejętności_Nazwa, Księgi_i_Pisma_Przedmioty_Przed_Nazwa)
 );
 
 CREATE TABLE Techniki_uczone_z_ksiąg (
-    Księgi_i_Pisma_Przedmioty_Przed_Nazwa VARCHAR(255)) NOT NULL,
-    Techniki_nazwa VARCHAR(255)) NOT NULL,
+    Księgi_i_Pisma_Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
+    Techniki_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Techniki_uczone_z_ksiąg_PK PRIMARY KEY (Księgi_i_Pisma_Przedmioty_Przed_Nazwa, Techniki_nazwa)
 );
 
@@ -299,33 +296,32 @@ CREATE TABLE Techniki_uczone_z_ksiąg (
 --2.D Tabele Klasowe
 
 CREATE TABLE Rangi_klasowe (
-    Nazwa VARCHAR(255)) NOT NULL,
+    Nazwa VARCHAR(255) NOT NULL,
     bonusy_za_rangę TEXT,
     minimalne_punkty_klasowe INTEGER NOT NULL CONSTRAINT dodatnie CHECK(minimalne_punkty_klasowe>0),
     punkty_klasowe_wymagane_do_awansu INTEGER CONSTRAINT dodatnie CHECK(punkty_klasowe_wymagane_do_awansu>0),
-    Klasy_nazwa VARCHAR(255)) NOT NULL,
-    Poprzednia_ranga VARCHAR(255)),
-    Nastepna_ranga VARCHAR(255)),
+    Klasy_nazwa VARCHAR(255) NOT NULL,
+    Poprzednia_ranga VARCHAR(255),
+    Nastepna_ranga VARCHAR(255),
     CONSTRAINT Rangi_klasowe_PK PRIMARY KEY (Nazwa, Klasy_nazwa)
     CONSTRAINT Rangi_klasowe_punkty (minimalne_punkty_klasowe<punkty_klasowe_wymagane_do_awansu)
 );
 
 CREATE TABLE klasa_postaci (
-    ilość_punktów_klasowych INTEGER NOT NULL,
-    Postacie_Imię VARCHAR(255)) NOT NULL,
-    Postacie_Nazwisko VARCHAR(255)) NOT NULL,
-    Klasy_nazwa VARCHAR(255)) NOT NULL,
-    Rangi_klasowe_Nazwa VARCHAR(255)) NOT NULL,
-    Rangi_klasowe_Klasy_nazwa VARCHAR(255)) NOT NULL,
+    ilość_punktów_klasowych INTEGER CONSTRAINT naturalne CHECK(ilość_punktów_klasowych>=0) NOT NULL,
+    Postacie_ID INTEGER NOT NULL,
+    Klasy_nazwa VARCHAR(255) NOT NULL,
+    Rangi_klasowe_Nazwa VARCHAR(255),-- NOT NULL,
+    --Rangi_klasowe_Klasy_nazwa VARCHAR(255),-- NOT NULL,
     aktywna BOOLEAN,
-    CONSTRAINT klasa_postaci_PK PRIMARY KEY (Postacie_Imię, Postacie_Nazwisko, Klasy_nazwa)
+    CONSTRAINT klasa_postaci_PK PRIMARY KEY (Postacie_ID, Klasy_nazwa)
 );
 
 CREATE TABLE Punkty_Klasowe (
-    Warunek VARCHAR(255)) NOT NULL,
+    Warunek VARCHAR(255) NOT NULL,
     minimalne_punkty INTEGER,
     maksymalne_punkty INTEGER,
-    Klasy_nazwa VARCHAR(255)) NOT NULL,
+    Klasy_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Punkty_Klasowe_PK PRIMARY KEY (Klasy_nazwa, Warunek)
     CONSTRAINT Punkty_Klasowe_punkty CHECK(ABS(minimalne_punkty) <= ABS(maksymalne_punkty))
 );
@@ -341,8 +337,10 @@ ALTER TABLE Postacie ADD CONSTRAINT Postacie_Rasy_FK
 
 -- Pieniądze
 ALTER TABLE Pieniądze ADD CONSTRAINT Pieniądze_Postacie_FK 
-    FOREIGN KEY (Postacie_Imię, Postacie_Nazwisko)
-    REFERENCES Postacie (Imię, Nazwisko);
+    FOREIGN KEY (Postacie_ID) 
+    REFERENCES Postacie (ID_postaci);
+--    ON DELETE CASCADE;
+
 
 ---- UMIEJĘTNOŚCI
 -- Podległość
@@ -363,7 +361,8 @@ ALTER TABLE umiejętności_uczone_z_ksiąg
 
 -- Opanowane
 ALTER TABLE Opanowane ADD CONSTRAINT Opanowane_Postacie_FK 
-    FOREIGN KEY (Postacie_Imię, Postacie_Nazwisko) REFERENCES Postacie (Imię, Nazwisko);
+    FOREIGN KEY (Postacie_ID) 
+    REFERENCES Postacie (ID_postaci);
 ALTER TABLE Opanowane ADD CONSTRAINT Opanowane_Umiejętności_FK 
     FOREIGN KEY (Umiejętności_Nazwa) REFERENCES Umiejętności (Nazwa);
 
@@ -375,8 +374,8 @@ ALTER TABLE Przedmioty
         REFERENCES Klasy_Przeciwników (nazwa);
 ALTER TABLE Przedmioty
     ADD CONSTRAINT Przedmioty_Postacie_FK 
-        FOREIGN KEY (Postacie_Imię, Postacie_Nazwisko)
-        REFERENCES Postacie (Imię, Nazwisko);
+        FOREIGN KEY (Postacie_ID) 
+        REFERENCES Postacie (ID_postaci);
 
 -- Bronie
 ALTER TABLE Bronie ADD CONSTRAINT Bronie_Przedmioty_FK 
@@ -433,28 +432,32 @@ ALTER TABLE umiejętności_przeciwników ADD CONSTRAINT umiejętności_przeciwni
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Klasy_FK 
     FOREIGN KEY (Klasy_nazwa)
     REFERENCES Klasy (nazwa);
---ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK 
---    FOREIGN KEY (Nastepna_ranga)
---    REFERENCES Rangi_klasowe (Nazwa);
---ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK 
---    FOREIGN KEY (Poprzednia_ranga)
---    REFERENCES Rangi_klasowe (Nazwa);
+ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK 
+    FOREIGN KEY (Nastepna_ranga, Klasa_Nazwa)
+    REFERENCES Rangi_klasowe (Nazwa, Klasa_Nazwa)
+    DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK 
+    FOREIGN KEY (Poprzednia_ranga, Klasa_Nazwa)
+    REFERENCES Rangi_klasowe (Nazwa, Klasa_Nazwa)
+    DEFERRABLE INITIALLY DEFERRED;
+
 
 -- klasa_postaci
 ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Klasy_FK 
     FOREIGN KEY (Klasy_nazwa)
     REFERENCES Klasy (nazwa);
 ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Postacie_FK 
-    FOREIGN KEY (Postacie_Imię, Postacie_Nazwisko)
-    REFERENCES Postacie (Imię, Nazwisko);
+    FOREIGN KEY (Postacie_ID) 
+    REFERENCES Postacie (ID_postaci);
 ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Rangi_klasowe_FK 
-    FOREIGN KEY (Rangi_klasowe_Nazwa, Rangi_klasowe_Klasy_nazwa)
-    REFERENCES Rangi_klasowe (Nazwa, Klasy_nazwa);
+    FOREIGN KEY (Rangi_klasowe_Nazwa, Klasa_Nazwa)
+    REFERENCES Rangi_klasowe (Nazwa, Klasa_Nazwa);
 
 -- Punkty_Klasowe
 ALTER TABLE Punkty_Klasowe ADD CONSTRAINT Punkty_Klasowe_Klasy_FK 
     FOREIGN KEY (Klasy_nazwa)
     REFERENCES Klasy (nazwa);
+--    ON DELETE CASCADE;
 
 ----TECHNIKI
 -- Techniki
@@ -475,14 +478,26 @@ ALTER TABLE Techniki_uczone_z_ksiąg
 
 -- zna
 ALTER TABLE zna ADD CONSTRAINT zna_Postacie_FK 
-    FOREIGN KEY (Postacie_Imię, Postacie_Nazwisko) REFERENCES Postacie (Imię, Nazwisko);
+    FOREIGN KEY (Postacie_ID) 
+    REFERENCES Postacie (ID_postaci);
 ALTER TABLE zna ADD CONSTRAINT zna_Techniki_FK 
     FOREIGN KEY (Techniki_nazwa) REFERENCES Techniki (nazwa);
 
 
 -- ==========================================
--- 4. Inne więzy integralności
+-- 4. Indeksy
 -- ==========================================
+
+CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
+CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasy_nazwa); -- Kluczowe dla triggera
+
+CREATE INDEX idx_zna_Umiejetnosci_nazwa ON zna (Nazwa);
+CREATE INDEX idx_zna_Postacie_ID ON zna (Postacie_ID);
+CREATE INDEX idx_Opanowane_Umiejetnosci_nazwa ON Opanowane (Nazwa);
+CREATE INDEX idx_Opanowane_Postacie_ID ON Opanowane (Postacie_ID);
+
+--CREATE INDEX idx_Techniki_nazwa ON Techniki (Nazwa);
+--CREATE INDEX idx_Klasy_przeciwników_nazwa ON Klasy_Przeciwników (Nazwa);
 
 -- ==========================================
 -- 5. Trigery - funkcje więzów integralności
@@ -552,3 +567,32 @@ CREATE TRIGGER trg_check_ranga_łańcuch
 AFTER INSERT OR UPDATE OR DELETE ON Rangi_klasowe
 FOR EACH ROW
 EXECUTE FUNCTION check_ranga_łańcuch();
+
+-- ==========================================
+-- 6. Wyświetlanie struktur
+-- ==========================================
+
+SELECT table_schema, table_name
+FROM information_schema.TABLES
+ORDER BY table_schema
+
+SELECT column_name, column_default, data_type
+FROM information_schema.COLUMNS
+ORDER BY ordinal_position
+
+SELECT table_schema, column_name, column_default, data_type
+FROM information_schema.COLUMNS
+ORDER BY table_schema
+
+---??? nieczytelne ???
+SELECT con.*
+       FROM pg_catalog.pg_constraint con
+            INNER JOIN pg_catalog.pg_class rel
+                       ON rel.oid = con.conrelid
+            INNER JOIN pg_catalog.pg_namespace nsp
+                       ON nsp.oid = connamespace
+
+-- ==========================================
+-- 7. Widoki
+-- ==========================================
+

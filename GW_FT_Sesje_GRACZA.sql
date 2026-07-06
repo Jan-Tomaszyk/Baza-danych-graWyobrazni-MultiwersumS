@@ -1,0 +1,29 @@
+-- ==========================================
+-- Korzystanie z widoków
+-- ==========================================
+
+
+-- ==========================================
+---- Sesje Gracza i dotyczące Gracza 
+-- ==========================================
+-- Sesja 1 zawierająca wszelkie sprawdzanie wszystkiego co może być potrzebne podczas tworzenia postaci i samo tworzenie;
+-- a także przydzielenie początkowych punktów klasowych.
+-- ORAZ
+-- Sesja 2 zawierająca wszelkie sprawdzanie wszystkiego co może być potrzebne podczas awansowania postaci i samo awansowanie.
+-- a także przydzielenie punktów klasowych po awansie.
+--  Czyli
+---1.
+-- - Sprawdzanie:       ras
+-- - Sprawdzanie:       umiejętności
+-- - Sprawdzanie:       technik
+-- - Sprawdzanie:       klas(głównie rang)
+-- - Tworzenie:         postaci na 1 poziomie
+-- - Tworzenie:         powiązań między postacią a umiejętnościami i technikami
+-- - Tworzenie:         powiązań klas z postacią
+---2.
+-- - Aktualizacja:      postaci
+-- - Sprawdzanie:       powiązań między postacią a umiejętnościami i technikami
+-- - Sprawdzanie:       powiązań klas z postacią
+-- - Tworzenie:         powiązań między postacią a umiejętnościami i technikami
+-- - Aktualizacja:      powiązań między postacią a umiejętnościami i technikami
+-- - Aktualizacja:      powiązań klas z postacią
