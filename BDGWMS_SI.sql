@@ -245,10 +245,12 @@ CREATE TABLE Techniki
 
 --2.C Tabele Umiejętnościowe i Technikowe:
 --2.C.1 Wewnętrzne:
-CREATE TABLE Podległość (
-    wymagana VARCHAR(255) NOT NULL,
-    wymaga VARCHAR(255) NOT NULL,
-    CONSTRAINT Podległość_PK PRIMARY KEY (wymagana, wymaga)
+CREATE TABLE Podległość
+(
+    wymagana_nadrzędna VARCHAR(255) NOT NULL,
+    podrzędna VARCHAR(255) NOT NULL,--umiejętność wymagająca równego wyższego poziomu nadrzędnej-wymaganej
+    minimalny_poziom INTEGER DEFAULT 0 NOT NULL
+    CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna, podrzędna)
 );
 
 --2.C.2 Postaciowe
@@ -267,17 +269,18 @@ CREATE TABLE zna (
 );
 
 --2.C.3 Przeciwnikowe
+CREATE TABLE umiejętności_przeciwników (
+    Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
+    CONSTRAINT umiejętności_przeciwników_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Umiejętności_Nazwa)
+);
+
 CREATE TABLE przeciwnicy_znają (
     Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
     Techniki_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT przeciwnicy_znają_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Techniki_nazwa)
 );
 
-CREATE TABLE umiejętności_przeciwników (
-    Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
-    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
-    CONSTRAINT umiejętności_przeciwników_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Umiejętności_Nazwa)
-);
 
 --2.C.4 Księgowe
 CREATE TABLE umiejętności_uczone_z_ksiąg (
@@ -345,9 +348,9 @@ ALTER TABLE Pieniądze ADD CONSTRAINT Pieniądze_Postacie_FK
 ---- UMIEJĘTNOŚCI
 -- Podległość
 ALTER TABLE Podległość ADD CONSTRAINT Podległość_Umiejętności_FK_N 
-    FOREIGN KEY (wymagana) REFERENCES Umiejętności (Nazwa);
+    FOREIGN KEY (wymagana_nadrzędna) REFERENCES Umiejętności (Nazwa);
 ALTER TABLE Podległość ADD CONSTRAINT Podległość_Umiejętności_FK_P 
-    FOREIGN KEY (wymaga) REFERENCES Umiejętności (Nazwa);
+    FOREIGN KEY (podrzędna) REFERENCES Umiejętności (Nazwa);
 
 -- umiejętności_uczone_z_ksiąg
 ALTER TABLE umiejętności_uczone_z_ksiąg
@@ -484,24 +487,95 @@ ALTER TABLE zna ADD CONSTRAINT zna_Techniki_FK
     FOREIGN KEY (Techniki_nazwa) REFERENCES Techniki (nazwa);
 
 
--- ==========================================
--- 4. Indeksy
--- ==========================================
-
-CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
-CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasy_nazwa); -- Kluczowe dla triggera
-
-CREATE INDEX idx_zna_Umiejetnosci_nazwa ON zna (Nazwa);
-CREATE INDEX idx_zna_Postacie_ID ON zna (Postacie_ID);
-CREATE INDEX idx_Opanowane_Umiejetnosci_nazwa ON Opanowane (Nazwa);
-CREATE INDEX idx_Opanowane_Postacie_ID ON Opanowane (Postacie_ID);
-
---CREATE INDEX idx_Techniki_nazwa ON Techniki (Nazwa);
---CREATE INDEX idx_Klasy_przeciwników_nazwa ON Klasy_Przeciwników (Nazwa);
 
 -- ==========================================
--- 5. Trigery - funkcje więzów integralności
+-- 4. Trigery - funkcje więzów integralności
 -- ==========================================
+
+-- kontrola, większy poziom(poziom postaci, poziom umiejętności nadrzędnej): 
+--- poziom postaci >= poziom umiejętności
+CREATE OR REPLACE FUNCTION sprawdz_poziom_umiejetnosci()
+RETURNS trigger AS $$
+BEGIN
+    IF NEW.poziom >=
+       (SELECT Poziom
+        FROM Postacie
+        WHERE ID_postaci = NEW.Postacie_ID)
+    THEN
+        RAISE EXCEPTION
+            'Poziom umiejętności (%) nie może przekraczać poziomu postaci.',
+            NEW.poziom;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+--- poziom postaci >= poziom umiejętności
+CREATE TRIGGER trg_sprawdz_poziom
+BEFORE INSERT OR UPDATE
+ON Opanowane
+FOR EACH ROW
+EXECUTE FUNCTION sprawdz_poziom_umiejetnosci();
+
+--- poziom umiejętności wymaganej(wymagana_nadrzędna) >= poziom umiejętności wymagającej(wymaga)
+CREATE OR REPLACE FUNCTION sprawdz_podleglosc()
+RETURNS trigger AS
+$$
+DECLARE
+    naruszenie RECORD;
+BEGIN
+
+    SELECT
+        p.wymagana_nadrzędna,
+        p.minimalny_poziom,
+        o.poziom AS poziom_nadrzednej
+    INTO naruszenie
+    FROM Podległość p
+    LEFT JOIN Opanowane o
+      ON o.Umiejętności_Nazwa = p.wymagana_nadrzędna
+     AND o.Postacie_ID = NEW.Postacie_ID
+    WHERE p.podrzędna = NEW.Umiejętności_Nazwa
+      AND (
+            o.poziom IS NULL
+            OR
+            o.poziom < NEW.poziom + p.minimalny_poziom
+          )
+    LIMIT 1;
+
+    IF FOUND THEN
+
+        IF naruszenie.poziom_nadrzednej IS NULL THEN
+
+            RAISE EXCEPTION
+            'Umiejętność "%" wymaga posiadania umiejętności nadrzędnej "%".',
+            NEW.Umiejętności_Nazwa,
+            naruszenie.wymagana_nadrzędna;
+
+        ELSE
+
+            RAISE EXCEPTION
+            'Umiejętność "%" na poziomie % wymaga umiejętności "%" na poziomie co najmniej % (obecnie: %).',
+            NEW.Umiejętności_Nazwa,
+            NEW.poziom,
+            naruszenie.wymagana_nadrzędna,
+            NEW.poziom + naruszenie.minimalny_poziom,
+            naruszenie.poziom_nadrzednej;
+
+        END IF;
+
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_sprawdz_podleglosc
+BEFORE INSERT OR UPDATE
+ON Opanowane
+FOR EACH ROW
+EXECUTE FUNCTION sprawdz_podleglosc();
+
 
 -- ciąg rang
 CREATE OR REPLACE FUNCTION check_ranga_łańcuch()
@@ -569,7 +643,7 @@ FOR EACH ROW
 EXECUTE FUNCTION check_ranga_łańcuch();
 
 -- ==========================================
--- 6. Wyświetlanie struktur
+-- 5. Kontrola - Wyświetlanie struktur bazy danych
 -- ==========================================
 
 SELECT table_schema, table_name
@@ -593,6 +667,267 @@ SELECT con.*
                        ON nsp.oid = connamespace
 
 -- ==========================================
--- 7. Widoki
+-- 6. Widoki
 -- ==========================================
+
+--RASY
+---Cechy Bazowe
+CREATE OR REPLACE VIEW Cechy_Rasowe AS
+WITH r AS (
+    SELECT *,
+        CASE
+            WHEN Rozumność THEN 10
+            WHEN Rozumność IS NULL THEN 5
+            ELSE 0 END
+        AS premia
+    FROM Rasy
+)
+SELECT 
+    Nazwa,
+    1+Mądrość_OCENA + MAGICZNOŚĆ + premia       AS Mądrość,
+    1+Inteligencja_OCENA + MAGICZNOŚĆ + premia  AS Inteligencja,
+    1+Wola_OCENA + premia                       AS Wola,
+    1+Pobożność_OCENA + premia                  AS Pobożność,
+    1+Charyzma_OCENA + premia                   AS Charyzma,
+    1+Wytrzymałość_OCENA                        AS Wytrzymałość,
+    1+Siła_OCENA                                AS Siła,
+    1+Zręczność_OCENA                           AS Zręczność,
+    1+Zwinność_OCENA                            AS Zwinność,
+    1+Kondycja_OCENA                            AS Kondycja,
+    wiek_starości
+FROM r;
+---Statystyki Bazowe
+-----Życie	Mana	Energia
+CREATE OR REPLACE VIEW Statystyki_Rasowe AS
+SELECT
+    Nazwa,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0               AS Regeneracja_Energii
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM Cechy_Rasowe NATURAL JOIN RASY;
+
+
+--POSTACIE
+
+---Cechy Bazowe
+CREATE OR REPLACE VIEW Postacie_Cechy_Bazowe AS
+WITH r AS (
+    SELECT *,
+        CASE:
+            WHEN Postacie.Wiek-Cechy_Rasowe.wiek_starości>0 THEN Postacie.Wiek-Cechy_Rasowe.wiek_starości
+            ELSE 0--ROUND((Postacie.Wiek-Cechy_Rasowe.wiek_starości)/10)
+        AS Mod_wiekowy
+    FROM Cechy_Rasowe INNER JOIN POSTACIE ON Cechy_Rasowe.Nazwa=Postacie.Rasy_Nazwa--!INDEKSUJ!
+)
+SELECT 
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    Mądrość_poziom_1 + Mądrość_z_awansów + Mądrość + Mod_wiekowy    AS Mądrość,
+    Inteligencja_poziom_1 + Inteligencja_z_awansów + Inteligencja   AS Inteligencja,
+    Wola_poziom_1 + Wola_z_awansów + Wola                           AS Wola,
+    Pobożność_poziom_1 + Pobożność_z_awansów + Pobożność            AS Pobożność,
+    Charyzma_poziom_1 + Charyzma_z_awansów + Charyzma               AS Charyzma,
+    Wytrzymałość_poziom_1 + Wytrzymałość_z_awansów + Wytrzymałość   AS Wytrzymałość,
+    Siła_poziom_1 + Siła_z_awansów + Siła                           AS Siła,
+    Zręczność_poziom_1 + Zręczność_z_awansów + Zręczność            AS Zręczność,
+    Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność               AS Zwinność,
+    Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja - Mod_wiekowy AS Kondycja,
+    Rasy_Nazwa                                                      AS Nazwa_Rasy 
+FROM r;
+
+---bonusy do cech z klas postaci
+
+---porównanie cech z awansu z ilością przysługujących z awansów i z poziomu klasy
+
+
+---Statystyki Bazowe
+-----Życie	Mana	Energia
+CREATE OR REPLACE VIEW Statystyki_Bazowe_Postaci AS
+SELECT
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0               AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM Postacie_Cechy_Bazowe INNER JOIN Rasy ON Postacie_Cechy_Bazowe.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+
+
+---Cechy Efektywne
+
+---Statystyki Efektywne
+
+
+--KLASY_PRZECIWNIKÓW
+---Cechy - widok techniczny - 
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy AS
+SELECT 
+    nazwa,
+    Mądrość_poziom_1 + Mądrość                  AS Mądrość_poziom_1,
+    Inteligencja_poziom_1 + Inteligencja   AS Inteligencja_poziom_1,
+    Wola_poziom_1 + Wola                           AS Wola_poziom_1,
+    Pobożność_poziom_1 + Pobożność            AS Pobożność_poziom_1,
+    Charyzma_poziom_1  + Charyzma              AS Charyzma_poziom_1,
+    Wytrzymałość_poziom_1 + Wytrzymałość   AS Wytrzymałość_poziom_1,
+    Siła_poziom_1 + Siła                           AS Siła_poziom_1,
+    Zręczność_poziom_1 + Zręczność            AS Zręczność_poziom_1,
+    Zwinność_poziom_1 + Zwinność               AS Zwinność_poziom_1,
+    Kondycja_poziom_1 + Kondycja               AS Kondycja_poziom_1,
+    Mądrość_na_awans,
+    Inteligencja_na_awans,
+    Wola_na_awans,
+    Pobożność_na_awans,
+    Charyzma_na_awans,
+    Wytrzymałość_na_awans,
+    Siła_na_awans,
+    Zręczność_na_awans,
+    Zwinność_na_awans,
+    Kondycja_na_awans,
+    minimalny_poziom,
+    maksymalny_poziom,
+    Rasy_Nazwa                                AS Nazwa_Rasy
+FROM Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
+
+---- Cechy minimalne 
+-----(minimalny_poziom-1)
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Bazowe_minimalne AS
+SELECT 
+    nazwa,
+    Mądrość_poziom_1 + (minimalny_poziom-1)*Mądrość_na_awans             AS Mądrość,-- + Mądrość
+    Inteligencja_poziom_1 + (minimalny_poziom-1)*Inteligencja_na_awans   AS Inteligencja,-- + Inteligencja   
+    Wola_poziom_1 + (minimalny_poziom-1)*Wola_na_awans                   AS Wola,-- + Wola
+    Pobożność_poziom_1 + (minimalny_poziom-1)*Pobożność_na_awans         AS Pobożność,-- + Pobożność
+    Charyzma_poziom_1 + (minimalny_poziom-1)*Charyzma_na_awans           AS Charyzma,-- + Charyzma
+    Wytrzymałość_poziom_1 + (minimalny_poziom-1)*Wytrzymałość_na_awans   AS Wytrzymałość,-- + Wytrzymałość
+    Siła_poziom_1 + (minimalny_poziom-1)*Siła_na_awans                   AS Siła,-- + Siła
+    Zręczność_poziom_1 + (minimalny_poziom-1)*Zręczność_na_awans         AS Zręczność,-- + Zręczność
+    Zwinność_poziom_1 + (minimalny_poziom-1)*Zwinność_na_awans           AS Zwinność,-- + Zwinność
+    Kondycja_poziom_1 + (minimalny_poziom-1)*Kondycja_na_awans           AS Kondycja,-- + Kondycja
+    Rasy_Nazwa                                                           AS Nazwa_Rasy 
+FROM Klasy_Przeciwników_Cechy--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
+
+---- Cechy maksymalne
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Bazowe_maksymalne AS
+SELECT 
+    nazwa,
+    Mądrość_poziom_1 + (maksymalny_poziom-1)*Mądrość_na_awans             AS Mądrość,-- + Mądrość
+    Inteligencja_poziom_1 + (maksymalny_poziom-1)*Inteligencja_na_awans   AS Inteligencja,-- + Inteligencja   
+    Wola_poziom_1 + (maksymalny_poziom-1)*Wola_na_awans                   AS Wola,-- + Wola
+    Pobożność_poziom_1 + (maksymalny_poziom-1)*Pobożność_na_awans         AS Pobożność,-- + Pobożność
+    Charyzma_poziom_1 + (maksymalny_poziom-1)*Charyzma_na_awans           AS Charyzma,-- + Charyzma
+    Wytrzymałość_poziom_1 + (maksymalny_poziom-1)*Wytrzymałość_na_awans   AS Wytrzymałość,-- + Wytrzymałość
+    Siła_poziom_1 + (maksymalny_poziom-1)*Siła_na_awans                   AS Siła,-- + Siła
+    Zręczność_poziom_1 + (maksymalny_poziom-1)*Zręczność_na_awans         AS Zręczność,-- + Zręczność
+    Zwinność_poziom_1 + (maksymalny_poziom-1)*Zwinność_na_awans           AS Zwinność,-- + Zwinność
+    Kondycja_poziom_1 + (maksymalny_poziom-1)*Kondycja_na_awans           AS Kondycja,-- + Kondycja
+    Rasy_Nazwa                                                           AS Nazwa_Rasy 
+FROM Klasy_Przeciwników_Cechy--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
+
+--CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Bazowe_Maksymalne AS
+--SELECT 
+--    nazwa
+--    Mądrość_poziom_1 + 0*Mądrość_na_awans + Mądrość                  AS Mądrość,
+--    Inteligencja_poziom_1 + 0*Inteligencja_na_awans + Inteligencja   AS Inteligencja,
+--    Wola_poziom_1 + 0*Wola_na_awans + Wola                           AS Wola,
+--    Pobożność_poziom_1 + 0*Pobożność_na_awans + Pobożność            AS Pobożność,
+--    Charyzma_poziom_1 + 0*Charyzma_na_awans + Charyzma               AS Charyzma,
+--    Wytrzymałość_poziom_1 + 0*Wytrzymałość_na_awans + Wytrzymałość   AS Wytrzymałość,
+--    Siła_poziom_1 + 0*Siła_na_awans + Siła                           AS Siła,
+--    Zręczność_poziom_1 + 0*Zręczność_na_awans + Zręczność            AS Zręczność,
+--    Zwinność_poziom_1 + 0*Zwinność_na_awans + Zwinność               AS Zwinność,
+--    Kondycja_poziom_1 + 0*Kondycja_na_awans + Kondycja               AS Kondycja,
+--    Rasy_Nazwa                                                       AS Nazwa_Rasy 
+--FROM Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
+
+
+---Statystyki Bazowe
+-----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników AS
+SELECT
+    nazwa,
+    100+Mądrość_poziom_1*5              AS Mana_poziom_1,
+    Inteligencja_poziom_1*2             AS Regeneracja_many_poziom_1,
+    50+Wytrzymałość_poziom_1*5          AS Życie_poziom_1,
+    100+Kondycja_poziom_1*5             AS Energia_poziom_1,
+    Kondycja_poziom_1/10.0              AS Regeneracja_Energii_poziom_1,
+    inteligencja_poziom_1/5.0           AS Koszt_Energetyczny_Regeneracji_many_poziom_1,
+    Mądrość_na_awans*5                  AS Mana_na_awans,
+    Inteligencja_na_awans*2             AS Regeneracja_many_na_awans,
+    Wytrzymałość_na_awans*5             AS Życie_na_awans,
+    Kondycja_na_awans*5                 AS Energia_na_awans,
+    Kondycja_na_awans/10.0              AS Regeneracja_Energii_na_awans,
+    inteligencja_na_awans/5.0           AS Koszt_Energetyczny_Regeneracji_many_na_awans,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+
+---- Cechy minimalne 
+---- ---policzyć która wersja byłaby wydajniejsza.
+---- ---Wydajniejsza jest:
+---- --- Klasy_Przeciwników_Cechy -> Klasy_Przeciwników_Cechy_Bazowe_minimalne -> Statystyki_Klas_Przeciwników_minimalne
+
+
+---- Cechy maksymalne
+
+
+
+---Cechy Efektywne
+
+---- Cechy minimalne 
+
+---- Cechy maksymalne
+
+
+---Statystyki Efektywne
+
+--UMIEJĘTNOŚCI
+---maksymalne poziomy umiejętności dla postaci(po modyfikacji z klas)
+---lista umiejętności postaci możliwych do opanowania lub podwyższenia przez postać
+
+
+--TECHNIKI
+---lista technik umiejętności
+---???wymagane przedmioty???
+---?
+
+--KLASY
+--porównanie klas postaci z dostępnymi postaci rangami klasowymi
+--wypisanie bonusów posiadanych przez postać
+
+
+--PRZEDMIOTÓW
+---na co stać postać
+
+
+-- ==========================================
+-- 7. Indeksy
+-- ==========================================
+
+CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
+CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasy_nazwa); -- Kluczowe dla triggera
+
+CREATE INDEX idx_zna_Umiejetnosci_nazwa ON zna (Nazwa);
+CREATE INDEX idx_zna_Postacie_ID ON zna (Postacie_ID);
+CREATE INDEX idx_Opanowane_Umiejetnosci_nazwa ON Opanowane (Nazwa);
+CREATE INDEX idx_Opanowane_Postacie_ID ON Opanowane (Postacie_ID);
+
+--CREATE INDEX idx_Techniki_nazwa ON Techniki (Nazwa);
+--CREATE INDEX idx_Klasy_przeciwników_nazwa ON Klasy_Przeciwników (Nazwa);
 
