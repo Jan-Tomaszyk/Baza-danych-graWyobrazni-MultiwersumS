@@ -41,7 +41,7 @@ CREATE TABLE Postacie (
     ID_postaci SERIAL PRIMARY KEY,
     Imię VARCHAR(255) NOT NULL,
     Nazwisko VARCHAR(255),
-    Poziom INTEGER NOT NULL,
+    Poziom INTEGER NOT NULL CONSTRAINT dodatnie CHECK(Poziom>0),
     PD BIGINT NOT NULL CONSTRAINT naturalne CHECK(PD>=0),
     Wiek INTEGER CONSTRAINT dodatnie CHECK(Wiek>0),
     Siła_poziom_1 INTEGER NOT NULL,
@@ -493,24 +493,38 @@ ALTER TABLE zna ADD CONSTRAINT zna_Techniki_FK
 -- ==========================================
 
 -- kontrola, większy poziom(poziom postaci, poziom umiejętności nadrzędnej): 
---- poziom postaci >= poziom umiejętności
+--- CEL: poziom postaci >= poziom umiejętności
 CREATE OR REPLACE FUNCTION sprawdz_poziom_umiejetnosci()
-RETURNS trigger AS $$
+RETURNS trigger AS
+$$
+DECLARE
+    poziom_postaci INTEGER;
+    maksymalny_poziom_umiejetnosci INTEGER;
 BEGIN
-    IF NEW.poziom >=
-       (SELECT Poziom
-        FROM Postacie
-        WHERE ID_postaci = NEW.Postacie_ID)
-    THEN
+
+    SELECT Poziom
+    INTO poziom_postaci
+    FROM Postacie
+    WHERE ID_postaci = NEW.Postacie_ID;
+
+    maksymalny_poziom_umiejetnosci :=
+        CASE
+            WHEN poziom_postaci = 1 THEN 2
+            ELSE poziom_postaci
+        END;
+
+    IF NEW.poziom > maksymalny_poziom_umiejetnosci THEN
         RAISE EXCEPTION
-            'Poziom umiejętności (%) nie może przekraczać poziomu postaci.',
-            NEW.poziom;
+            'Poziom umiejętności (%) przekracza dopuszczalny poziom (%).',
+            NEW.poziom,
+            maksymalny_poziom_umiejetnosci;
     END IF;
 
     RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
---- poziom postaci >= poziom umiejętności
+$$
+LANGUAGE plpgsql;
+--- CEL: poziom postaci >= poziom umiejętności
 CREATE TRIGGER trg_sprawdz_poziom
 BEFORE INSERT OR UPDATE
 ON Opanowane
@@ -518,8 +532,11 @@ FOR EACH ROW
 EXECUTE FUNCTION sprawdz_poziom_umiejetnosci();
 
 --- poziom umiejętności wymaganej(wymagana_nadrzędna) >= poziom umiejętności wymagającej(wymaga)
-CREATE OR REPLACE FUNCTION sprawdz_podleglosc()
-RETURNS trigger AS
+CREATE OR REPLACE FUNCTION sprawdz_zaleznosci_postaci(
+    p_postac_id INTEGER
+)
+RETURNS VOID
+AS
 $$
 DECLARE
     naruszenie RECORD;
@@ -527,19 +544,26 @@ BEGIN
 
     SELECT
         p.wymagana_nadrzędna,
+        p.podrzędna,
         p.minimalny_poziom,
-        o.poziom AS poziom_nadrzednej
+        podrz.poziom AS poziom_podrzednej,
+        nadrz.poziom AS poziom_nadrzednej
     INTO naruszenie
     FROM Podległość p
-    LEFT JOIN Opanowane o
-      ON o.Umiejętności_Nazwa = p.wymagana_nadrzędna
-     AND o.Postacie_ID = NEW.Postacie_ID
-    WHERE p.podrzędna = NEW.Umiejętności_Nazwa
-      AND (
-            o.poziom IS NULL
-            OR
-            o.poziom < NEW.poziom + p.minimalny_poziom
-          )
+
+    JOIN Opanowane podrz
+      ON podrz.Umiejętności_Nazwa = p.podrzędna
+     AND podrz.Postacie_ID = p_postac_id
+
+    LEFT JOIN Opanowane nadrz
+      ON nadrz.Umiejętności_Nazwa = p.wymagana_nadrzędna
+     AND nadrz.Postacie_ID = p_postac_id
+
+    WHERE
+        nadrz.poziom IS NULL
+        OR
+        nadrz.poziom < podrz.poziom + p.minimalny_poziom
+
     LIMIT 1;
 
     IF FOUND THEN
@@ -547,34 +571,51 @@ BEGIN
         IF naruszenie.poziom_nadrzednej IS NULL THEN
 
             RAISE EXCEPTION
-            'Umiejętność "%" wymaga posiadania umiejętności nadrzędnej "%".',
-            NEW.Umiejętności_Nazwa,
-            naruszenie.wymagana_nadrzędna;
+                'Postać % posiada umiejętność "%", ale nie posiada wymaganej umiejętności nadrzędnej "%".',
+                p_postac_id,
+                naruszenie.podrzędna,
+                naruszenie.wymagana_nadrzędna;
 
         ELSE
 
             RAISE EXCEPTION
-            'Umiejętność "%" na poziomie % wymaga umiejętności "%" na poziomie co najmniej % (obecnie: %).',
-            NEW.Umiejętności_Nazwa,
-            NEW.poziom,
-            naruszenie.wymagana_nadrzędna,
-            NEW.poziom + naruszenie.minimalny_poziom,
-            naruszenie.poziom_nadrzednej;
+                'Postać % posiada umiejętność "%" na poziomie %, lecz umiejętność nadrzędna "%" ma poziom %, a wymagany jest co najmniej %.',
+                p_postac_id,
+                naruszenie.podrzędna,
+                naruszenie.poziom_podrzednej,
+                naruszenie.wymagana_nadrzędna,
+                naruszenie.poziom_nadrzednej,
+                naruszenie.poziom_podrzednej + naruszenie.minimalny_poziom;
 
         END IF;
 
     END IF;
 
-    RETURN NEW;
 END;
 $$
 LANGUAGE plpgsql;
+----- funkcja pośrednia
+CREATE OR REPLACE FUNCTION trg_sprawdz_zaleznosci_postaci()
+RETURNS TRIGGER
+AS
+$$
+BEGIN
 
-CREATE TRIGGER trg_sprawdz_podleglosc
-BEFORE INSERT OR UPDATE
+    PERFORM sprawdz_zaleznosci_postaci(
+        COALESCE(NEW.Postacie_ID, OLD.Postacie_ID)
+    );
+
+    RETURN NULL;
+    --RETURN COALESCE(NEW, OLD);
+END;
+$$
+LANGUAGE plpgsql;
+---trigger
+CREATE TRIGGER trg_opanowane_spojnosc
+AFTER INSERT OR UPDATE OR DELETE
 ON Opanowane
 FOR EACH ROW
-EXECUTE FUNCTION sprawdz_podleglosc();
+EXECUTE FUNCTION trg_sprawdz_zaleznosci_postaci();
 
 
 -- ciąg rang
