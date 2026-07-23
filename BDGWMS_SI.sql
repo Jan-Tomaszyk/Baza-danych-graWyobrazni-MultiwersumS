@@ -37,23 +37,28 @@ CREATE TABLE Rasy
     inne_cechy TEXT
 );
 
-CREATE TABLE Postacie (
+CREATE TABLE Postacie
+(
+    --identyfikacja
     ID_postaci SERIAL PRIMARY KEY,
     Imię VARCHAR(255) NOT NULL,
     Nazwisko VARCHAR(255),
+    --rozwój
     Poziom INTEGER NOT NULL CONSTRAINT dodatnie CHECK(Poziom>0),
     PD BIGINT NOT NULL CONSTRAINT naturalne CHECK(PD>=0),
     Wiek INTEGER CONSTRAINT dodatnie CHECK(Wiek>0),
-    Siła_poziom_1 INTEGER NOT NULL,
-    Wytrzymałość_poziom_1 INTEGER NOT NULL,
-    Kondycja_poziom_1 INTEGER NOT NULL,
-    Zręczność_poziom_1 INTEGER NOT NULL,
-    Zwinność_poziom_1 INTEGER NOT NULL,
-    Mądrość_poziom_1 INTEGER NOT NULL,
-    Inteligencja_poziom_1 INTEGER NOT NULL,
-    Charyzma_poziom_1 INTEGER NOT NULL,
-    Pobożność_poziom_1 INTEGER NOT NULL,
-    Wola_poziom_1 INTEGER NOT NULL,
+    --przydział cech 1 poziom
+    Siła_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Siła_poziom_1>=-3),
+    Wytrzymałość_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Wytrzymałość_poziom_1>=-3),
+    Kondycja_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Kondycja_poziom_1>=-3),
+    Zręczność_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Zręczność_poziom_1>=-3),
+    Zwinność_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Zwinność_poziom_1>=-3),
+    Mądrość_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Mądrość_poziom_1>=-3),
+    Inteligencja_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Inteligencja_poziom_1>=-3),
+    Charyzma_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Charyzma_poziom_1>=-3),
+    Pobożność_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Pobożność_poziom_1>=-3),
+    Wola_poziom_1 INTEGER NOT NULL CONSTRAINT ograniczenie_ujemności CHECK(Wola_poziom_1>=-3),
+    --przydział cech wyższe poziomy
     Siła_z_awansów INTEGER CONSTRAINT naturalne CHECK(Siła_z_awansów>=0),
     Wytrzymałość_z_awansów INTEGER CONSTRAINT naturalne CHECK(Wytrzymałość_z_awansów>=0),
     Kondycja_z_awansów INTEGER CONSTRAINT naturalne CHECK(Kondycja_z_awansów>=0),
@@ -64,8 +69,53 @@ CREATE TABLE Postacie (
     Charyzma_z_awansów INTEGER CONSTRAINT naturalne CHECK(Charyzma_z_awansów>=0),
     Pobożność_z_awansów INTEGER CONSTRAINT naturalne CHECK(Pobożność_z_awansów>=0),
     Wola_z_awansów INTEGER CONSTRAINT naturalne CHECK(Wola_z_awansów>=0),
+    --przydział cech klasowych(przydzielane podczas awansu)
+    Siła_klasowa INTEGER CONSTRAINT naturalne CHECK(Siła_klasowa>=0),
+    Wytrzymałość_klasowa INTEGER CONSTRAINT naturalne CHECK(Wytrzymałość_klasowa>=0),
+    Kondycja_klasowa INTEGER CONSTRAINT naturalne CHECK(Kondycja_klasowa>=0),
+    Zręczność_klasowa INTEGER CONSTRAINT naturalne CHECK(Zręczność_klasowa>=0),
+    Zwinność_klasowa INTEGER CONSTRAINT naturalne CHECK(Zwinność_klasowa>=0),
+    Mądrość_klasowa INTEGER CONSTRAINT naturalne CHECK(Mądrość_klasowa>=0),
+    Inteligencja_klasowa INTEGER CONSTRAINT naturalne CHECK(Inteligencja_klasowa>=0),
+    Charyzma_klasowa INTEGER CONSTRAINT naturalne CHECK(Charyzma_klasowa>=0),
+    Pobożność_klasowa INTEGER CONSTRAINT naturalne CHECK(Pobożność_klasowa>=0),
+    Wola_klasowa INTEGER CONSTRAINT naturalne CHECK(Wola_klasowa>=0),
+    --
     Rasy_Nazwa VARCHAR(255) NOT NULL,
     Gracz VARCHAR(255),
+    --ograniczenia złożone
+    CONSTRAINT Postacie_poziom1 
+        Check
+        (
+            Siła_poziom_1 
+            + Wytrzymałość_poziom_1
+            + Kondycja_poziom_1
+            + Zręczność_poziom_1
+            + Zwinność_poziom_1
+            + Mądrość_poziom_1
+            + Inteligencja_poziom_1
+            + Charyzma_poziom_1
+            + Pobożność_poziom_1
+            + Wola_poziom_1
+            <=50
+        )
+    CONSTRAINT Postacie_awanse
+        Check
+        (
+            Siła_z_awansów 
+            + Wytrzymałość_z_awansów
+            + Kondycja_z_awansów
+            + Zręczność_z_awansów
+            + Zwinność_z_awansów
+            + Mądrość_z_awansów
+            + Inteligencja_z_awansów
+            + Charyzma_z_awansów
+            + Pobożność_z_awansów
+            + Wola_z_awansów
+            <=10*(Poziom-1)
+        )
+        --pożądanym stanem jest technicznie rzecz biorąc to by te sumy były "=" odpowiednio 50 i 10*(poziom-1)
+        --ale przydzielenie mniej jest dopuszczalne
     --CONSTRAINT Postacie_PK PRIMARY KEY (Imię, Nazwisko)
 );
 
@@ -84,7 +134,9 @@ CREATE TABLE Umiejętności
 CREATE TABLE Klasy
 (
     nazwa VARCHAR(255) PRIMARY KEY,
-    premiowane_cechy VARCHAR(255)
+    premiowana_cecha1 VARCHAR(255),
+    premiowana_cecha2 VARCHAR(255),
+    premiowana_cecha3 VARCHAR(255)
 );
 
 CREATE TABLE Przedmioty (
@@ -298,37 +350,53 @@ CREATE TABLE Techniki_uczone_z_ksiąg (
 -----===============
 --2.D Tabele Klasowe
 
-CREATE TABLE Rangi_klasowe (
+CREATE TABLE Rangi_klasowe
+(
+    --Stopień INTEGER NOT NULL CONSTRAINT naturalne CHECK(Stopień>=0),--która z kolei to ranga w danej klasie
     Nazwa VARCHAR(255) NOT NULL,
     bonusy_za_rangę TEXT,
+    --bonus_do_cech_na_poziom NUMERIC(8, 7),
+    bonus_do_cech_co_poziomów INTEGER NOT NULL CONSTRAINT naturalne CHECK(bonus_do_cech_co_poziomów>0),
+    bonus_do_cech_wartość NUMERIC(2, 1),
+    punkty_cech_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(punkty_cech_na_awans>=0),
     minimalne_punkty_klasowe INTEGER NOT NULL CONSTRAINT dodatnie CHECK(minimalne_punkty_klasowe>0),
     punkty_klasowe_wymagane_do_awansu INTEGER CONSTRAINT dodatnie CHECK(punkty_klasowe_wymagane_do_awansu>0),
-    Klasy_nazwa VARCHAR(255) NOT NULL,
+    Klasa_nazwa VARCHAR(255) NOT NULL,
     Poprzednia_ranga VARCHAR(255),
     Nastepna_ranga VARCHAR(255),
-    CONSTRAINT Rangi_klasowe_PK PRIMARY KEY (Nazwa, Klasy_nazwa)
+    CONSTRAINT Rangi_klasowe_PK PRIMARY KEY (Nazwa, Klasa_nazwa)
     CONSTRAINT Rangi_klasowe_punkty (minimalne_punkty_klasowe<punkty_klasowe_wymagane_do_awansu)
 );
 
-CREATE TABLE klasa_postaci (
-    ilość_punktów_klasowych INTEGER CONSTRAINT naturalne CHECK(ilość_punktów_klasowych>=0) NOT NULL,
+CREATE TABLE klasa_postaci
+(
+    ilość_punktów_klasowych NOT NULL,
+    ilość_punktów_klasowych_z_cech INTEGER CONSTRAINT naturalne CHECK(ilość_punktów_klasowych_z_cech>=0) NOT NULL,
     Postacie_ID INTEGER NOT NULL,
-    Klasy_nazwa VARCHAR(255) NOT NULL,
-    Rangi_klasowe_Nazwa VARCHAR(255),-- NOT NULL,
-    --Rangi_klasowe_Klasy_nazwa VARCHAR(255),-- NOT NULL,
+    Klasa_nazwa VARCHAR(255) NOT NULL,
+    Rangi_klasowe_Nazwa VARCHAR(255) NOT NULL,
+    --Rangi_klasowe_Klasa_nazwa VARCHAR(255),-- NOT NULL,
     aktywna BOOLEAN,
-    CONSTRAINT klasa_postaci_PK PRIMARY KEY (Postacie_ID, Klasy_nazwa)
+    CONSTRAINT klasa_postaci_PK PRIMARY KEY (Postacie_ID, Klasa_nazwa)
 );
 
 CREATE TABLE Punkty_Klasowe (
     Warunek VARCHAR(255) NOT NULL,
     minimalne_punkty INTEGER,
     maksymalne_punkty INTEGER,
-    Klasy_nazwa VARCHAR(255) NOT NULL,
-    CONSTRAINT Punkty_Klasowe_PK PRIMARY KEY (Klasy_nazwa, Warunek)
+    Klasa_nazwa VARCHAR(255) NOT NULL,
+    CONSTRAINT Punkty_Klasowe_PK PRIMARY KEY (Klasa_nazwa, Warunek)
     CONSTRAINT Punkty_Klasowe_punkty CHECK(ABS(minimalne_punkty) <= ABS(maksymalne_punkty))
 );
-
+--opcjonalnie Tabela Klasy_Cechy określająca cechy premiowane (skomentuj lub usuń jeśli nie użyjesz)
+--CREATE TABLE Klasy_Cechy
+--(
+--    Klasa_nazwa VARCHAR(255) NOT NULL,
+--    Cecha VARCHAR(255),
+--    główna BOOLEAN DEFAULT TRUE,--?
+--    warunek VARCHAR(255),--?
+--    CONSTRAINT Klasy_Cechy_PK PRIMARY KEY (Klasa_nazwa, Cecha)
+--);
 
 -- ==========================================
 -- 3. KLUCZE OBCE (FOREIGN KEYS)
@@ -433,7 +501,7 @@ ALTER TABLE umiejętności_przeciwników ADD CONSTRAINT umiejętności_przeciwni
 --- KLASY
 -- Rangi_klasowe
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Klasy_FK 
-    FOREIGN KEY (Klasy_nazwa)
+    FOREIGN KEY (Klasa_nazwa)
     REFERENCES Klasy (nazwa);
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK 
     FOREIGN KEY (Nastepna_ranga, Klasa_Nazwa)
@@ -447,7 +515,7 @@ ALTER TABLE Rangi_klasowe ADD CONSTRAINT Rangi_klasowe_Rangi_klasowe_FK
 
 -- klasa_postaci
 ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Klasy_FK 
-    FOREIGN KEY (Klasy_nazwa)
+    FOREIGN KEY (Klasa_nazwa)
     REFERENCES Klasy (nazwa);
 ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Postacie_FK 
     FOREIGN KEY (Postacie_ID) 
@@ -458,7 +526,7 @@ ALTER TABLE klasa_postaci ADD CONSTRAINT klasa_postaci_Rangi_klasowe_FK
 
 -- Punkty_Klasowe
 ALTER TABLE Punkty_Klasowe ADD CONSTRAINT Punkty_Klasowe_Klasy_FK 
-    FOREIGN KEY (Klasy_nazwa)
+    FOREIGN KEY (Klasa_nazwa)
     REFERENCES Klasy (nazwa);
 --    ON DELETE CASCADE;
 
@@ -626,9 +694,9 @@ DECLARE
     error_msg TEXT;
 BEGIN
     IF TG_OP = 'DELETE' THEN
-        current_class := OLD.Klasy_nazwa;
+        current_class := OLD.Klasa_nazwa;
     ELSE
-        current_class := NEW.Klasy_nazwa;
+        current_class := NEW.Klasa_nazwa;
     END IF;
 
     IF current_class IS NULL THEN
@@ -638,12 +706,12 @@ BEGIN
     -- Sprawdź brakujące następniki
     IF EXISTS (
         SELECT 1 FROM Rangi_klasowe r
-        WHERE r.Klasy_nazwa = current_class
+        WHERE r.Klasa_nazwa = current_class
           AND r.Nastepna_ranga IS NOT NULL
           AND NOT EXISTS (
               SELECT 1 FROM Rangi_klasowe next_r 
               WHERE next_r.Nazwa = r.Nastepna_ranga 
-                AND next_r.Klasy_nazwa = current_class
+                AND next_r.Klasa_nazwa = current_class
           )
     ) THEN
         RAISE EXCEPTION 'BŁĄD SPÓJNOŚCI: Istnieje ranga z nieistniejącym następnikiem w klasie "%".', current_class;
@@ -652,12 +720,12 @@ BEGIN
     -- Sprawdź brak poprzedników
     IF EXISTS (
         SELECT 1 FROM Rangi_klasowe r
-        WHERE r.Klasy_nazwa = current_class
+        WHERE r.Klasa_nazwa = current_class
           AND r.Poprzednia_ranga IS NOT NULL
           AND NOT EXISTS (
               SELECT 1 FROM Rangi_klasowe prev_r 
               WHERE prev_r.Nazwa = r.Poprzednia_ranga 
-                AND prev_r.Klasy_nazwa = current_class
+                AND prev_r.Klasa_nazwa = current_class
           )
     ) THEN
         RAISE EXCEPTION 'BŁĄD SPÓJNOŚCI: Istnieje ranga z nieistniejącym poprzednikiem w klasie "%".', current_class;
@@ -667,8 +735,8 @@ BEGIN
     IF EXISTS (
         SELECT 1 FROM Rangi_klasowe r
         JOIN Rangi_klasowe next_r ON r.Nastepna_ranga = next_r.Nazwa
-        WHERE r.Klasy_nazwa = current_class
-          AND next_r.Klasy_nazwa = current_class
+        WHERE r.Klasa_nazwa = current_class
+          AND next_r.Klasa_nazwa = current_class
           AND (next_r.Poprzednia_ranga IS NULL OR next_r.Poprzednia_ranga != r.Nazwa)
     ) THEN
         RAISE EXCEPTION 'BŁĄD SPÓJNOŚCI: Niedopasowane linki w klasie "%".', current_class;
@@ -682,6 +750,276 @@ CREATE TRIGGER trg_check_ranga_łańcuch
 AFTER INSERT OR UPDATE OR DELETE ON Rangi_klasowe
 FOR EACH ROW
 EXECUTE FUNCTION check_ranga_łańcuch();
+
+CREATE OR REPLACE FUNCTION sprawdz_liczbe_aktywnych_klas()
+RETURNS trigger AS
+$$
+DECLARE
+    liczba_aktywnych INTEGER;
+BEGIN
+    -- Interesują nas tylko rekordy ustawiane jako aktywne
+    IF NEW.aktywna IS DISTINCT FROM TRUE THEN
+        RETURN NEW;
+    END IF;
+
+    SELECT COUNT(*)
+    INTO liczba_aktywnych
+    FROM klasa_postaci
+    WHERE Postacie_ID = NEW.Postacie_ID
+      AND aktywna = TRUE
+      AND Klasy_nazwa <> NEW.Klasy_nazwa;
+
+    IF liczba_aktywnych >= 2 THEN
+        RAISE EXCEPTION
+            'Postać % może mieć maksymalnie dwie aktywne klasy.',
+            NEW.Postacie_ID;
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
+CREATE TRIGGER trg_2_aktywne_klasy
+BEFORE INSERT OR UPDATE OF aktywna
+ON klasa_postaci
+FOR EACH ROW
+EXECUTE FUNCTION sprawdz_liczbe_aktywnych_klas();
+
+-- triggery punktów klasowych z cech
+
+---funkcja obliczająca nową wartość:
+CREATE OR REPLACE FUNCTION oblicz_punkty_klasowe_z_cech
+(
+    p_postac integer,
+    p_klasa varchar
+)
+RETURNS integer
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    suma_poziom1 integer;
+    suma_awansow integer;
+BEGIN
+    SELECT
+        (
+            CASE WHEN 'Siła' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Siła_poziom_1 ELSE 0 END
+          + CASE WHEN 'Wytrzymałość' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Wytrzymałość_poziom_1 ELSE 0 END
+          + CASE WHEN 'Kondycja' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Kondycja_poziom_1 ELSE 0 END
+          + CASE WHEN 'Zręczność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Zręczność_poziom_1 ELSE 0 END
+          + CASE WHEN 'Zwinność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Zwinność_poziom_1 ELSE 0 END
+
+          + CASE WHEN 'Mądrość' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Mądrość_poziom_1 ELSE 0 END
+          + CASE WHEN 'Inteligencja' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Inteligencja_poziom_1 ELSE 0 END
+          + CASE WHEN 'Charyzma' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Charyzma_poziom_1 ELSE 0 END
+          + CASE WHEN 'Pobożność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Pobożność_poziom_1 ELSE 0 END
+          + CASE WHEN 'Wola' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Wola_poziom_1 ELSE 0 END
+        ),
+
+        (
+            CASE WHEN 'Siła' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Siła_z_awansów ELSE 0 END
+          + CASE WHEN 'Wytrzymałość' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Wytrzymałość_z_awansów ELSE 0 END
+          + CASE WHEN 'Kondycja' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Kondycja_z_awansów ELSE 0 END
+          + CASE WHEN 'Zręczność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Zręczność_z_awansów ELSE 0 END
+          + CASE WHEN 'Zwinność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Zwinność_z_awansów ELSE 0 END
+
+          + CASE WHEN 'Mądrość' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Mądrość_z_awansów ELSE 0 END
+          + CASE WHEN 'Inteligencja' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Inteligencja_z_awansów ELSE 0 END
+          + CASE WHEN 'Charyzma' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Charyzma_z_awansów ELSE 0 END
+          + CASE WHEN 'Pobożność' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Pobożność_z_awansów ELSE 0 END
+          + CASE WHEN 'Wola' IN (k.premiowana_cecha1, k.premiowana_cecha2, k.premiowana_cecha3)
+                 THEN p.Wola_z_awansów ELSE 0 END
+        )
+
+    INTO
+        suma_poziom1,
+        suma_awansow
+    FROM Postacie p
+    JOIN Klasa_postaci kp
+        ON kp.Postacie_ID=p.ID_postaci
+        AND kp.Klasy_nazwa=p_klasa
+    JOIN Klasy k
+        ON k.Nazwa=kp.Klasy_nazwa
+    WHERE p.ID_postaci=p_postac;
+    RETURN
+          suma_awansow
+        + floor((suma_poziom1+suma_awansow)/10.0);
+END;
+$$;
+
+---- łańcuch wywoływany przez trigger postaci:
+-----aktualizujacyjna
+CREATE OR REPLACE FUNCTION aktualizuj_punkty_klasowe_z_cech_postaci
+(
+    p_postac integer
+)
+RETURNS void
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    UPDATE klasa_postaci kp
+    SET ilość_punktów_klasowych_z_cech =
+        oblicz_punkty_klasowe_z_cech
+        (
+            kp.Postacie_ID,
+            kp.Klasy_nazwa
+        )
+    WHERE kp.Postacie_ID=p_postac;
+END;
+$$;
+-----funkcja triggera postaci
+CREATE OR REPLACE FUNCTION trg_postacie_wyzwol_przeliczenie_pkt_klasowych_postaci()
+RETURNS trigger
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    PERFORM aktualizuj_punkty_klasowe_z_cech_postaci(NEW.ID_postaci);
+    RETURN NEW;
+END;
+$$;
+-----trigger postaci po modyfikacji cech bazowych
+CREATE TRIGGER trg_pkt_klasowe_postaci
+    AFTER UPDATE OF
+        Siła_poziom_1,
+        Wytrzymałość_poziom_1,
+        Kondycja_poziom_1,
+        Zręczność_poziom_1,
+        Zwinność_poziom_1,
+        Mądrość_poziom_1,
+        Inteligencja_poziom_1,
+        Charyzma_poziom_1,
+        Pobożność_poziom_1,
+        Wola_poziom_1,
+
+        Siła_z_awansów,
+        Wytrzymałość_z_awansów,
+        Kondycja_z_awansów,
+        Zręczność_z_awansów,
+        Zwinność_z_awansów,
+        Mądrość_z_awansów,
+        Inteligencja_z_awansów,
+        Charyzma_z_awansów,
+        Pobożność_z_awansów,
+        Wola_z_awansów
+    ON Postacie
+    FOR EACH ROW
+    EXECUTE FUNCTION trg_postacie_wyzwol_przeliczenie_pkt_klasowych_postaci();--aktualizuj_punkty_klasowe_z_cech_postaci?
+
+---- łańcuch wywoływany przez trigger klasy_postaci:
+-----aktualizujacyjna
+CREATE OR REPLACE FUNCTION aktualizuj_punkty_klasowe_z_cech_klasy_postaci
+(
+    p_postac integer,
+    kp_klasa varchar
+)
+RETURNS void
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    UPDATE klasa_postaci kp
+    SET ilość_punktów_klasowych_z_cech = oblicz_punkty_klasowe_z_cech
+    (
+        kp.Postacie_ID,
+        kp.Klasy_nazwa
+    )
+WHERE kp.Postacie_ID=p_postac AND kp.Klasa_Nazwa=kp_klasa
+END;
+$$;
+-----funkcja triggera postaci
+CREATE OR REPLACE FUNCTION trg_klasa_postaci_wyzwol_przeliczenie_pkt_klasowych_postaci()
+RETURNS trigger
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    PERFORM aktualizuj_punkty_klasowe_z_cech_klasy_postaci(NEW.Postacie_ID, NEW.Klasa_Nazwa);
+    RETURN NEW;
+END;
+$$;
+-----trigger klasy_postaci po zmianie nazwy klasy w rekordzie(co... nie jest oczekiwaną metodą operowania na bazie danych, ale może się zdarzyć przy poprawie błędów)
+CREATE TRIGGER trg_klasa_postaci
+    BEFORE INSERT OR UPDATE OF
+        Klasy_nazwa
+    ON klasa_postaci
+    FOR EACH ROW
+    EXECUTE FUNCTION trg_klasa_postaci_wyzwol_przeliczenie_pkt_klasowych_postaci();
+
+---- łańcuch wywoływany przez trigger klasy:
+-----aktualizujacyjna
+CREATE OR REPLACE FUNCTION aktualizuj_punkty_klasowe_dla_klasy
+(
+    p_klasa varchar
+)
+RETURNS void
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+
+    UPDATE klasa_postaci kp
+    SET ilość_punktów_klasowych_z_cech =
+        oblicz_punkty_klasowe_z_cech(
+            kp.Postacie_ID,
+            kp.Klasy_nazwa
+        )
+    WHERE kp.Klasy_nazwa = p_klasa;
+END;
+$$;
+-----funkcja triggera postaci
+CREATE OR REPLACE FUNCTION trg_klasy_wyzwol_przeliczenie_pkt_klasowych_postaci()
+RETURNS trigger
+LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    PERFORM aktualizuj_punkty_klasowe_dla_klasy(
+        NEW.Nazwa
+    );
+    RETURN NEW;
+END;
+$$;
+-----trigger klasy po zmianie premiowanych przez nią cech
+CREATE TRIGGER trg_klasy_premiowane_cechy
+AFTER UPDATE OF
+    premiowana_cecha1,
+    premiowana_cecha2,
+    premiowana_cecha3
+ON Klasy
+FOR EACH ROW
+EXECUTE FUNCTION trg_klasy_wyzwol_przeliczenie_pkt_klasowych_postaci();
+
+
+-- =======
+-- 4.A Obliczeniowe
+-- =======
+-- =======
+-- 4.B Aktualizujące
+-- =======
+-- =======
+-- 4.C Triggery i triggerowe
+-- =======
 
 -- ==========================================
 -- 5. Kontrola - Wyświetlanie struktur bazy danych
@@ -708,7 +1046,7 @@ SELECT con.*
                        ON nsp.oid = connamespace
 
 -- ==========================================
--- 6. Widoki
+-- 6. Widoki i pokrewne funkcje
 -- ==========================================
 
 --RASY
@@ -754,8 +1092,7 @@ SELECT
     Pancerz_twardy
 FROM Cechy_Rasowe NATURAL JOIN RASY;
 
-
---POSTACIE
+--POSTACIE I
 
 ---Cechy Bazowe
 CREATE OR REPLACE VIEW Postacie_Cechy_Bazowe AS
@@ -784,11 +1121,6 @@ SELECT
     Rasy_Nazwa                                                      AS Nazwa_Rasy 
 FROM r;
 
----bonusy do cech z klas postaci
-
----porównanie cech z awansu z ilością przysługujących z awansów i z poziomu klasy
-
-
 ---Statystyki Bazowe
 -----Życie	Mana	Energia
 CREATE OR REPLACE VIEW Statystyki_Bazowe_Postaci AS
@@ -808,6 +1140,388 @@ SELECT
     Pancerz_twardy
 FROM Postacie_Cechy_Bazowe INNER JOIN Rasy ON Postacie_Cechy_Bazowe.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
 
+
+--KLASY I
+---bonusy do cech z klas postaci
+
+----widok głównie techniczny
+----widok szczegółowo pokazuje dla każdej postaci(ID) liczbę bonusowych pkt. cech jaką może mieć na poziom,
+---- z każdej z klas, które rozwija
+CREATE OR REPLACE VIEW bonusy_klasowe_na_poziom AS
+bonusy_z_rang AS
+(
+    SELECT
+        (bonus_do_cech_wartość/bonus_do_cech_co_poziomów) AS bonus_na_poziom,
+        Klasa_nazwa,
+        Nazwa
+    FROM Rangi_klasowe
+)
+SELECT 
+    ID_postaci,
+    klasa_postaci.Klasa_Nazwa AS Nazwa_Klasy,
+    CASE
+        WHEN 'Mądrość' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Mądrość_na_poziom,
+    CASE
+        WHEN 'Inteligencja' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Inteligencja_na_poziom,
+    CASE
+        WHEN 'Wola' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Wola_na_poziom,
+    CASE
+        WHEN 'Pobożność' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Pobożność_na_poziom,
+    CASE
+        WHEN 'Charyzma' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Charyzma_na_poziom,
+    CASE
+        WHEN 'Wytrzymałość' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Wytrzymałość_na_poziom,
+    CASE
+        WHEN 'Siła' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Siła_na_poziom,
+    CASE
+        WHEN 'Zręczność' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Zręczność_na_poziom,
+    CASE
+        WHEN 'Zwinność' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Zwinność_na_poziom,
+    CASE
+        WHEN 'Kondycja' IN(premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)--(SELECT Cecha FROM Klasy_Cechy) 
+        THEN bonus_na_poziom
+        ELSE 0
+    END AS Kondycja_na_poziom,
+    aktywna
+FROM klasa_postaci
+    INNER JOIN bonusy_z_rang 
+        ON klasa_postaci.Klasa_nazwa = bonusy_z_rang.Klasa_nazwa
+            AND klasa_postaci.Rangi_klasowe_Nazwa = bonusy_z_rang.Nazwa
+    INNER JOIN KLASY--Klasy_Cechy
+        ON klasa_postaci.Klasa_Nazwa=Klasy.nazwa
+--ORDER BY ID_postaci
+;
+
+----widok szczegółowo pokazuje dla każdej postaci liczbę bonusowych pkt. cech jaką może mieć z każdej z klas,
+----które rozwija
+-----zaokrąglenia następują dopiero po sumowaniu[rozważyć zmianę inner Join na left join]
+CREATE OR REPLACE VIEW bonusy_klasowe AS
+SELECT 
+    ID_postaci,
+    Imię,
+    NAZWISKO,
+    klasa_postaci.Klasa_Nazwa AS Nazwa_Klasy,
+    poziom*Mądrość_na_poziom AS Mądrość,
+    poziom*Inteligencja_na_poziom AS Inteligencja,
+    poziom*Wola_na_poziom AS Wola,
+    poziom*Pobożność_na_poziom AS Pobożność,
+    poziom*Charyzma_na_poziom AS Charyzma,
+    poziom*Wytrzymałość_na_poziom AS Wytrzymałość,
+    poziom*Siła_na_poziom AS Siła,
+    poziom*Zręczność_na_poziom AS Zręczność,
+    poziom*Zwinność_na_poziom AS Zwinność,
+    poziom*Kondycja_na_poziom AS Kondycja,
+    aktywna
+FROM POSTACIE
+    INNER JOIN bonusy_klasowe_na_poziom
+        ON POSTACIE.ID_postaci=klasa_postaci.ID_postaci
+    --INNER JOIN klasa_postaci
+    --    ON POSTACIE.ID_postaci=klasa_postaci.ID_postaci
+    --INNER JOIN 
+    --Rangi_klasowe 
+    --    ON (klasa_postaci.Klasa_nazwa=Rangi_klasowe.Klasa_Nazwa 
+    --        AND klasa_postaci.Rangi_klasowe_Nazwa=Rangi_klasowe.Rangi_klasowe_Nazwa)
+    --INNER JOIN KLASY--Klasy_Cechy
+    --    ON klasa_postaci.Klasa_nazwa=Klasy.nazwa
+--ORDER BY ID_postaci;
+
+----Podsumowanie bonusów na poziom dla poszczególnych postaci
+CREATE OR REPLACE VIEW bonusy_klasowe_postaci_na_poziom AS
+WITH Obliczenia AS
+(--FILTER (WHERE aktywna)
+    SELECT 
+    ID_postaci,
+    SUM(Mądrość_na_poziom) AS Mądrość_na_poziom,
+    SUM(Inteligencja_na_poziom) AS Inteligencja_na_poziom,
+    SUM(Wola_na_poziom) AS Wola_na_poziom,
+    SUM(Pobożność_na_poziom) AS Pobożność_na_poziom,
+    SUM(Charyzma_na_poziom) AS Charyzma_na_poziom,
+    SUM(Wytrzymałość_na_poziom) AS Wytrzymałość_na_poziom,
+    SUM(Siła_na_poziom) AS Siła_na_poziom,
+    SUM(Zręczność_na_poziom) AS Zręczność_na_poziom,
+    SUM(Zwinność_na_poziom) AS Zwinność_na_poziom,
+    SUM(Kondycja_na_poziom) AS Kondycja_na_poziom
+    FROM bonusy_klasowe_na_poziom
+    WHERE aktywna=TRUE
+    GROUP BY ID_postaci
+)
+SELECT 
+    ID_postaci,
+    Imię,
+    NAZWISKO,
+    Mądrość_na_poziom,
+    Inteligencja_na_poziom,
+    Wola_na_poziom,
+    Pobożność_na_poziom,
+    Charyzma_na_poziom,
+    Wytrzymałość_na_poziom,
+    Siła_na_poziom,
+    Zręczność_na_poziom,
+    Zwinność_na_poziom,
+    Kondycja_na_poziom
+FROM Obliczenia o JOIN POSTACIE p ON o.ID_postaci = p.ID_postaci;
+
+CREATE OR REPLACE VIEW bonusy_klasowe_postaci AS
+SELECT 
+    ID_postaci,
+    Imię,
+    NAZWISKO,
+    floor(poziom*Mądrość_na_poziom)        AS Mądrość,
+    floor(poziom*Inteligencja_na_poziom)   AS Inteligencja,
+    floor(poziom*Wola_na_poziom)           AS Wola,
+    floor(poziom*Pobożność_na_poziom)      AS Pobożność,
+    floor(poziom*Charyzma_na_poziom)       AS Charyzma,
+    floor(poziom*Wytrzymałość_na_poziom)   AS Wytrzymałość,
+    floor(poziom*Siła_na_poziom)           AS Siła,
+    floor(poziom*Zręczność_na_poziom)      AS Zręczność,
+    floor(poziom*Zwinność_na_poziom)       AS Zwinność,
+    floor(poziom*Kondycja_na_poziom)       AS Kondycja,
+FROM bonusy_klasowe_postaci_na_poziom b JOIN POSTACIE p ON b.ID_postaci = p.ID_postaci;
+
+--CREATE OR REPLACE VIEW bonusy_klasowe_postaci2 AS
+--SELECT
+--    ID_postaci,
+--    Imię,
+--    NAZWISKO,
+--    floor(SUM(Mądrość))         AS Mądrość,
+--    floor(SUM(Inteligencja))    AS Inteligencja,
+--    floor(SUM(Wola))            AS Wola,
+--    floor(SUM(Pobożność))       AS Pobożność,
+--    floor(SUM(Charyzma))        AS Charyzma,
+--    floor(SUM(Wytrzymałość))    AS Wytrzymałość,
+--    floor(SUM(Siła))            AS Siła,
+--    floor(SUM(Zręczność))       AS Zręczność,
+--    floor(SUM(Zwinność))        AS Zwinność,
+--    floor(SUM(Kondycja))        AS Kondycja
+--FROM bonusy_klasowe
+--WHERE aktywna=TRUE
+--GROUP BY ID_postaci
+    
+--poziom*
+-----alternatywa: oddzielnie liczymy wartości współczynników i je sumujemy a dopiero po tym mnożymy razy poziom
+--JOIN POSTACIE
+--        ON klasa_postaci.ID_postaci=POSTACIE.ID_postaci
+
+--POSTACIE II
+---kontrola poprawności przydziału punktów cech z awansów i klasowych 
+
+----ilości punktów_cech_z_klas które mogą mieć poszczególne postacie przy wybraniu danych klas jako aktywne 
+CREATE OR REPLACE VIEW punkty_cech_z_klas AS
+(
+    SELECT
+        k.ID_postaci,
+        p.Imię,
+        p.Nazwisko,
+        r.punkty_cech_na_awans,
+        k.aktywna,
+        k.Klasa_Nazwa,
+        -- elementy techniczne
+        ---- Przypisz numer wiersza w ramach każdej postaci, sortując od największej wartości
+        ROW_NUMBER() OVER
+        (
+            PARTITION BY k.ID_postaci 
+            ORDER BY r.punkty_cech_na_awans DESC
+        ) AS rn,
+        p.poziom
+    FROM Postacie p 
+    INNER JOIN klasa_postaci k ON p.ID_postaci = k.ID_postaci
+    INNER JOIN Rangi_klasowe r ON k.Klasa_Nazwa = r.Klasa_Nazwa
+        AND k.Rangi_klasowe_Nazwa=r.Nazwa
+    --    ON (klasa_postaci.Klasa_nazwa=Rangi_klasowe.Klasa_Nazwa 
+    --        AND klasa_postaci.Rangi_klasowe_Nazwa=Rangi_klasowe.Rangi_klasowe_Nazwa)
+)
+--wybór których dostępnych klas dałby postaci obecnie sumarycznie najwięcej punktów
+CREATE OR REPLACE VIEW maksymalne_punkty_cech_z_klas AS
+(
+    SELECT
+        ID_postaci,
+        Imię,
+        Nazwisko,
+        (poziom-1)*SUM(punkty_cech_na_awans) AS maksymalne_punkty_klasowe,
+        STRING_AGG(Klasa_Nazwa, ', ') AS przykładowe_potrzebne_aktywne_klasy
+    FROM punkty_cech_z_klas punkty
+    WHERE rn <= 2  -- Wybierz tylko wiersze z rangą 1 lub 2 dla każdej postaci
+    GROUP BY ID_postaci, Imię, Nazwisko, poziom;
+)
+CREATE OR REPLACE VIEW kontrola_cech_postaci AS
+WITH Sumy as 
+(
+    SELECT
+        ID_postaci,
+        Imię,
+        Nazwisko,
+        ----
+        Poziom,   
+        (
+            Siła_poziom_1 
+            + Wytrzymałość_poziom_1
+            + Kondycja_poziom_1
+            + Zręczność_poziom_1
+            + Zwinność_poziom_1
+            + Mądrość_poziom_1
+            + Inteligencja_poziom_1
+            + Charyzma_poziom_1
+            + Pobożność_poziom_1
+            + Wola_poziom_1
+        ) AS SUMA_poziom_1,
+        (
+            Siła_z_awansów 
+            + Wytrzymałość_z_awansów
+            + Kondycja_z_awansów
+            + Zręczność_z_awansów
+            + Zwinność_z_awansów
+            + Mądrość_z_awansów
+            + Inteligencja_z_awansów
+            + Charyzma_z_awansów
+            + Pobożność_z_awansów
+            + Wola_z_awansów
+        ) AS SUMA_z_awansów,
+        10*(poziom-1) AS punkty_cech_z_awansów,
+        (
+            Siła_klasowa 
+            + Wytrzymałość_klasowa
+            + Kondycja_klasowa
+            + Zręczność_klasowa
+            + Zwinność_klasowa
+            + Mądrość_klasowa
+            + Inteligencja_klasowa
+            + Charyzma_klasowa
+            + Pobożność_klasowa
+            + Wola_klasowa
+        ) AS SUMA_klasowa
+        FROM Postacie 
+)
+SELECT 
+    s.ID_postaci,
+    s.Imię,
+    s.Nazwisko,
+    ----
+    s.SUMA_poziom_1,
+    50 AS oczekiwana_suma_poziom_1,
+    50-SUMA_poziom_1 AS do_przydzielenia_poziom_1,
+    ------
+    s.Poziom,
+    s.SUMA_z_awansów,
+    s.punkty_cech_z_awansów AS oczekiwana_suma_z_awansów,
+    s.punkty_cech_z_awansów-s.SUMA_z_awansów AS do_przydzielenia_z_awansów,
+    ----
+    s.SUMA_klasowa,
+    m.maksymalne_punkty_klasowe,
+    m.przykładowe_potrzebne_aktywne_klasy
+    CASE
+        WHEN m.maksymalne_punkty_klasowe<s.SUMA_klasowa THEN 'wykryto ewidentny błąd'
+        WHEN m.maksymalne_punkty_klasowe=s.SUMA_klasowa THEN 'wykryto anomalię - zbadaj przyczynę'
+        ELSE 'nie wykryto poważnych błędów'
+        AS czy_wykryto_ewidentny_błąd
+FROM Sumy s INNER JOIN maksymalne_punkty_cech_z_klas m ON s.ID_postaci=m.ID_postaci;
+--INNER JOIN maksymalne_punkty_klasowe ON Postacie.ID_postaci=maksymalne_punkty_klasowe.ID_postaci
+
+---Cechy Naturalne(Bazowe+Klasowe)
+CREATE OR REPLACE VIEW Postacie_Cechy_Naturalne AS
+WITH r AS (
+    SELECT *,
+        CASE:
+            WHEN Postacie.Wiek-Cechy_Rasowe.wiek_starości>0 THEN Postacie.Wiek-Cechy_Rasowe.wiek_starości
+            ELSE 0--ROUND((Postacie.Wiek-Cechy_Rasowe.wiek_starości)/10)
+        AS Mod_wiekowy
+    FROM Cechy_Rasowe INNER JOIN POSTACIE ON Cechy_Rasowe.Nazwa=Postacie.Rasy_Nazwa--!INDEKSUJ!
+)
+SELECT 
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    Mądrość_poziom_1 + Mądrość_z_awansów + Mądrość_klasowa + r.Mądrość + b.Mądrość + Mod_wiekowy            AS Mądrość,
+    Inteligencja_poziom_1 + Inteligencja_z_awansów + Inteligencja_klasowa r.Inteligencja + b.Inteligencja   AS Inteligencja,
+    Wola_poziom_1 + Wola_z_awansów + Wola_klasowa + r.Wola + b.Wola                                         AS Wola,
+    Pobożność_poziom_1 + Pobożność_z_awansów + Pobożność_klasowa + r.Pobożność + b.Pobożność                AS Pobożność,
+    Charyzma_poziom_1 + Charyzma_z_awansów + Charyzma_klasowa + r.Charyzma + b.Charyzma                     AS Charyzma,
+    Wytrzymałość_poziom_1 + Wytrzymałość_z_awansów + Wytrzymałość_klasowa + r.Wytrzymałość + b.Wytrzymałość AS Wytrzymałość,
+    Siła_poziom_1 + Siła_z_awansów + Siła_klasowa + r.Siła + b.Siła                                         AS Siła,
+    Zręczność_poziom_1 + Zręczność_z_awansów + Zręczność_klasowa + r.Zręczność + b.Zręczność                AS Zręczność,
+    Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność_klasowa + r.Zwinność + b.Zwinność                     AS Zwinność,
+    Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja_klasowa + r.Kondycja + b.Kondycja - Mod_wiekowy       AS Kondycja,
+    Rasy_Nazwa                                                                                              AS Nazwa_Rasy 
+FROM r INNER JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci 
+
+---Statystyki Naturalne(Bazowe+Klasowe)
+---Statystyki Bazowe
+-----Życie	Mana	Energia
+CREATE OR REPLACE VIEW Statystyki_Naturalne_Postaci AS
+SELECT
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0               AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Bazowe.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+
+
+--PRZEDMIOTY
+---bonusy z aktywnych przedmiotów
+----mogę podłączyć...
+----
+-----bonusy z aktywnych broni?
+-----bonusy z aktywnych pancerzy?
+CREATE OR REPLACE VIEW bonusy_z_przedmiotów AS
+SELECT
+    AS Mądrość,
+    AS Inteligencja,
+    AS Wola,
+    AS Pobożność,
+    AS Charyzma,
+    AS Wytrzymałość,
+    AS Siła,
+    AS Zręczność,
+    AS Zwinność,
+    AS Kondycja,
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM 
+
+---na co stać postać
+CREATE OR REPLACE VIEW  AS
+SELECT
+    Nazwa,
+    
+FROM  NATURAL JOIN ;
+
+--Postacie III
 
 ---Cechy Efektywne
 
@@ -879,22 +1593,6 @@ SELECT
     Rasy_Nazwa                                                           AS Nazwa_Rasy 
 FROM Klasy_Przeciwników_Cechy--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
 
---CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Bazowe_Maksymalne AS
---SELECT 
---    nazwa
---    Mądrość_poziom_1 + 0*Mądrość_na_awans + Mądrość                  AS Mądrość,
---    Inteligencja_poziom_1 + 0*Inteligencja_na_awans + Inteligencja   AS Inteligencja,
---    Wola_poziom_1 + 0*Wola_na_awans + Wola                           AS Wola,
---    Pobożność_poziom_1 + 0*Pobożność_na_awans + Pobożność            AS Pobożność,
---    Charyzma_poziom_1 + 0*Charyzma_na_awans + Charyzma               AS Charyzma,
---    Wytrzymałość_poziom_1 + 0*Wytrzymałość_na_awans + Wytrzymałość   AS Wytrzymałość,
---    Siła_poziom_1 + 0*Siła_na_awans + Siła                           AS Siła,
---    Zręczność_poziom_1 + 0*Zręczność_na_awans + Zręczność            AS Zręczność,
---    Zwinność_poziom_1 + 0*Zwinność_na_awans + Zwinność               AS Zwinność,
---    Kondycja_poziom_1 + 0*Kondycja_na_awans + Kondycja               AS Kondycja,
---    Rasy_Nazwa                                                       AS Nazwa_Rasy 
---FROM Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
-
 
 ---Statystyki Bazowe
 -----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
@@ -919,14 +1617,43 @@ SELECT
     Pancerz_twardy
 FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
 
----- Cechy minimalne 
+---- Statystyki minimalne 
 ---- ---policzyć która wersja byłaby wydajniejsza.
 ---- ---Wydajniejsza jest:
 ---- --- Klasy_Przeciwników_Cechy -> Klasy_Przeciwników_Cechy_Bazowe_minimalne -> Statystyki_Klas_Przeciwników_minimalne
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne AS
+SELECT
+    nazwa,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0             AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM Klasy_Przeciwników_Cechy_Bazowe_minimalne 
+    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_minimalne.Nazwa_Rasy=RASY.Nazwa
 
 
----- Cechy maksymalne
-
+---- Statystyki maksymalne
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne AS
+SELECT
+    nazwa,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0             AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy
+FROM Klasy_Przeciwników_Cechy_Bazowe_maksymalne 
+    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa
 
 
 ---Cechy Efektywne
@@ -948,21 +1675,12 @@ FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Nazwa_Rasy=RASY.
 ---???wymagane przedmioty???
 ---?
 
---KLASY
---porównanie klas postaci z dostępnymi postaci rangami klasowymi
---wypisanie bonusów posiadanych przez postać
-
-
---PRZEDMIOTÓW
----na co stać postać
-
-
 -- ==========================================
 -- 7. Indeksy
 -- ==========================================
 
 CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
-CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasy_nazwa); -- Kluczowe dla triggera
+CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasa_nazwa); -- Kluczowe dla triggera
 
 CREATE INDEX idx_zna_Umiejetnosci_nazwa ON zna (Nazwa);
 CREATE INDEX idx_zna_Postacie_ID ON zna (Postacie_ID);
