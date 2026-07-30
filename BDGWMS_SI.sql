@@ -3,6 +3,7 @@
 --   site:      SQL Server 2012
 --   type:      SQL Server 2012
 -- Converted for PostgreSQL 18
+-- Posegregowane i rozbudowane
 
 
 -- ==========================================
@@ -27,9 +28,10 @@ CREATE TABLE Rasy
     Pobożność_OCENA INTEGER NOT NULL CONSTRAINT Pobożność_ZAKRES CHECK(Pobożność_OCENA BETWEEN 1 AND 20),
     Wola_OCENA INTEGER NOT NULL CONSTRAINT Wola_ZAKRES CHECK(Wola_OCENA BETWEEN 1 AND 20),
     Zdolności_rasowe VARCHAR(255),
-    Pancerz_Ogólny INTEGER NOT NULL,
-    Pancerz_miękki INTEGER NOT NULL,
-    Pancerz_twardy INTEGER NOT NULL,
+    Pancerz_Ogólny INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_Ogólny>=0),
+    Pancerz_miękki INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_miękki>=0),
+    Pancerz_twardy INTEGER NOT NULL CONSTRAINT naturalne CHECK(Pancerz_twardy>=0),
+    Ochrona_przed_zimnem INTEGER CONSTRAINT naturalne CHECK(Ochrona_przed_zimnem>=0),
     Typ_przejęcia VARCHAR(255),
     Występowanie_rola_informacje VARCHAR(255),
     średnia_długość_życia INTEGER,
@@ -139,14 +141,12 @@ CREATE TABLE Klasy
     premiowana_cecha3 VARCHAR(255)
 );
 
-CREATE TABLE Przedmioty (
+CREATE TABLE Przedmioty
+(
     Przed_Nazwa VARCHAR(255) PRIMARY KEY,
     Przed_Efekty VARCHAR(255),
     Przed_Opis VARCHAR(255),
-    Przed_cena_domyślna NUMERIC(21,2),--spytać Maćka
-    Postacie_ID INTEGER,
-    Klasy_Przeciwników_nazwa VARCHAR(255),
-    jest_noszony BOOLEAN
+    Przed_cena_domyślna NUMERIC(21,2)
 );
 
 --CONSTRAINT dodatnie CHECK(Wiek>0)
@@ -154,6 +154,7 @@ CREATE TABLE Przedmioty (
 
 CREATE TABLE Klasy_Przeciwników (
     nazwa VARCHAR(255) PRIMARY KEY,
+    opis TEXT,
     minimalny_poziom INTEGER CONSTRAINT dodatnie CHECK(minimalny_poziom>0),
     maksymalny_poziom INTEGER CONSTRAINT dodatnie CHECK(maksymalny_poziom>0),
     Siła_z_poziom_1 INTEGER NOT NULL,
@@ -179,12 +180,36 @@ CREATE TABLE Klasy_Przeciwników (
     Rasy_Nazwa VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Waluty
+(
+    nazwa VARCHAR(255) PRIMARY KEY,
+    Przelicznik_na_główną_walutę NUMERIC(16,8) NOT NULL DEFAULT 1 CHECK (Przelicznik_na_główną_walutę >= 0),--przyjmuje, że waluty i nominały nie będą mniej niż 100^4 razy większe lub mniejsze od głównej waluty, 0 to wartość dla walut okazujnych jak talony itp. których nie można po prostu wymienić z powrotem na pieniądze
+    Główna BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
 -- ==========================================
 -- 2. TABELE ZALEŻNE (Tworzone potem)
 -- ==========================================
 -- ====
 -- 2.A. Posiadane rzeczy: Podtabele przedmiotów i pieniądze
 -- ====
+
+CREATE TABLE Egzemplarze_Przedmiotów
+(
+    Przed_ID SERIAL PRIMARY KEY,
+    Przed_Nazwa VARCHAR(255) NOT NULL,
+    Postacie_ID INTEGER,
+    jest_noszony BOOLEAN NOT NULL DEFAULT FALSE,
+    stan VARCHAR
+)
+
+CREATE TABLE Przedmioty_Przeciwników
+(
+    Przed_Nazwa VARCHAR(255),
+    Klasy_Przeciwników_nazwa VARCHAR(255),
+    CONSTRAINT Przedmioty_Przeciwników_PK PRIMARY KEY (Przed_Nazwa, Klasy_Przeciwników_nazwa)
+)
 
 CREATE TABLE Bronie (
     Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
@@ -262,10 +287,10 @@ CREATE TABLE Rózności (
     Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Rózności_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
 );
-
+--
 CREATE TABLE Pieniądze (
-    Waluta VARCHAR(255) NOT NULL,
-    Ilość BIGINT,
+    Waluta VARCHAR(255) NOT NULL REFERENCES Waluty(nazwa),
+    Ilość BIGINT NOT NULL CHECK (Ilość >= 0),
     Postacie_ID INTEGER NOT NULL,
     CONSTRAINT Pieniądze_PK PRIMARY KEY (Waluta, Postacie_ID)
 );
@@ -360,7 +385,8 @@ CREATE TABLE Rangi_klasowe
     bonus_do_cech_wartość NUMERIC(2, 1),
     punkty_cech_na_awans INTEGER NOT NULL CONSTRAINT naturalne CHECK(punkty_cech_na_awans>=0),
     minimalne_punkty_klasowe INTEGER NOT NULL CONSTRAINT dodatnie CHECK(minimalne_punkty_klasowe>0),
-    punkty_klasowe_wymagane_do_awansu INTEGER CONSTRAINT dodatnie CHECK(punkty_klasowe_wymagane_do_awansu>0),
+    --punkty_klasowe_wymagane_do_awansu INTEGER CONSTRAINT dodatnie CHECK(punkty_klasowe_wymagane_do_awansu>0),
+        --nadmiarowe, osiągalne(a więc dublujące się z) przez join po następna ranga i wybraniu minimalne_punkty_klasowe  
     Klasa_nazwa VARCHAR(255) NOT NULL,
     Poprzednia_ranga VARCHAR(255),
     Nastepna_ranga VARCHAR(255),
@@ -438,15 +464,27 @@ ALTER TABLE Opanowane ADD CONSTRAINT Opanowane_Umiejętności_FK
     FOREIGN KEY (Umiejętności_Nazwa) REFERENCES Umiejętności (Nazwa);
 
 ---- PRZEDMIOTY i Podtabele 
--- Przedmioty
-ALTER TABLE Przedmioty 
-    ADD CONSTRAINT Przedmioty_Klasy_Przeciwników_FK 
-        FOREIGN KEY (Klasy_Przeciwników_nazwa) 
-        REFERENCES Klasy_Przeciwników (nazwa);
-ALTER TABLE Przedmioty
-    ADD CONSTRAINT Przedmioty_Postacie_FK 
+-- Przedmioty powiązania zewnętrzne
+
+---egzemplarze przedmiotów
+ALTER TABLE Egzemplarze_Przedmiotów 
+    ADD CONSTRAINT Egzemplarze_Przedmiotów_Przedmioty_FK 
+        FOREIGN KEY (Przed_Nazwa) 
+        REFERENCES Przedmioty(Przed_Nazwa);
+ALTER TABLE Egzemplarze_Przedmiotów 
+    ADD CONSTRAINT Egzemplarze_Przedmiotów_Postacie_FK 
         FOREIGN KEY (Postacie_ID) 
-        REFERENCES Postacie (ID_postaci);
+        REFERENCES Przedmioty(ID_postaci);
+
+---przedmioty przeciwników
+ALTER TABLE Przedmioty_Przeciwników
+    ADD CONSTRAINT Przedmioty_Przeciwników_Przedmioty_FK--Przedmioty_Postacie_FK 
+        FOREIGN KEY (Przed_Nazwa) 
+        REFERENCES Przedmioty(Przed_Nazwa);
+ALTER TABLE Przedmioty_Przeciwników
+    ADD CONSTRAINT Przedmioty_Przeciwników_Klasy_Przec_FK 
+        FOREIGN KEY (Klasy_Przeciwników_nazwa) 
+        REFERENCES Klasy_Przeciwników(nazwa);
 
 -- Bronie
 ALTER TABLE Bronie ADD CONSTRAINT Bronie_Przedmioty_FK 
@@ -767,7 +805,7 @@ BEGIN
     FROM klasa_postaci
     WHERE Postacie_ID = NEW.Postacie_ID
       AND aktywna = TRUE
-      AND Klasy_nazwa <> NEW.Klasy_nazwa;
+      AND Klasa_nazwa <> NEW.Klasa_nazwa;
 
     IF liczba_aktywnych >= 2 THEN
         RAISE EXCEPTION
@@ -784,6 +822,75 @@ BEFORE INSERT OR UPDATE OF aktywna
 ON klasa_postaci
 FOR EACH ROW
 EXECUTE FUNCTION sprawdz_liczbe_aktywnych_klas();
+
+
+-- trigger rang klas postaci
+
+---funkcja obliczeniowa
+CREATE OR REPLACE FUNCTION oblicz_punkty_klasowe_z_cech
+(
+    p_postac integer,
+    p_klasa varchar
+)
+RETURNS integer
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    punkty_klasowe_wymagane_do_awansu integer;
+BEGIN
+    SELECT
+       NEW.ilość_punktów_klasowych+NEW.ilość_punktów_klasowych_z_cech 
+    INTO
+        punkty_klasowe_wymagane_do_awansu
+    FROM Postacie p
+    JOIN Klasa_postaci kp
+        ON kp.Postacie_ID=p.ID_postaci
+        AND kp.Klasa_nazwa=p_klasa
+    JOIN Klasy k
+        ON k.Nazwa=kp.Klasa_nazwa
+    WHERE p.ID_postaci=p_postac;
+    RETURN;
+END;
+$$;
+
+-- trigger rang klas postaci
+---funkcja sprawdzająca i  aktualizująca
+CREATE OR REPLACE FUNCTION sprawdz_ranga_postaci()
+RETURNS trigger
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    nowa_ranga varchar;
+BEGIN
+
+    SELECT rk.Nazwa
+    INTO nowa_ranga
+    FROM Rangi_klasowe rk
+    WHERE rk.Klasa_nazwa = NEW.Klasa_nazwa
+      AND rk.minimalne_punkty_klasowe <=
+            NEW.ilość_punktów_klasowych
+          + NEW.ilość_punktów_klasowych_z_cech
+    ORDER BY rk.minimalne_punkty_klasowe DESC
+    LIMIT 1;
+
+    IF FOUND THEN
+        NEW.Rangi_klasowe_Nazwa := nowa_ranga;
+    END IF;
+
+    RETURN NEW;
+END;
+$$;
+
+--- triggery
+CREATE TRIGGER trg_ranga_postaci
+BEFORE INSERT OR UPDATE OF
+    ilość_punktów_klasowych,
+    ilość_punktów_klasowych_z_cech
+ON klasa_postaci
+FOR EACH ROW
+EXECUTE FUNCTION sprawdz_ranga_postaci();
 
 -- triggery punktów klasowych z cech
 
@@ -856,9 +963,9 @@ BEGIN
     FROM Postacie p
     JOIN Klasa_postaci kp
         ON kp.Postacie_ID=p.ID_postaci
-        AND kp.Klasy_nazwa=p_klasa
+        AND kp.Klasa_nazwa=p_klasa
     JOIN Klasy k
-        ON k.Nazwa=kp.Klasy_nazwa
+        ON k.Nazwa=kp.Klasa_nazwa
     WHERE p.ID_postaci=p_postac;
     RETURN
           suma_awansow
@@ -882,7 +989,7 @@ BEGIN
         oblicz_punkty_klasowe_z_cech
         (
             kp.Postacie_ID,
-            kp.Klasy_nazwa
+            kp.Klasa_nazwa
         )
     WHERE kp.Postacie_ID=p_postac;
 END;
@@ -942,7 +1049,7 @@ BEGIN
     SET ilość_punktów_klasowych_z_cech = oblicz_punkty_klasowe_z_cech
     (
         kp.Postacie_ID,
-        kp.Klasy_nazwa
+        kp.Klasa_nazwa
     )
 WHERE kp.Postacie_ID=p_postac AND kp.Klasa_Nazwa=kp_klasa
 END;
@@ -961,7 +1068,7 @@ $$;
 -----trigger klasy_postaci po zmianie nazwy klasy w rekordzie(co... nie jest oczekiwaną metodą operowania na bazie danych, ale może się zdarzyć przy poprawie błędów)
 CREATE TRIGGER trg_klasa_postaci
     BEFORE INSERT OR UPDATE OF
-        Klasy_nazwa
+        Klasa_nazwa
     ON klasa_postaci
     FOR EACH ROW
     EXECUTE FUNCTION trg_klasa_postaci_wyzwol_przeliczenie_pkt_klasowych_postaci();
@@ -982,9 +1089,9 @@ BEGIN
     SET ilość_punktów_klasowych_z_cech =
         oblicz_punkty_klasowe_z_cech(
             kp.Postacie_ID,
-            kp.Klasy_nazwa
+            kp.Klasa_nazwa
         )
-    WHERE kp.Klasy_nazwa = p_klasa;
+    WHERE kp.Klasa_nazwa = p_klasa;
 END;
 $$;
 -----funkcja triggera postaci
@@ -1089,7 +1196,8 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM Cechy_Rasowe NATURAL JOIN RASY;
 
 --POSTACIE I
@@ -1137,7 +1245,8 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM Postacie_Cechy_Bazowe INNER JOIN Rasy ON Postacie_Cechy_Bazowe.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
 
 
@@ -1457,17 +1566,17 @@ SELECT
     ID_postaci,
     Imię,
     Nazwisko,
-    Mądrość_poziom_1 + Mądrość_z_awansów + Mądrość_klasowa + r.Mądrość + b.Mądrość + Mod_wiekowy            AS Mądrość,
-    Inteligencja_poziom_1 + Inteligencja_z_awansów + Inteligencja_klasowa r.Inteligencja + b.Inteligencja   AS Inteligencja,
-    Wola_poziom_1 + Wola_z_awansów + Wola_klasowa + r.Wola + b.Wola                                         AS Wola,
-    Pobożność_poziom_1 + Pobożność_z_awansów + Pobożność_klasowa + r.Pobożność + b.Pobożność                AS Pobożność,
-    Charyzma_poziom_1 + Charyzma_z_awansów + Charyzma_klasowa + r.Charyzma + b.Charyzma                     AS Charyzma,
-    Wytrzymałość_poziom_1 + Wytrzymałość_z_awansów + Wytrzymałość_klasowa + r.Wytrzymałość + b.Wytrzymałość AS Wytrzymałość,
-    Siła_poziom_1 + Siła_z_awansów + Siła_klasowa + r.Siła + b.Siła                                         AS Siła,
-    Zręczność_poziom_1 + Zręczność_z_awansów + Zręczność_klasowa + r.Zręczność + b.Zręczność                AS Zręczność,
-    Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność_klasowa + r.Zwinność + b.Zwinność                     AS Zwinność,
-    Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja_klasowa + r.Kondycja + b.Kondycja - Mod_wiekowy       AS Kondycja,
-    Rasy_Nazwa                                                                                              AS Nazwa_Rasy 
+    Mądrość_poziom_1 + Mądrość_z_awansów + Mądrość_klasowa + r.Mądrość + b.Mądrość + Mod_wiekowy              AS Mądrość,
+    Inteligencja_poziom_1 + Inteligencja_z_awansów + Inteligencja_klasowa + r.Inteligencja + b.Inteligencja   AS Inteligencja,
+    Wola_poziom_1 + Wola_z_awansów + Wola_klasowa + r.Wola + b.Wola                                           AS Wola,
+    Pobożność_poziom_1 + Pobożność_z_awansów + Pobożność_klasowa + r.Pobożność + b.Pobożność                  AS Pobożność,
+    Charyzma_poziom_1 + Charyzma_z_awansów + Charyzma_klasowa + r.Charyzma + b.Charyzma                       AS Charyzma,
+    Wytrzymałość_poziom_1 + Wytrzymałość_z_awansów + Wytrzymałość_klasowa + r.Wytrzymałość + b.Wytrzymałość   AS Wytrzymałość,
+    Siła_poziom_1 + Siła_z_awansów + Siła_klasowa + r.Siła + b.Siła                                           AS Siła,
+    Zręczność_poziom_1 + Zręczność_z_awansów + Zręczność_klasowa + r.Zręczność + b.Zręczność                  AS Zręczność,
+    Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność_klasowa + r.Zwinność + b.Zwinność                       AS Zwinność,
+    Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja_klasowa + r.Kondycja + b.Kondycja - Mod_wiekowy         AS Kondycja,
+    Rasy_Nazwa                                                                                                AS Nazwa_Rasy 
 FROM r INNER JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci 
 
 ---Statystyki Naturalne(Bazowe+Klasowe)
@@ -1487,46 +1596,129 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Bazowe.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
 
 
---PRZEDMIOTY
+--PRZEDMIOTY I
+---na co stać postać na_co_stać_postać
+CREATE OR REPLACE VIEW Budżety AS
+SELECT
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    SUM(Pi.Ilość*W.Przelicznik_na_główną_walutę) AS Budżet
+FROM Waluty W
+    INNER JOIN Pieniądze Pi ON W.nazwa=Pi.Waluta
+    INNER JOIN Postacie Pos ON Pi.Postacie_ID=Pos.ID_postaci
+GROUP BY ID_postaci,    Imię,    Nazwisko;
+
+CREATE OR REPLACE VIEW na_co_stać_postać AS
+SELECT
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    Budżet,
+    Przed_cena_domyślna,
+    Przed_Nazwa
+FROM Budżety B JOIN Przedmioty P ON B.Budżet>=P.Przed_cena_domyślna;
+
 ---bonusy z aktywnych przedmiotów
-----mogę podłączyć...
-----
------bonusy z aktywnych broni?
------bonusy z aktywnych pancerzy?
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów AS
 SELECT
-    AS Mądrość,
-    AS Inteligencja,
-    AS Wola,
-    AS Pobożność,
-    AS Charyzma,
-    AS Wytrzymałość,
-    AS Siła,
-    AS Zręczność,
-    AS Zwinność,
-    AS Kondycja,
-    Pancerz_Ogólny,
-    Pancerz_miękki,
-    Pancerz_twardy
-FROM 
+--
+    Przed_Nazwa,
+    Pos.ID_postaci,
+    Pos.Imię,
+    Pos.Nazwisko
+    COALESCE(Broń_Bonus_do_mądrości,0) + COALESCE(Pancerz_Bonus_do_mądrości,0) AS Mądrość,
+    COALESCE(Broń_Bonus_do_inteligencji,0) + COALESCE(Pancerz_Bonus_do_inteligencji,0) AS Inteligencja,
+    COALESCE(Broń_Bonus_do_woli,0) + COALESCE(Pancerz_Bonus_do_woli,0) AS Wola,
+    COALESCE(Broń_Bonus_do_pobożności,0) + COALESCE(Pancerz_Bonus_do_pobożności,0) AS Pobożność,
+    COALESCE(Broń_Bonus_do_charyzmy,0) + COALESCE(Pancerz_Bonus_do_charyzmy,0) AS Charyzma,
+    COALESCE(Broń_Bonus_do_wytrzymałości,0) + COALESCE(Pancerz_Bonus_do_wytrzymałości,0) AS Wytrzymałość,
+    COALESCE(Broń_Bonus_do_siły,0) + COALESCE(Pancerz_Bonus_do_siły,0) AS Siła,--Bonus_do_siły,
+    COALESCE(Broń_Bonus_do_zręczności,0) + COALESCE(Pancerz_Bonus_do_zręczności,0) AS Zręczność,
+    COALESCE(Broń_Bonus_do_zwinności,0) + COALESCE(Pancerz_Bonus_do_zwinności,0) AS Zwinność,
+    COALESCE(Broń_Bonus_do_kondycji,0) + COALESCE(Pancerz_Bonus_do_kondycji,0) AS Kondycja,
+    COALESCE(Pancerz_Pancerz_Ogólny,0) AS Pancerz_Ogólny,
+    COALESCE(Pancerz_Pancerz_Miękki,0) AS Pancerz_miękki,
+    COALESCE(Pancerz_Pancerz_Twardy,0) AS Pancerz_twardy,
+    COALESCE(Pancerz_Ochrona_przed_zimnem,0) AS Ochrona_przed_zimnem,
+    jest_noszony
+FROM Postacie Pos
+    INNER JOIN Egzemplarze_Przedmiotów EP ON Pos.ID_postaci=EP.Postacie_ID
+    INNER JOIN Przedmioty Prz ON EP.Przed_Nazwa = Prz.Przed_Nazwa
+    LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
+    LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
 
----na co stać postać
-CREATE OR REPLACE VIEW  AS
+CREATE OR REPLACE VIEW bonusy_z_przedmiotów_postaci AS
 SELECT
-    Nazwa,
-    
-FROM  NATURAL JOIN ;
+    ID_postaci,
+    Imię,
+    NAZWISKO,
+    SUM(Mądrość) AS Mądrość,
+    SUM(Inteligencja) AS Inteligencja,
+    SUM(Wola) AS Wola,
+    SUM(Pobożność) AS Pobożność,
+    SUM(Charyzma) AS Charyzma,
+    SUM(Wytrzymałość) AS Wytrzymałość,
+    SUM(Siła) AS Siła,
+    SUM(Zręczność) AS Zręczność,
+    SUM(Zwinność) AS Zwinność,
+    SUM(Kondycja) AS Kondycja,
+    SUM(Pancerz_Ogólny) AS Pancerz_Ogólny,
+    SUM(Pancerz_Miękki) AS Pancerz_Miękki,
+    SUM(Pancerz_Twardy) AS Pancerz_Twardy,
+    SUM(Ochrona_przed_zimnem) AS Ochrona_przed_zimnem
+FROM bonusy_z_przedmiotów  
+WHERE jest_noszony
+GROUP BY ID_postaci, Imię, NAZWISKO
+
 
 --Postacie III
 
 ---Cechy Efektywne
+CREATE OR REPLACE VIEW Postacie_Cechy_Efektywne AS
+SELECT 
+    PCN.ID_postaci,
+    PCN.Imię,
+    PCN.Nazwisko,
+    PCN.Mądrość + COALESCE(BzP.Mądrość,0)             AS Mądrość,
+    PCN.Inteligencja + COALESCE(BzP.Inteligencja,0)   AS Inteligencja,
+    PCN.Wola + COALESCE(BzP.Wola,0)                   AS Wola,
+    PCN.Pobożność + COALESCE(BzP.Pobożność,0)         AS Pobożność,
+    PCN.Charyzma + COALESCE(BzP.Charyzma,0)           AS Charyzma,
+    PCN.Wytrzymałość + COALESCE(BzP.Wytrzymałość,0)   AS Wytrzymałość,
+    PCN.Siła + COALESCE(BzP.Siła,0)                   AS Siła,
+    PCN.Zręczność + COALESCE(BzP.Zręczność,0)         AS Zręczność,
+    PCN.Zwinność + COALESCE(BzP.Zwinność,0)           AS Zwinność,
+    PCN.Kondycja + COALESCE(BzP.Kondycja,0)           AS Kondycja,
+    COALESCE(BzP.Pancerz_Ogólny,0)                    AS Pancerz_Ogólny,
+    COALESCE(BzP.Pancerz_Miękki,0)                    AS Pancerz_Miękki,
+    COALESCE(BzP.Pancerz_Twardy,0)                    AS Pancerz_Twardy,
+    COALESCE(BzP.Ochrona_przed_zimnem,0)              AS Ochrona_przed_zimnem
+FROM bonusy_z_przedmiotów_postaci BzP RIGHT JOIN Postacie_Cechy_Naturalne PCN ON BzP.ID_postaci=PCN.ID_postaci
 
 ---Statystyki Efektywne
-
+CREATE OR REPLACE VIEW Statystyki_Naturalne_Postaci AS
+SELECT
+    ID_postaci,
+    Imię,
+    Nazwisko,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0             AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM Postacie_Cechy_Efektywne
 
 --KLASY_PRZECIWNIKÓW
 ---Cechy - widok techniczny - 
@@ -1593,7 +1785,6 @@ SELECT
     Rasy_Nazwa                                                           AS Nazwa_Rasy 
 FROM Klasy_Przeciwników_Cechy--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
 
-
 ---Statystyki Bazowe
 -----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników AS
@@ -1614,7 +1805,8 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
 
 ---- Statystyki minimalne 
@@ -1633,7 +1825,8 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_minimalne 
     INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_minimalne.Nazwa_Rasy=RASY.Nazwa
 
@@ -1651,19 +1844,582 @@ SELECT
     --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
     Pancerz_Ogólny,
     Pancerz_miękki,
-    Pancerz_twardy
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_maksymalne 
     INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa
 
 
----Cechy Efektywne
+
+---funkcje wyznaczające cechy i statystyki dla dowolnego poziomu
+CREATE OR REPLACE FUNCTION oblicz_cechy_klasy_przeciwnika
+(
+    p_klasa  varchar,
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    Nazwa varchar,
+
+    Mądrość integer,
+    Inteligencja integer,
+    Wola integer,
+    Pobożność integer,
+    Charyzma integer,
+
+    Wytrzymałość integer,
+    Siła integer,
+    Zręczność integer,
+    Zwinność integer,
+    Kondycja integer,
+
+    Nazwa_Rasy varchar
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    Nazwa,
+
+    Mądrość_poziom_1       + (p_poziom-1)*Mądrość_na_awans,
+    Inteligencja_poziom_1  + (p_poziom-1)*Inteligencja_na_awans,
+    Wola_poziom_1          + (p_poziom-1)*Wola_na_awans,
+    Pobożność_poziom_1     + (p_poziom-1)*Pobożność_na_awans,
+    Charyzma_poziom_1      + (p_poziom-1)*Charyzma_na_awans,
+
+    Wytrzymałość_poziom_1  + (p_poziom-1)*Wytrzymałość_na_awans,
+    Siła_poziom_1          + (p_poziom-1)*Siła_na_awans,
+    Zręczność_poziom_1     + (p_poziom-1)*Zręczność_na_awans,
+    Zwinność_poziom_1      + (p_poziom-1)*Zwinność_na_awans,
+    Kondycja_poziom_1      + (p_poziom-1)*Kondycja_na_awans,
+
+    Nazwa_Rasy
+FROM Klasy_Przeciwników_Cechy
+WHERE Nazwa = p_klasa, p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
+$$;
+
+CREATE OR REPLACE FUNCTION oblicz_cechy_klas_przeciwników
+(
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    Nazwa varchar,
+
+    Mądrość integer,
+    Inteligencja integer,
+    Wola integer,
+    Pobożność integer,
+    Charyzma integer,
+
+    Wytrzymałość integer,
+    Siła integer,
+    Zręczność integer,
+    Zwinność integer,
+    Kondycja integer,
+
+    Nazwa_Rasy varchar
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    Nazwa,
+
+    Mądrość_poziom_1       + (p_poziom-1)*Mądrość_na_awans,
+    Inteligencja_poziom_1  + (p_poziom-1)*Inteligencja_na_awans,
+    Wola_poziom_1          + (p_poziom-1)*Wola_na_awans,
+    Pobożność_poziom_1     + (p_poziom-1)*Pobożność_na_awans,
+    Charyzma_poziom_1      + (p_poziom-1)*Charyzma_na_awans,
+
+    Wytrzymałość_poziom_1  + (p_poziom-1)*Wytrzymałość_na_awans,
+    Siła_poziom_1          + (p_poziom-1)*Siła_na_awans,
+    Zręczność_poziom_1     + (p_poziom-1)*Zręczność_na_awans,
+    Zwinność_poziom_1      + (p_poziom-1)*Zwinność_na_awans,
+    Kondycja_poziom_1      + (p_poziom-1)*Kondycja_na_awans,
+
+    Nazwa_Rasy
+FROM Klasy_Przeciwników_Cechy
+WHERE p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
+$$;
+
+CREATE OR REPLACE FUNCTION oblicz_statystyki_klasy_przeciwnika
+(
+    p_klasa  varchar,
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    nazwa,
+    Mana,
+    Regeneracja_many,
+    Życie,
+    Energia,
+    Regeneracja_Energii,
+    Koszt_Energetyczny_Regeneracji_many,
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    nazwa,
+    100+Mądrość*5,
+    Inteligencja*2,
+    50+Wytrzymałość*5,
+    100+Kondycja*5,
+    Kondycja/10.0,
+    Round(inteligencja/5),
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM oblicz_cechy_klasy_przeciwnika
+    (
+        p_klasa,
+        p_poziom
+    ) ockp
+    INNER JOIN Rasy ON ockp.Nazwa_Rasy=RASY.Nazwa
+$$;
+
+CREATE OR REPLACE FUNCTION oblicz_statystyki_klas_przeciwników
+(
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    nazwa,
+    Mana,
+    Regeneracja_many,
+    Życie,
+    Energia,
+    Regeneracja_Energii,
+    Koszt_Energetyczny_Regeneracji_many,
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    nazwa,
+    100+Mądrość*5,
+    Inteligencja*2,
+    50+Wytrzymałość*5,
+    100+Kondycja*5,
+    Kondycja/10.0,
+    Round(inteligencja/5),
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM oblicz_cechy_klas_przeciwników
+    (
+        p_poziom
+    ) ockp
+    INNER JOIN Rasy ON ockp.Nazwa_Rasy=RASY.Nazwa
+$$;
+
+
+
+--PRZEDMIOTY II
+
+CREATE TABLE Przedmioty_Przeciwników
+(
+    Przed_Nazwa VARCHAR(255),
+    Klasy_Przeciwników_nazwa VARCHAR(255),
+    CONSTRAINT Pieniądze_PK PRIMARY KEY (Przed_Nazwa, Klasy_Przeciwników_nazwa)
+)
+
+
+CREATE OR REPLACE VIEW bonusy_z_przedmiotów_klas_przec AS
+SELECT
+--
+    PP.Klasy_Przeciwników_nazwa AS Klasa_przeciwnika,
+    PP.Przed_Nazwa,
+    COALESCE(Broń_Bonus_do_mądrości,0) + COALESCE(Pancerz_Bonus_do_mądrości,0) AS Mądrość,
+    COALESCE(Broń_Bonus_do_inteligencji,0) + COALESCE(Pancerz_Bonus_do_inteligencji,0) AS Inteligencja,
+    COALESCE(Broń_Bonus_do_woli,0) + COALESCE(Pancerz_Bonus_do_woli,0) AS Wola,
+    COALESCE(Broń_Bonus_do_pobożności,0) + COALESCE(Pancerz_Bonus_do_pobożności,0) AS Pobożność,
+    COALESCE(Broń_Bonus_do_charyzmy,0) + COALESCE(Pancerz_Bonus_do_charyzmy,0) AS Charyzma,
+    COALESCE(Broń_Bonus_do_wytrzymałości,0) + COALESCE(Pancerz_Bonus_do_wytrzymałości,0) AS Wytrzymałość,
+    COALESCE(Broń_Bonus_do_siły,0) + COALESCE(Pancerz_Bonus_do_siły,0) AS Siła,--Bonus_do_siły,
+    COALESCE(Broń_Bonus_do_zręczności,0) + COALESCE(Pancerz_Bonus_do_zręczności,0) AS Zręczność,
+    COALESCE(Broń_Bonus_do_zwinności,0) + COALESCE(Pancerz_Bonus_do_zwinności,0) AS Zwinność,
+    COALESCE(Broń_Bonus_do_kondycji,0) + COALESCE(Pancerz_Bonus_do_kondycji,0) AS Kondycja,
+    COALESCE(Pancerz_Pancerz_Ogólny,0) AS Pancerz_Ogólny,
+    COALESCE(Pancerz_Pancerz_Miękki,0) AS Pancerz_miękki,
+    COALESCE(Pancerz_Pancerz_Twardy,0) AS Pancerz_twardy,
+    COALESCE(Pancerz_Ochrona_przed_zimnem,0) AS Ochrona_przed_zimnem,
+FROM Przedmioty_Przeciwników PP
+    INNER JOIN Przedmioty Prz ON PP.Przed_Nazwa = Prz.Przed_Nazwa
+    LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
+    LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
+
+CREATE OR REPLACE VIEW bonusy_z_przedmiotów_przeciwników AS
+SELECT
+    Klasa_przeciwnika,
+    SUM(Mądrość) AS Mądrość,
+    SUM(Inteligencja) AS Inteligencja,
+    SUM(Wola) AS Wola,
+    SUM(Pobożność) AS Pobożność,
+    SUM(Charyzma) AS Charyzma,
+    SUM(Wytrzymałość) AS Wytrzymałość,
+    SUM(Siła) AS Siła,
+    SUM(Zręczność) AS Zręczność,
+    SUM(Zwinność) AS Zwinność,
+    SUM(Kondycja) AS Kondycja,
+    SUM(Pancerz_Ogólny) AS Pancerz_Ogólny,
+    SUM(Pancerz_Miękki) AS Pancerz_Miękki,
+    SUM(Pancerz_Twardy) AS Pancerz_Twardy,
+    SUM(Ochrona_przed_zimnem) AS Ochrona_przed_zimnem
+FROM bonusy_z_przedmiotów_klas_przec
+GROUP BY Klasa_przeciwnika
+
+
+--KLASY PRZECIWNIKÓW II --?rozważ czy nie zmienić części widoków w funkcje!
+
+---Cechy Efektywne - widok techniczny
+----dodaj kwestię pancerzy rasowych i pancerzy z broni
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Efektywne AS
+SELECT 
+    nazwa,
+    Mądrość_poziom_1 + Mądrość                  AS Mądrość_poziom_1,
+    Inteligencja_poziom_1 + Inteligencja   AS Inteligencja_poziom_1,
+    Wola_poziom_1 + Wola                           AS Wola_poziom_1,
+    Pobożność_poziom_1 + Pobożność            AS Pobożność_poziom_1,
+    Charyzma_poziom_1  + Charyzma              AS Charyzma_poziom_1,
+    Wytrzymałość_poziom_1 + Wytrzymałość   AS Wytrzymałość_poziom_1,
+    Siła_poziom_1 + Siła                           AS Siła_poziom_1,
+    Zręczność_poziom_1 + Zręczność            AS Zręczność_poziom_1,
+    Zwinność_poziom_1 + Zwinność               AS Zwinność_poziom_1,
+    Kondycja_poziom_1 + Kondycja               AS Kondycja_poziom_1,
+    Mądrość_na_awans,
+    Inteligencja_na_awans,
+    Wola_na_awans,
+    Pobożność_na_awans,
+    Charyzma_na_awans,
+    Wytrzymałość_na_awans,
+    Siła_na_awans,
+    Zręczność_na_awans,
+    Zwinność_na_awans,
+    Kondycja_na_awans,
+    minimalny_poziom,
+    maksymalny_poziom,
+    BzPP.Pancerz_Ogólny + R.Pancerz_Ogólny      AS Pancerz_Ogólny,
+    BzPP.Pancerz_Miękki + R.Pancerz_miękki      AS Pancerz_miękki,
+    BzPP.Pancerz_Twardy + R.Pancerz_twardy      AS Pancerz_twardy,
+    BzPP.Ochrona_przed_zimnem + R.Ochrona_przed_zimnem AS Ochrona_przed_zimnem,
+    Rasy_Nazwa                                AS Nazwa_Rasy
+FROM Rasy R 
+    INNER JOIN Klasy_Przeciwników_Cechy KPC ON R.Nazwa = KPC.Nazwa_Rasy --być może optymalniej byłoby się odwołać raczej do samych klas przeciwników i przenięść dodanie cech rasowych tu
+    INNER JOIN bonusy_z_przedmiotów_przeciwników BzPP ON KPC.nazwa=BzPP.Klasa_przeciwnika
 
 ---- Cechy minimalne 
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Efektywne_minimalne AS
+SELECT
+    nazwa,
+    Mądrość_poziom_1 + (minimalny_poziom-1)*Mądrość_na_awans             AS Mądrość,-- + Mądrość
+    Inteligencja_poziom_1 + (minimalny_poziom-1)*Inteligencja_na_awans   AS Inteligencja,-- + Inteligencja   
+    Wola_poziom_1 + (minimalny_poziom-1)*Wola_na_awans                   AS Wola,-- + Wola
+    Pobożność_poziom_1 + (minimalny_poziom-1)*Pobożność_na_awans         AS Pobożność,-- + Pobożność
+    Charyzma_poziom_1 + (minimalny_poziom-1)*Charyzma_na_awans           AS Charyzma,-- + Charyzma
+    Wytrzymałość_poziom_1 + (minimalny_poziom-1)*Wytrzymałość_na_awans   AS Wytrzymałość,-- + Wytrzymałość
+    Siła_poziom_1 + (minimalny_poziom-1)*Siła_na_awans                   AS Siła,-- + Siła
+    Zręczność_poziom_1 + (minimalny_poziom-1)*Zręczność_na_awans         AS Zręczność,-- + Zręczność
+    Zwinność_poziom_1 + (minimalny_poziom-1)*Zwinność_na_awans           AS Zwinność,-- + Zwinność
+    Kondycja_poziom_1 + (minimalny_poziom-1)*Kondycja_na_awans           AS Kondycja,-- + Kondycja
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem,
+    Rasy_Nazwa                                                           AS Nazwa_Rasy 
+FROM Klasy_Przeciwników_Cechy_Efektywne--Klasy_Przeciwników_Cechy_Bazowe_minimalne KPCMin INNER JOIN bonusy_z_przedmiotów_przeciwników BzPP ON KPC.nazwa=BzPP.Klasa_przeciwnika
 
 ---- Cechy maksymalne
-
+CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy_Efektywne_maksymalne AS
+SELECT
+    nazwa,
+    Mądrość_poziom_1 + (maksymalny_poziom-1)*Mądrość_na_awans             AS Mądrość,-- + Mądrość
+    Inteligencja_poziom_1 + (maksymalny_poziom-1)*Inteligencja_na_awans   AS Inteligencja,-- + Inteligencja   
+    Wola_poziom_1 + (maksymalny_poziom-1)*Wola_na_awans                   AS Wola,-- + Wola
+    Pobożność_poziom_1 + (maksymalny_poziom-1)*Pobożność_na_awans         AS Pobożność,-- + Pobożność
+    Charyzma_poziom_1 + (maksymalny_poziom-1)*Charyzma_na_awans           AS Charyzma,-- + Charyzma
+    Wytrzymałość_poziom_1 + (maksymalny_poziom-1)*Wytrzymałość_na_awans   AS Wytrzymałość,-- + Wytrzymałość
+    Siła_poziom_1 + (maksymalny_poziom-1)*Siła_na_awans                   AS Siła,-- + Siła
+    Zręczność_poziom_1 + (maksymalny_poziom-1)*Zręczność_na_awans         AS Zręczność,-- + Zręczność
+    Zwinność_poziom_1 + (maksymalny_poziom-1)*Zwinność_na_awans           AS Zwinność,-- + Zwinność
+    Kondycja_poziom_1 + (maksymalny_poziom-1)*Kondycja_na_awans           AS Kondycja,-- + Kondycja
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem,
+    Rasy_Nazwa                                                           AS Nazwa_Rasy 
+FROM Klasy_Przeciwników_Cechy_Efektywne--Klasy_Przeciwników_Cechy_Bazowe_maksymalne KPCMin INNER JOIN bonusy_z_przedmiotów_przeciwników BzPP ON KPC.nazwa=BzPP.Klasa_przeciwnika
 
 ---Statystyki Efektywne
+-----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_EFEKTYWNE AS
+SELECT
+    nazwa,
+    100+Mądrość_poziom_1*5              AS Mana_poziom_1,
+    Inteligencja_poziom_1*2             AS Regeneracja_many_poziom_1,
+    50+Wytrzymałość_poziom_1*5          AS Życie_poziom_1,
+    100+Kondycja_poziom_1*5             AS Energia_poziom_1,
+    Kondycja_poziom_1/10.0              AS Regeneracja_Energii_poziom_1,
+    inteligencja_poziom_1/5.0           AS Koszt_Energetyczny_Regeneracji_many_poziom_1,
+    Mądrość_na_awans*5                  AS Mana_na_awans,
+    Inteligencja_na_awans*2             AS Regeneracja_many_na_awans,
+    Wytrzymałość_na_awans*5             AS Życie_na_awans,
+    Kondycja_na_awans*5                 AS Energia_na_awans,
+    Kondycja_na_awans/10.0              AS Regeneracja_Energii_na_awans,
+    inteligencja_na_awans/5.0           AS Koszt_Energetyczny_Regeneracji_many_na_awans,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM Klasy_Przeciwników_Cechy_Efektywne
+
+---- Statystyki minimalne 
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne_EFEKTYWNE AS
+SELECT
+    nazwa,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0             AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM Klasy_Przeciwników_Cechy_Efektywne_minimalne
+
+---- Statystyki maksymalne
+CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne_EFEKTYWNE AS
+SELECT
+    nazwa,
+    100+Mądrość*5             AS Mana,
+    Inteligencja*2            AS Regeneracja_many,
+    50+Wytrzymałość*5         AS Życie,
+    100+Kondycja*5            AS Energia,
+    Kondycja/10.0             AS Regeneracja_Energii,
+    Round(inteligencja/5)     AS Koszt_Energetyczny_Regeneracji_many,
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM Klasy_Przeciwników_Cechy_Efektywne_maksymalne 
+
+---funkcje cech i statystyk efektywnych
+
+CREATE FUNCTION oblicz_cechy_efektywne_klasy_przeciwnika
+(
+    p_klasa varchar,
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    Nazwa varchar,
+
+    Mądrość integer,
+    Inteligencja integer,
+    Wola integer,
+    Pobożność integer,
+    Charyzma integer,
+
+    Wytrzymałość integer,
+    Siła integer,
+    Zręczność integer,
+    Zwinność integer,
+    Kondycja integer,
+
+    Pancerz_Ogólny integer,
+    Pancerz_Miękki integer,
+    Pancerz_Twardy integer,
+    Ochrona_przed_zimnem integer,
+
+    Nazwa_Rasy varchar
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    Nazwa,
+
+    Mądrość_poziom_1      +(p_poziom-1)*Mądrość_na_awans,
+    Inteligencja_poziom_1 +(p_poziom-1)*Inteligencja_na_awans,
+    Wola_poziom_1         +(p_poziom-1)*Wola_na_awans,
+    Pobożność_poziom_1    +(p_poziom-1)*Pobożność_na_awans,
+    Charyzma_poziom_1     +(p_poziom-1)*Charyzma_na_awans,
+
+    Wytrzymałość_poziom_1 +(p_poziom-1)*Wytrzymałość_na_awans,
+    Siła_poziom_1         +(p_poziom-1)*Siła_na_awans,
+    Zręczność_poziom_1    +(p_poziom-1)*Zręczność_na_awans,
+    Zwinność_poziom_1     +(p_poziom-1)*Zwinność_na_awans,
+    Kondycja_poziom_1     +(p_poziom-1)*Kondycja_na_awans,
+
+    Pancerz_Ogólny,
+    Pancerz_Miękki,
+    Pancerz_Twardy,
+    Ochrona_przed_zimnem,
+
+    Nazwa_Rasy
+FROM Klasy_Przeciwników_Cechy_Efektywne
+WHERE Nazwa=p_klasa
+AND p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
+$$;
+
+CREATE FUNCTION oblicz_cechy_efektywne_klas_przeciwników
+(
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    Nazwa varchar,
+
+    Mądrość integer,
+    Inteligencja integer,
+    Wola integer,
+    Pobożność integer,
+    Charyzma integer,
+
+    Wytrzymałość integer,
+    Siła integer,
+    Zręczność integer,
+    Zwinność integer,
+    Kondycja integer,
+
+    Pancerz_Ogólny integer,
+    Pancerz_Miękki integer,
+    Pancerz_Twardy integer,
+    Ochrona_przed_zimnem integer,
+
+    Nazwa_Rasy varchar
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    Nazwa,
+
+    Mądrość_poziom_1      +(p_poziom-1)*Mądrość_na_awans,
+    Inteligencja_poziom_1 +(p_poziom-1)*Inteligencja_na_awans,
+    Wola_poziom_1         +(p_poziom-1)*Wola_na_awans,
+    Pobożność_poziom_1    +(p_poziom-1)*Pobożność_na_awans,
+    Charyzma_poziom_1     +(p_poziom-1)*Charyzma_na_awans,
+
+    Wytrzymałość_poziom_1 +(p_poziom-1)*Wytrzymałość_na_awans,
+    Siła_poziom_1         +(p_poziom-1)*Siła_na_awans,
+    Zręczność_poziom_1    +(p_poziom-1)*Zręczność_na_awans,
+    Zwinność_poziom_1     +(p_poziom-1)*Zwinność_na_awans,
+    Kondycja_poziom_1     +(p_poziom-1)*Kondycja_na_awans,
+
+    Pancerz_Ogólny,
+    Pancerz_Miękki,
+    Pancerz_Twardy,
+    Ochrona_przed_zimnem,
+
+    Nazwa_Rasy
+FROM Klasy_Przeciwników_Cechy_Efektywne
+WHERE p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
+$$;
+
+
+CREATE OR REPLACE FUNCTION oblicz_statystyki_efektywne_klasy_przeciwnika
+(
+    p_klasa  varchar,
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    nazwa,
+    Mana,
+    Regeneracja_many,
+    Życie,
+    Energia,
+    Regeneracja_Energii,
+    Koszt_Energetyczny_Regeneracji_many,
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    nazwa,
+    100+Mądrość*5,
+    Inteligencja*2,
+    50+Wytrzymałość*5,
+    100+Kondycja*5,
+    Kondycja/10.0,
+    Round(inteligencja/5),
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM oblicz_cechy_efektywne_klasy_przeciwnika
+    (
+        p_klasa,
+        p_poziom
+    )
+$$;
+
+CREATE OR REPLACE FUNCTION oblicz_statystyki_efektywne_klas_przeciwników
+(
+    p_poziom integer
+)
+RETURNS TABLE
+(
+    nazwa,
+    Mana,
+    Regeneracja_many,
+    Życie,
+    Energia,
+    Regeneracja_Energii,
+    Koszt_Energetyczny_Regeneracji_many,
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+)
+LANGUAGE sql
+AS
+$$
+SELECT
+    nazwa,
+    100+Mądrość*5,
+    Inteligencja*2,
+    50+Wytrzymałość*5,
+    100+Kondycja*5,
+    Kondycja/10.0,
+    Round(inteligencja/5),
+    --alternatywnie Round(Regeneracja_many/10) (z dołożonym podzapytaniem)
+    Pancerz_Ogólny,
+    Pancerz_miękki,
+    Pancerz_twardy,
+    Ochrona_przed_zimnem
+FROM oblicz_cechy_efektywne_klasy_przeciwnika
+    (
+        p_poziom
+    )
+$$;
+
+--rozważyć: dodanie funkcji wyświetlającej wszystkie możliwe statystyki klasy przeciwnika - przesuwamy do wersji beta
 
 --UMIEJĘTNOŚCI
 ---maksymalne poziomy umiejętności dla postaci(po modyfikacji z klas)
