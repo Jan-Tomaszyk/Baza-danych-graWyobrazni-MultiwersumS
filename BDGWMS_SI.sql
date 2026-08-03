@@ -326,7 +326,7 @@ CREATE TABLE Podległość
 (
     wymagana_nadrzędna VARCHAR(255) NOT NULL,
     podrzędna VARCHAR(255) NOT NULL,--umiejętność wymagająca równego wyższego poziomu nadrzędnej-wymaganej
-    minimalny_poziom INTEGER DEFAULT 0 NOT NULL
+    minimalny_poziom INTEGER DEFAULT 0 NOT NULL naturalne CHECK(poziom_poznania>=0),
     CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna, podrzędna)
 );
 
@@ -2422,8 +2422,136 @@ $$;
 --rozważyć: dodanie funkcji wyświetlającej wszystkie możliwe statystyki klasy przeciwnika - przesuwamy do wersji beta
 
 --UMIEJĘTNOŚCI
----maksymalne poziomy umiejętności dla postaci(po modyfikacji z klas)
----lista umiejętności postaci możliwych do opanowania lub podwyższenia przez postać
+--lista umiejętności postaci możliwych do opanowania lub podwyższenia przez postać
+---lista umiejętności postaci możliwych do opanowania przez postać
+CREATE OR REPLACE VIEW umiejętności_możliwe_do_opanowania AS
+SELECT
+    p.ID_postaci,
+    u.Nazwa AS Nazwa_Umiejętności
+FROM Postacie p
+    CROSS JOIN Umiejętności u
+WHERE 
+    NOT EXISTS (
+        -- postać jeszcze nie opanowała tej umiejętności
+        SELECT 1
+        FROM Opanowane o
+        WHERE o.Postacie_ID = p.ID_postaci
+        AND o.Umiejętności_Nazwa = u.Nazwa
+        )
+    AND NOT EXISTS (
+    -- nie istnieje niespełnione wymaganie nadrzędne
+        SELECT 1
+        FROM Podległość pod
+        WHERE pod.podrzędna = u.Nazwa
+        AND NOT EXISTS (
+            SELECT 1
+            FROM Opanowane o
+            WHERE o.Postacie_ID = p.ID_postaci
+                AND o.Umiejętności_Nazwa = pod.wymagana_nadrzędna
+                AND o.poziom >= pod.minimalny_poziom
+      )
+)
+;
+
+----zmiana planów co do struktury widoków
+CREATE OR REPLACE VIEW maksymalne_poziomy_umiejętności_postaci AS
+SELECT
+    p.ID_postaci,
+    u.Nazwa AS Nazwa_Umiejętności,
+    CASE
+        WHEN NOT EXISTS (
+            SELECT 1
+            FROM Podległość pod
+            WHERE pod.podrzędna = u.Nazwa
+        )
+        THEN TRUE--p.Poziom
+
+        ELSE NOT EXISTS (
+            SELECT 1
+            FROM Podległość pod
+            WHERE pod.podrzędna = u.Nazwa
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM Opanowane o_nadrz
+                  WHERE o_nadrz.Postacie_ID = p.ID_postaci
+                    AND o_nadrz.Umiejętności_Nazwa =
+                        pod.wymagana_nadrzędna
+                    AND o_nadrz.poziom >= pod.minimalny_poziom
+              )
+        )
+    END AS wymagania_spelnione,
+    CASE
+        WHEN NOT EXISTS (
+            SELECT 1
+            FROM Podległość pod
+            WHERE pod.podrzędna = u.Nazwa
+        )
+        THEN p.Poziom
+        ELSE COALESCE(
+            (
+                SELECT MIN(
+                    o_nadrz.poziom - pod.minimalny_poziom
+                )
+                FROM Podległość pod
+                JOIN Opanowane o_nadrz
+                    ON o_nadrz.Umiejętności_Nazwa =
+                       pod.wymagana_nadrzędna
+                   AND o_nadrz.Postacie_ID = p.ID_postaci
+                WHERE pod.podrzędna = u.Nazwa
+            ),
+            0
+        )
+    ) AS Maksymalny_poziom
+FROM Postacie p
+    CROSS JOIN Umiejętności u;
+
+CREATE OR REPLACE VIEW umiejętności_możliwe_do_podwyższenia AS
+SELECT
+    m.ID_postaci,
+    m.Nazwa_Umiejętności
+FROM maksymalne_poziomy_umiejętności_postaci m
+    JOIN Opanowane o
+        ON o.Postacie_ID = m.ID_postaci
+        AND o.Umiejętności_Nazwa = m.Nazwa_Umiejętności
+WHERE o.poziom < m.Maksymalny_poziom;
+
+CREATE OR REPLACE VIEW maksymalne_poziomy_posiadanych_umiejętności AS
+SELECT
+    m.ID_postaci,
+    m.Nazwa_Umiejętności,
+    o.poziom AS Obecny_poziom,
+    m.Maksymalny_poziom
+FROM maksymalne_poziomy_umiejętności_postaci m
+    JOIN Opanowane o
+        ON o.Postacie_ID = m.ID_postaci
+        AND o.Umiejętności_Nazwa = m.Nazwa_Umiejętności
+--WHERE o.poziom < m.Maksymalny_poziom;
+
+CREATE OR REPLACE VIEW umiejętności_możliwe_do_awansowania AS
+    SELECT
+        ID_postaci,
+        Nazwa_Umiejętności
+    FROM umiejętności_możliwe_do_opanowania
+UNION
+    SELECT
+        ID_postaci,
+        Nazwa_Umiejętności
+    FROM umiejętności_możliwe_do_podwyższenia;
+
+CREATE OR REPLACE VIEW maksymalne_poziomy_możliwe_do_awansowania AS
+SELECT
+    m.ID_postaci,
+    m.Nazwa_Umiejętności,
+    COALESCE(o.poziom, 0) AS Obecny_poziom,
+    m.Maksymalny_poziom
+FROM maksymalne_poziomy_umiejętności_postaci m
+    LEFT JOIN Opanowane o
+        ON o.Postacie_ID = m.ID_postaci
+        AND o.Umiejętności_Nazwa = m.Nazwa_Umiejętności
+WHERE m.wymagania_spelnione
+    AND COALESCE(o.poziom, 0) < m.Maksymalny_poziom;
+
+
 
 
 --TECHNIKI

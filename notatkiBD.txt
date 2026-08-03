@@ -1,0 +1,197 @@
+5.a. odłożone do beta
+5.b. lista umiejętności postaci możliwych do opanowania lub podwyższenia przez postać(biorąc pod uwagę posiadane, ich poziomy i poziom postaci) (prawdopodobnie efektywnie 3 widoki)
+
+odp:
+5. Umieściłbym wyznaczanie maksymalnego poziomu w zapytaniu CTE jak o tym myślę, a potem dał wyświetlanie warunkowe.
+Wydaje mi się o by nie wybierało tych do których nadrzędnych postać nie posiada miało być zapewnione przez:
+FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna...
+Ale... widzę, że to by nie mogło działać.
+
+Zabezpieczenie już opanowanej by była na poziomie <= nadrzędnej już jest przez trigger, który robiliśmy
+
+
+Dziękuję za pomoc, pierwsza interpretacja minimalny poziom jest poprawna, a klucze obce, które sugerujesz są w innej części pliku, zerknij proszę na moje nowe wersje tych widoków, by upewnić się, że nie ma błędów:
+
+
+
+zapyt:
+Chcę stworzyć kilka widoków i chcę byś je sprawdził. Odwołuję się do tabel:
+CREATE TABLE Postacie
+(
+    --identyfikacja
+    ID_postaci SERIAL PRIMARY KEY,
+    Imię VARCHAR(255) NOT NULL,
+    Nazwisko VARCHAR(255),
+    --rozwój
+    Poziom INTEGER NOT NULL CONSTRAINT dodatnie CHECK(Poziom>0),
+    PD BIGINT NOT NULL CONSTRAINT naturalne CHECK(PD>=0),
+    Wiek INTEGER CONSTRAINT dodatnie CHECK(Wiek>0),
+----...
+    Rasy_Nazwa VARCHAR(255) NOT NULL,
+    Gracz VARCHAR(255),
+);
+
+
+CREATE TABLE Umiejętności 
+(
+    Nazwa VARCHAR(255) PRIMARY KEY,
+    Typ_umiej VARCHAR(255) NOT NULL,--główna(magiczna FT)/poboczna(ogólna)
+    Natura VARCHAR(255) NOT NULL,
+    Rodzaj VARCHAR(255),
+    Samodzielność VARCHAR(255) NOT NULL,
+    Dostępność VARCHAR(255) NOT NULL,
+    Opis_fabularny TEXT,
+    Opis_praktyczny TEXT
+);
+
+CREATE TABLE Podległość
+(
+    wymagana_nadrzędna VARCHAR(255) NOT NULL,
+    podrzędna VARCHAR(255) NOT NULL,--umiejętność wymagająca równego wyższego poziomu nadrzędnej-wymaganej
+    minimalny_poziom INTEGER DEFAULT 0 NOT NULL
+    CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna, podrzędna)
+);
+
+CREATE TABLE Opanowane (
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
+    Postacie_ID INTEGER NOT NULL,
+    poziom INTEGER CONSTRAINT dodatnie CHECK(poziom>0),
+    CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa, Postacie_ID)
+);
+
+
+Widoki które próbuję stworzyć to umiejętności_możliwe_do_opanowania czyli lista umiejętności możliwych do opanowania przez postać, czyli tych których jeszcze nie ma, ale może je zdobyć przydzielając do danej umiejętności punkty umiejętności podczas awansowania postaci(mechanika gry realizowana przez aktualizację(Update) bazy danych), innymi słowy widok ten to:
+umiejętności_możliwe_do_opanowania =
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
+
+Próba realizacji tego jaką mam wygląda tak:
+CREATE OR REPLACE VIEW umiejętności_możliwe_do_opanowania AS
+-- przypadek 1: Umiejętność nie jest podrzędna względem żadnej innej 
+SELECT 
+    p.ID_postaci,
+    u.Nazwa AS Nazwa_Umiejętności
+FROM Postacie p
+    CROSS JOIN Umiejętności u
+--- warunek 1.1: Umiejętność nie jest podrzędna względem żadnej innej
+WHERE NOT EXISTS (
+    SELECT 1 
+    FROM Podległość pod 
+    WHERE pod.podrzędna = u.Nazwa --indeks?
+)
+--- Warunek 1.2: Ta konkretna postać jeszcze jej nie opanowała
+AND NOT EXISTS (
+    SELECT 1 
+    FROM Opanowane o 
+    WHERE o.Postacie_ID = p.ID_postaci 
+      AND o.Umiejętności_Nazwa = u.Nazwa
+)
+UNION
+--- przypadek 2: Umiejętności podrzędne, których wymagania (nadrzędne) zostały spełnione przez postać, ale sama podrzędna nie jest jeszcze opanowana
+SELECT 
+    p.ID_postaci,
+    u.Nazwa AS Nazwa_Umiejętności
+FROM Postacie p
+CROSS JOIN Podległość pod
+--- Dołączamy informacje o tym, czy i na jakim poziomie postać opanowała daną umiejętność nadrzędną
+LEFT JOIN Opanowane o ON o.Postacie_ID = p.ID_postaci 
+                     AND o.Umiejętności_Nazwa = pod.wymagana_nadrzędna 
+                     AND o.poziom >= pod.minimalny_poziom
+--- Grupowanie pozwala nam zliczyć wymagania dla konkretnej pary (Postać, Umiejętność podrzędna)
+GROUP BY p.ID_postaci, u.Nazwa
+HAVING 
+    --- Warunek 2.1
+    ---- Liczba wszystkich wymaganych nadrzędnych dla tej umiejętności
+    COUNT(pod.wymagana_nadrzędna) = 
+    ---- Liczba spełnionych wymagań przez tę postać (COUNT ignoruje wartości NULL z LEFT JOIN)
+    COUNT(o.Umiejętności_Nazwa)
+    
+    --- Warunek 2.2 końcowy: Postać nie opanowała jeszcze tej podrzędnej umiejętności
+    AND NOT EXISTS (
+        SELECT 1 
+        FROM Opanowane o_pod 
+        WHERE o_pod.Postacie_ID = p.ID_postaci 
+          AND o_pod.Umiejętności_Nazwa = pod.podrzędna
+    )
+;
+
+Mam wątpliwości czy joiny i warunki w przypadku drugim są zrealizowane poprawnie, głównie co do warunku 2.1 i joinów.
+
+Pozostałe widoki który chce być sprawdził to umiejętności_możliwe_do_podwyższenia(posiadane umiejętności których poziom możesz podwyższyć) i maksymalne_poziomy_posiadanych_umiejętności(posiadane umiejętności których poziom możesz podwyższyć i poziom do którego je możesz podwyższyć)
+umiejętności_możliwe_do_podwyższenia =
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
+maksymalne_poziomy_posiadanych_umiejętności =
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje, 
+
+CREATE OR REPLACE VIEW umiejętności_możliwe_do_podwyższenia AS
+SELECT 
+    P.ID_postaci,
+    O.Umiejętności_Nazwa AS Nazwa_Umiejętności
+FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna 
+    INNER JOIN Opanowane O ON Pod.podrzędna=O.Umiejętności_Nazwa 
+    INNER JOIN Postacie P ON O.Postacie_ID = P.ID_postaci
+WHERE O.poziom<COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom);
+
+----maksymalne poziomy posiadanych umiejętności dla postaci
+--błąd - nie wzięto pod uwagę umiejętności nadrzędnej
+CREATE OR REPLACE VIEW maksymalne_poziomy_posiadanych_umiejętności AS
+SELECT 
+    P.ID_postaci,
+    O.Umiejętności_Nazwa,
+    O.poziom AS Obecny_poziom
+    COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom) AS Maksymalny_poziom 
+FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna 
+    INNER JOIN Opanowane O ON Pod.podrzędna=O.Umiejętności_Nazwa 
+    INNER JOIN Postacie P ON O.Postacie_ID = P.ID_postaci
+WHERE O.poziom<COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom);
+
+Chodzi mi przede wszystkim o sprawdzenie logiki joinów i porównań oraz Coalesce
+
+Ostatecznie chce stworzyć widoki umiejętności_możliwe_do_awansowania(wszystkie umięjętności które możesz awansować), maksymalne_poziomy_możliwe_do_awansowania(wszystkie umięjętności które możesz awansować i maksymalne poziomy na które możesz je awansować) czyli:
+umiejętności_możliwe_do_awansowania = 
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
+
+maksymalne_poziomy_możliwe_do_awansowania = 
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane + poziom postaci
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane + poziom opanowanych nadrzędnych i poziom postaci
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
+
+-----__________
+
+umiejętności_możliwe_do_opanowania =
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
+= wszystkie umięjętności z tabeli Umięjętności, dla których nie istnieje niespełnione wymaganie nadrzędne, ale nie są w tabeli opanowane
+ 
+umiejętności_możliwe_do_podwyższenia =
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci
+
+maksymalne_poziomy_posiadanych_umiejętności
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, +poziom postaci
+
+umiejętności_możliwe_do_awansowania
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci
+
+maksymalne_poziomy_możliwe_do_awansowania
+ + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane +poziom postaci
+ + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane, +poziom postaci
+ + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, +poziom postaci
+
+6. Techniki
+a. lista technik umiejętności?
+b. wymagane przedmioty
+c. techniki dostępne postaci
+podpytać Maćka czy coś mu przychodzi do głowy
+
+Można wymusić, że istnieje dokładnie jedna główna waluta, PostgreSQL może to zrobić przez indeks częściowy:
+CREATE UNIQUE INDEX jedna_główna_waluta
+ON Waluty(Główna)
+WHERE Główna = TRUE
+
+Przelicznik_na_główną_walutę NUMERIC(16,8) NOT NULL DEFAULT 1 CHECK (Przelicznik_na_główną_walutę >= 0)
+
+78386248
