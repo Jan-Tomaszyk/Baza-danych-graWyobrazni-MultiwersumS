@@ -1,185 +1,103 @@
-5.a. odłożone do beta
-5.b. lista umiejętności postaci możliwych do opanowania lub podwyższenia przez postać(biorąc pod uwagę posiadane, ich poziomy i poziom postaci) (prawdopodobnie efektywnie 3 widoki)
+7. Przegląd joinów robionych na tabelach i stworzenie dla każdego atrybutu nie należącego do klucy głównych indeksu
+Klucze główne:
+Rasy.Nazwa
+Postacie.ID_postaci
+Umiejętności.Nazwa
+Klasy.nazwa
+Przedmioty.Przed_Nazwa
+Klasy_Przeciwników.nazwa
+Waluty.nazwa
+Techniki.nazwa
+Kategorie_technik.nazwa
+CONSTRAINT Bronie_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
+CONSTRAINT Księgi_i_Pisma_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
+CONSTRAINT Pancerze_i_stroje_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
+CONSTRAINT Prowiant_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
+CONSTRAINT Rózności_PK PRIMARY KEY (Przedmioty_Przed_Nazwa)
+Przedmioty_Przeciwników_PK PRIMARY KEY (Przed_Nazwa,						Klasy_Przeciwników_nazwa)
+CONSTRAINT Pieniądze_PK PRIMARY KEY (Postacie_ID,						Waluta)
+CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna,					podrzędna)
+PRIMARY KEY (Techniki_nazwa,									Kategorie_technik_nazwa)
+CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa,					Postacie_ID)
+CONSTRAINT zna_PK PRIMARY KEY (Techniki_nazwa,							Postacie_ID)
+CONSTRAINT umiejętności_przeciwników_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, 			Umiejętności_Nazwa)
+CONSTRAINT przeciwnicy_znają_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, 				Techniki_nazwa)
+CONSTRAINT umiejętności_uczone_z_ksiąg_PK PRIMARY KEY (Umiejętności_Nazwa, 			Księgi_i_Pisma_Przedmioty_Przed_Nazwa)
+CONSTRAINT Techniki_uczone_z_ksiąg_PK PRIMARY KEY (Księgi_i_Pisma_Przedmioty_Przed_Nazwa, 	Techniki_nazwa)
+CONSTRAINT Techniki_przedmiotów_z_PK PRIMARY KEY (Przed_Nazwa, 					Techniki_nazwa)
+CONSTRAINT Rangi_klasowe_PK PRIMARY KEY (Nazwa, 						Klasa_nazwa)
+CONSTRAINT Klasa_postaci_PK PRIMARY KEY (Postacie_ID, 						Klasa_nazwa)
+CONSTRAINT Punkty_Klasowe_PK PRIMARY KEY (Klasa_nazwa, 						Warunek)
 
-odp:
-5. Umieściłbym wyznaczanie maksymalnego poziomu w zapytaniu CTE jak o tym myślę, a potem dał wyświetlanie warunkowe.
-Wydaje mi się o by nie wybierało tych do których nadrzędnych postać nie posiada miało być zapewnione przez:
-FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna...
-Ale... widzę, że to by nie mogło działać.
 
-Zabezpieczenie już opanowanej by była na poziomie <= nadrzędnej już jest przez trigger, który robiliśmy
+brak indeksu/klucze obce
+Rangi_klasowe.Nastepna_ranga
+Rangi_klasowe.Poprzednia_ranga
+Postacie.Rasy_Nazwa
+klasa_postaci.Rangi_klasowe_Nazwa
+Egzemplarze_Przedmiotów.Postacie_ID
+Egzemplarze_Przedmiotów.Przed_Nazwa
+KLASY_PRZECIWNIKÓW.Rasy_Nazwa 2
+Techniki.Umiejętności_Nazwa
 
 
-Dziękuję za pomoc, pierwsza interpretacja minimalny poziom jest poprawna, a klucze obce, które sugerujesz są w innej części pliku, zerknij proszę na moje nowe wersje tych widoków, by upewnić się, że nie ma błędów:
+kandydaci do indeksowania
+drugi indeks klucza:
+Opanowane.Postacie_ID 4
+Klasa_postaci.Klasa_nazwa 4
+Rangi_klasowe.Klasa_nazwa 1
+Pieniądze.Waluta
+Przedmioty_Przeciwników.podrzędna
+Techniki_Kategorie.Kategorie_technik_nazwa
+zna.Postacie_ID
+przeciwnicy_znają.Techniki_nazwa
+Techniki_przedmiotów.Techniki_nazwa
+
+inne:
+
+--skreślone--
+Netflix do obejrzenia:
+Carmen Sandiego
+Reinkarnowany jako szlam
+7 grzechów głównych
+spy x family Code White
+Ninjago
+shangri la frontier
+wakfu
+pokemon horyzonty pl
+lttle witch academia
+death note
+hilda
+akademia skyraiders
+Horimiya
+komi cant communicate
+Nimona
+Rozkwitając z tobą
+Wednesday
+Flash
+Moje szczęśliwe małżeństwo
+love story Yamada lv 9999
+ramparts of ice
+zwierzęce zagadki
+
+--Bluelock--
 
 
 
-zapyt:
-Chcę stworzyć kilka widoków i chcę byś je sprawdził. Odwołuję się do tabel:
-CREATE TABLE Postacie
+CREATE TABLE Przedmioty_Przeciwników
 (
-    --identyfikacja
-    ID_postaci SERIAL PRIMARY KEY,
-    Imię VARCHAR(255) NOT NULL,
-    Nazwisko VARCHAR(255),
-    --rozwój
-    Poziom INTEGER NOT NULL CONSTRAINT dodatnie CHECK(Poziom>0),
-    PD BIGINT NOT NULL CONSTRAINT naturalne CHECK(PD>=0),
-    Wiek INTEGER CONSTRAINT dodatnie CHECK(Wiek>0),
-----...
-    Rasy_Nazwa VARCHAR(255) NOT NULL,
-    Gracz VARCHAR(255),
-);
-
-
-CREATE TABLE Umiejętności 
-(
-    Nazwa VARCHAR(255) PRIMARY KEY,
-    Typ_umiej VARCHAR(255) NOT NULL,--główna(magiczna FT)/poboczna(ogólna)
-    Natura VARCHAR(255) NOT NULL,
-    Rodzaj VARCHAR(255),
-    Samodzielność VARCHAR(255) NOT NULL,
-    Dostępność VARCHAR(255) NOT NULL,
-    Opis_fabularny TEXT,
-    Opis_praktyczny TEXT
-);
-
-CREATE TABLE Podległość
-(
-    wymagana_nadrzędna VARCHAR(255) NOT NULL,
-    podrzędna VARCHAR(255) NOT NULL,--umiejętność wymagająca równego wyższego poziomu nadrzędnej-wymaganej
-    minimalny_poziom INTEGER DEFAULT 0 NOT NULL
-    CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna, podrzędna)
-);
-
-CREATE TABLE Opanowane (
-    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
-    Postacie_ID INTEGER NOT NULL,
-    poziom INTEGER CONSTRAINT dodatnie CHECK(poziom>0),
-    CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa, Postacie_ID)
-);
-
-
-Widoki które próbuję stworzyć to umiejętności_możliwe_do_opanowania czyli lista umiejętności możliwych do opanowania przez postać, czyli tych których jeszcze nie ma, ale może je zdobyć przydzielając do danej umiejętności punkty umiejętności podczas awansowania postaci(mechanika gry realizowana przez aktualizację(Update) bazy danych), innymi słowy widok ten to:
-umiejętności_możliwe_do_opanowania =
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
-
-Próba realizacji tego jaką mam wygląda tak:
-CREATE OR REPLACE VIEW umiejętności_możliwe_do_opanowania AS
--- przypadek 1: Umiejętność nie jest podrzędna względem żadnej innej 
-SELECT 
-    p.ID_postaci,
-    u.Nazwa AS Nazwa_Umiejętności
-FROM Postacie p
-    CROSS JOIN Umiejętności u
---- warunek 1.1: Umiejętność nie jest podrzędna względem żadnej innej
-WHERE NOT EXISTS (
-    SELECT 1 
-    FROM Podległość pod 
-    WHERE pod.podrzędna = u.Nazwa --indeks?
+    Przed_Nazwa VARCHAR(255),
+    Klasy_Przeciwników_nazwa VARCHAR(255),
+    CONSTRAINT Pieniądze_PK PRIMARY KEY (Przed_Nazwa, Klasy_Przeciwników_nazwa)
 )
---- Warunek 1.2: Ta konkretna postać jeszcze jej nie opanowała
-AND NOT EXISTS (
-    SELECT 1 
-    FROM Opanowane o 
-    WHERE o.Postacie_ID = p.ID_postaci 
-      AND o.Umiejętności_Nazwa = u.Nazwa
-)
-UNION
---- przypadek 2: Umiejętności podrzędne, których wymagania (nadrzędne) zostały spełnione przez postać, ale sama podrzędna nie jest jeszcze opanowana
-SELECT 
-    p.ID_postaci,
-    u.Nazwa AS Nazwa_Umiejętności
-FROM Postacie p
-CROSS JOIN Podległość pod
---- Dołączamy informacje o tym, czy i na jakim poziomie postać opanowała daną umiejętność nadrzędną
-LEFT JOIN Opanowane o ON o.Postacie_ID = p.ID_postaci 
-                     AND o.Umiejętności_Nazwa = pod.wymagana_nadrzędna 
-                     AND o.poziom >= pod.minimalny_poziom
---- Grupowanie pozwala nam zliczyć wymagania dla konkretnej pary (Postać, Umiejętność podrzędna)
-GROUP BY p.ID_postaci, u.Nazwa
-HAVING 
-    --- Warunek 2.1
-    ---- Liczba wszystkich wymaganych nadrzędnych dla tej umiejętności
-    COUNT(pod.wymagana_nadrzędna) = 
-    ---- Liczba spełnionych wymagań przez tę postać (COUNT ignoruje wartości NULL z LEFT JOIN)
-    COUNT(o.Umiejętności_Nazwa)
-    
-    --- Warunek 2.2 końcowy: Postać nie opanowała jeszcze tej podrzędnej umiejętności
-    AND NOT EXISTS (
-        SELECT 1 
-        FROM Opanowane o_pod 
-        WHERE o_pod.Postacie_ID = p.ID_postaci 
-          AND o_pod.Umiejętności_Nazwa = pod.podrzędna
-    )
-;
 
-Mam wątpliwości czy joiny i warunki w przypadku drugim są zrealizowane poprawnie, głównie co do warunku 2.1 i joinów.
 
-Pozostałe widoki który chce być sprawdził to umiejętności_możliwe_do_podwyższenia(posiadane umiejętności których poziom możesz podwyższyć) i maksymalne_poziomy_posiadanych_umiejętności(posiadane umiejętności których poziom możesz podwyższyć i poziom do którego je możesz podwyższyć)
-umiejętności_możliwe_do_podwyższenia =
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
-maksymalne_poziomy_posiadanych_umiejętności =
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje, 
+8. Dopracowanie sekcji kontrolnej by pokazywała inne struktury bazy danych.
+9. Ostatnia kontrola całości pliku z GPT.
+10. Uruchomienie pliku w tym sekcji kontrolnych. Uznanie prac nad plikiem w wersji Alpha 0 za zakończone, rozpoczęcie prac dotyczących pliku nakładki uniwersowej.
 
-CREATE OR REPLACE VIEW umiejętności_możliwe_do_podwyższenia AS
-SELECT 
-    P.ID_postaci,
-    O.Umiejętności_Nazwa AS Nazwa_Umiejętności
-FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna 
-    INNER JOIN Opanowane O ON Pod.podrzędna=O.Umiejętności_Nazwa 
-    INNER JOIN Postacie P ON O.Postacie_ID = P.ID_postaci
-WHERE O.poziom<COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom);
 
-----maksymalne poziomy posiadanych umiejętności dla postaci
---błąd - nie wzięto pod uwagę umiejętności nadrzędnej
-CREATE OR REPLACE VIEW maksymalne_poziomy_posiadanych_umiejętności AS
-SELECT 
-    P.ID_postaci,
-    O.Umiejętności_Nazwa,
-    O.poziom AS Obecny_poziom
-    COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom) AS Maksymalny_poziom 
-FROM Opanowane NadO RIGHT JOIN Podległość Pod ON NadO.Umiejętności_Nazwa=Podległość.wymagana_nadrzędna 
-    INNER JOIN Opanowane O ON Pod.podrzędna=O.Umiejętności_Nazwa 
-    INNER JOIN Postacie P ON O.Postacie_ID = P.ID_postaci
-WHERE O.poziom<COALESCE(NadO.poziom-NadO.minimalny_poziom,P.poziom);
 
-Chodzi mi przede wszystkim o sprawdzenie logiki joinów i porównań oraz Coalesce
-
-Ostatecznie chce stworzyć widoki umiejętności_możliwe_do_awansowania(wszystkie umięjętności które możesz awansować), maksymalne_poziomy_możliwe_do_awansowania(wszystkie umięjętności które możesz awansować i maksymalne poziomy na które możesz je awansować) czyli:
-umiejętności_możliwe_do_awansowania = 
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
-
-maksymalne_poziomy_możliwe_do_awansowania = 
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane + poziom postaci
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane + poziom opanowanych nadrzędnych i poziom postaci
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci poziom<poziom Nadrzędnej lub poziom Nadrzędnej nie istnieje,
-
------__________
-
-umiejętności_możliwe_do_opanowania =
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
-= wszystkie umięjętności z tabeli Umięjętności, dla których nie istnieje niespełnione wymaganie nadrzędne, ale nie są w tabeli opanowane
- 
-umiejętności_możliwe_do_podwyższenia =
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci
-
-maksymalne_poziomy_posiadanych_umiejętności
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, +poziom postaci
-
-umiejętności_możliwe_do_awansowania
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci
-
-maksymalne_poziomy_możliwe_do_awansowania
- + wszystkie umięjętności z tabeli Umięjętności, które nie są podrzędne względem żadnej, ale nie są w tabeli opanowane +poziom postaci
- + wszystkie umiejętności z tabeli Umięjętności, które są podrzędne względem opanowanych, ale nie są w tabeli opanowane, +poziom postaci
- + wszystkie umiejętności z tabeli opanowane dla których poziom<poziom postaci, +poziom postaci
 
 6. Techniki
 a. lista technik umiejętności?
@@ -187,6 +105,133 @@ b. wymagane przedmioty
 c. techniki dostępne postaci
 podpytać Maćka czy coś mu przychodzi do głowy
 
+CREATE TABLE Techniki
+(
+    nazwa VARCHAR(255) PRIMARY KEY,
+    typ VARCHAR(255) NOT NULL,
+    rodzaj VARCHAR(255),
+    bazowy_koszt_w_manie INTEGER NOT NULL,
+    modyfikatory_kosztu_w_manie VARCHAR(255),
+    bazowy_koszt_w_energii INTEGER NOT NULL,
+    modyfikatory_kosztu_w_energii VARCHAR(255),
+    efekt TEXT NOT NULL,
+    test_sukcesu VARCHAR(255) NOT NULL,
+    test_trafienia VARCHAR(255),
+    testy_obrażeń VARCHAR(255),
+    test_na_zniszczenie VARCHAR(255),
+    ew_inne_testy VARCHAR(255),
+    Umiejętności_Nazwa VARCHAR(255),
+    Bronie_Umiejętności_Nazwa VARCHAR(255),
+    minimalny_poziom_nauki INTEGER,
+    stopień_zaawansowania VARCHAR(255),
+    Wymaga_nauki_z_księgii VARCHAR(255),
+    Wymaga_nauczyciela VARCHAR(255),
+    Wymaga_dodatkowego_treningu VARCHAR(255)
+)
+
+problem: nie pamiętam czym dokładnie miały być:
+typ VARCHAR(255) NOT NULL,
+rodzaj VARCHAR(255),
+
+
+jedno z nich odpowiada:
+test sukcesu - test decydujący czy dana technika odniosła swój skutek
+✵ zadający obrażenia/testy obrażeń
+❂ efekty obszarowe/test sukcesu  
+✧ efekt wywierany na przeciwnika/test sukcesu
+✦efekt wywierany na rzucającym lub sojuszniku/test sukcesu
+⛉bariera/test na zniszczenie
+⍰zaklęcia zbierające/przekazujące informacje/test sukcesu
+♗zaklęcia świętej magii 
+I - inteligencja M - mądrość,
+test✧✵ - test trafienia
+
+Inne to czy to technika prosta/ogólna/bazowa czy wyspecjalizowana, czy wymaga umiejętności czy nie i jest zasadniczo dostępna każdemu.
+LUB
+Czy jest to ogólna technika będąca czymś na kształt templatki techniki z której pochodzi większość technik danej umiejętności i mogą być na bieżąco tworzone nowe czy też konkretna technika o ściśle określonych właściwościach.
+LUB 
+czy jest ona magiczna czy fizyczna co do natury -> raczej niepotrzebne - dubluje się z naturą umiejętności(jeśli nie okaże się, że są przypadki gdy natura technik umiejętności i umiejętności jest różna)
+
+werdykt enum: bazowa(nie wymaga umiejętności)/ogólna(templatkowa)/konkretna(typowa wymagająca umiejętności)
+LUB
+podział na 2:
+ - czy bazowa
+ - czy ogólna
+
+plan:
+3 widoki technik
+
+CREATE TABLE Techniki
+(
+    nazwa VARCHAR(255) PRIMARY KEY,
+    typ VARCHAR(255) NOT NULL,
+    --kategoria_funkcjonalna VARCHAR(255),--wydzielono jako tabele
+    bazowy_koszt_w_manie INTEGER NOT NULL,
+    modyfikatory_kosztu_w_manie VARCHAR(255),
+    bazowy_koszt_w_energii INTEGER NOT NULL,
+    modyfikatory_kosztu_w_energii VARCHAR(255),
+    efekt TEXT NOT NULL,
+    test_sukcesu VARCHAR(255) NOT NULL,
+    test_trafienia VARCHAR(255),
+    testy_obrażeń VARCHAR(255),
+    test_na_zniszczenie VARCHAR(255),
+    ew_inne_testy VARCHAR(255),
+    Umiejętności_Nazwa VARCHAR(255),
+    minimalny_poziom_nauki INTEGER,
+    stopień_zaawansowania VARCHAR(255),
+    Wymaga_nauki_z_księgii VARCHAR(255),
+    Wymaga_nauczyciela VARCHAR(255),
+    Wymaga_dodatkowego_treningu VARCHAR(255)
+);
+przemyśleć konieczność "Broń_umiejętność_nazwa"
+
+CREATE TABLE Umiejętności 
+(
+    Nazwa VARCHAR(255) PRIMARY KEY,
+    Typ_umiej VARCHAR(255) NOT NULL,--wyspecjalizowana(magiczna), ogólna
+    Natura VARCHAR(255) NOT NULL,--Fizyczna // Błogosławieństwa / Magia / Klątwy
+    Rodzaj VARCHAR(255),--typ / atrybut / umiejętność szczegółowa / specjalizacja
+    Samodzielność VARCHAR(255) NOT NULL,--kategoria(+1) / kategoria / umiejętność
+    Dostępność VARCHAR(255) NOT NULL,--zaginiona / rzadka / powszechna
+    Opis_fabularny TEXT,
+    Opis_praktyczny TEXT
+);
+
+ALTER TABLE Bronie ADD CONSTRAINT Bronie_Przedmioty_FK 
+    FOREIGN KEY (Przedmioty_Przed_Nazwa)
+    REFERENCES Przedmioty (Przed_Nazwa);
+ALTER TABLE Bronie ADD CONSTRAINT Bronie_Umiejętności_FK 
+    FOREIGN KEY (Umiejętności_Nazwa)
+    REFERENCES Umiejętności (Nazwa);
+
+
+Techniki.Bronie_Umiejętności_Nazwa=Bronie.Bronie_Umiejętności=Umiejętności.Nazwa=Techniki.Umiejętności_Nazwa
+
+wniosek: usuń Techniki.Bronie_Umiejętności_Nazwa
+
+
+Pytanie: co z technikami wymagającymi broni: 
+A. bool "wymaga_broni"/"wymaga_przedmiotu"
+B. stworzenie tabeli techniki broni/przedmiotów reprezentującej przypisania technik do broni/przedmiotów; problem: mogą istnieć techniki wymagające kilku przedmiotów na raz lub alternatywnie dowolnego przedmiotu ze zbioru nie byłoby prostym zaprezentować coś takiego tworząc tabelę.
+
+Niezależnie od wybranej opcji mogę powiązać techniki i bronie przez umiejętności.
+Pozostaje jeszcze chyba tylko kwestia technik specjalnych związanych z przedmiotami, ale... co zrobić z przypadkami gdy jedna jest  wieloma lub jakąś ilością przedmiotów?
+bool kompletny zbiór
+integer ilość
+
+
+rzeczy do ewentualnego dodania:
+
+
+
+dla Weevila:
+wielkie wełnowce(włoskowe owady, wysysają soki z roślin)
+Przed_Efekty VARCHAR(255),
+    Przed_Opis
+
+
+----------_________________
+----------_________________
 Można wymusić, że istnieje dokładnie jedna główna waluta, PostgreSQL może to zrobić przez indeks częściowy:
 CREATE UNIQUE INDEX jedna_główna_waluta
 ON Waluty(Główna)
@@ -195,3 +240,10 @@ WHERE Główna = TRUE
 Przelicznik_na_główną_walutę NUMERIC(16,8) NOT NULL DEFAULT 1 CHECK (Przelicznik_na_główną_walutę >= 0)
 
 78386248
+
+
+
+gatunek, kategoria, klasa, natura, odmiana, rodzaj,
+
+
+typ VARCHAR(255) NOT NULL,

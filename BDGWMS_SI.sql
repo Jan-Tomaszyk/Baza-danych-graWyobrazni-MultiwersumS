@@ -124,11 +124,11 @@ CREATE TABLE Postacie
 CREATE TABLE Umiejętności 
 (
     Nazwa VARCHAR(255) PRIMARY KEY,
-    Typ_umiej VARCHAR(255) NOT NULL,
-    Natura VARCHAR(255) NOT NULL,
-    Rodzaj VARCHAR(255),
-    Samodzielność VARCHAR(255) NOT NULL,
-    Dostępność VARCHAR(255) NOT NULL,
+    Typ_umiej VARCHAR(255) NOT NULL,--wyspecjalizowana(magiczna), ogólna
+    Natura VARCHAR(255) NOT NULL,--Fizyczna // Błogosławieństwa / Magia / Klątwy
+    Rodzaj VARCHAR(255),--typ / atrybut / umiejętność szczegółowa / specjalizacja
+    Samodzielność VARCHAR(255) NOT NULL,--kategoria(+1) / kategoria / umiejętność
+    Dostępność VARCHAR(255) NOT NULL,--zaginiona / rzadka / powszechna
     Opis_fabularny TEXT,
     Opis_praktyczny TEXT
 );
@@ -274,7 +274,7 @@ CREATE TABLE Pancerze_i_stroje (
 
 CREATE TABLE Prowiant (
     Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
-    rodzaj VARCHAR(255) NOT NULL,
+    rodzaj VARCHAR(255) NOT NULL,--jak mikstura, zupa itd.
     czas_spożycia VARCHAR(255) NOT NULL,
     przywracane_punkty_energii INTEGER NOT NULL CONSTRAINT naturalne CHECK(przywracane_punkty_energii>=0),
     przywracane_punkty_życia INTEGER NOT NULL CONSTRAINT naturalne CHECK(przywracane_punkty_życia>=0),
@@ -292,7 +292,7 @@ CREATE TABLE Pieniądze (
     Waluta VARCHAR(255) NOT NULL REFERENCES Waluty(nazwa),
     Ilość BIGINT NOT NULL CHECK (Ilość >= 0),
     Postacie_ID INTEGER NOT NULL,
-    CONSTRAINT Pieniądze_PK PRIMARY KEY (Waluta, Postacie_ID)
+    CONSTRAINT Pieniądze_PK PRIMARY KEY (Postacie_ID, Waluta)
 );
 
 --2.B Techniki - Główna, zależna od umiejętności i przedmiotów
@@ -300,7 +300,7 @@ CREATE TABLE Techniki
 (
     nazwa VARCHAR(255) PRIMARY KEY,
     typ VARCHAR(255) NOT NULL,
-    rodzaj VARCHAR(255),
+    --kategoria_funkcjonalna VARCHAR(255),--wydzielono jako tabele
     bazowy_koszt_w_manie INTEGER NOT NULL,
     modyfikatory_kosztu_w_manie VARCHAR(255),
     bazowy_koszt_w_energii INTEGER NOT NULL,
@@ -312,9 +312,11 @@ CREATE TABLE Techniki
     test_na_zniszczenie VARCHAR(255),
     ew_inne_testy VARCHAR(255),
     Umiejętności_Nazwa VARCHAR(255),
-    Bronie_Umiejętności_Nazwa VARCHAR(255),
+    --Bronie_Umiejętności_Nazwa VARCHAR(255),--dublowanie z powyższą 
     minimalny_poziom_nauki INTEGER,
     stopień_zaawansowania VARCHAR(255),
+    wymagania_specjalne VARCHAR(255),--do użycia - dodatkowe względem samych przedmiotów
+    ---dodatkowy wymóg do samej nauki(nie do wykonania): nigdy, rzadko, czasem, zazwyczaj, często, zawsze 
     Wymaga_nauki_z_księgii VARCHAR(255),
     Wymaga_nauczyciela VARCHAR(255),
     Wymaga_dodatkowego_treningu VARCHAR(255)
@@ -330,15 +332,32 @@ CREATE TABLE Podległość
     CONSTRAINT Podległość_PK PRIMARY KEY (wymagana_nadrzędna, podrzędna)
 );
 
+CREATE TABLE Kategorie_technik
+(
+    nazwa VARCHAR(255) PRIMARY KEY,
+    opis TEXT
+);
+
+CREATE TABLE Techniki_Kategorie
+(
+    Techniki_nazwa VARCHAR(255) NOT NULL
+        REFERENCES Techniki(nazwa),
+    Kategorie_technik_nazwa VARCHAR(255) NOT NULL
+        REFERENCES Kategorie_technik(nazwa),
+    PRIMARY KEY (Techniki_nazwa, Kategorie_technik_nazwa)
+);
+
 --2.C.2 Postaciowe
-CREATE TABLE Opanowane (
+CREATE TABLE Opanowane 
+(
     Umiejętności_Nazwa VARCHAR(255) NOT NULL,
     Postacie_ID INTEGER NOT NULL,
     poziom INTEGER CONSTRAINT dodatnie CHECK(poziom>0),
     CONSTRAINT Opanowane_PK PRIMARY KEY (Umiejętności_Nazwa, Postacie_ID)
 );
 
-CREATE TABLE zna (
+CREATE TABLE zna
+(
     Techniki_nazwa VARCHAR(255) NOT NULL,
     Postacie_ID INTEGER NOT NULL,
     poziom_poznania INTEGER NOT NULL CONSTRAINT naturalne CHECK(poziom_poznania>=0),-- poziom umiejętności, na którym poznało się daną technikę
@@ -352,7 +371,8 @@ CREATE TABLE umiejętności_przeciwników (
     CONSTRAINT umiejętności_przeciwników_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Umiejętności_Nazwa)
 );
 
-CREATE TABLE przeciwnicy_znają (
+CREATE TABLE przeciwnicy_znają
+(
     Klasy_Przeciwników_nazwa VARCHAR(255) NOT NULL,
     Techniki_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT przeciwnicy_znają_PK PRIMARY KEY (Klasy_Przeciwników_nazwa, Techniki_nazwa)
@@ -370,6 +390,17 @@ CREATE TABLE Techniki_uczone_z_ksiąg (
     Księgi_i_Pisma_Przedmioty_Przed_Nazwa VARCHAR(255) NOT NULL,
     Techniki_nazwa VARCHAR(255) NOT NULL,
     CONSTRAINT Techniki_uczone_z_ksiąg_PK PRIMARY KEY (Księgi_i_Pisma_Przedmioty_Przed_Nazwa, Techniki_nazwa)
+);
+
+CREATE TABLE Techniki_przedmiotów--techniki wymagające przedmiotu do wykonania
+(--Techniki_przedmiotów
+    Przed_Nazwa VARCHAR(255) NOT NULL
+        REFERENCES Przedmioty(Przed_Nazwa),
+    Techniki_nazwa VARCHAR(255) NOT NULL
+        REFERENCES Techniki(nazwa),
+    liczba_potrzebnych INTEGER NOT NULL DEFAULT 1,
+    ----Wystarczy BOOLEAN NOT NULL DEFAULT TRUE,
+    CONSTRAINT Techniki_przedmiotów_PK PRIMARY KEY (Przed_Nazwa, Techniki_nazwa)
 );
 
 -----===============
@@ -391,7 +422,7 @@ CREATE TABLE Rangi_klasowe
     Poprzednia_ranga VARCHAR(255),
     Nastepna_ranga VARCHAR(255),
     CONSTRAINT Rangi_klasowe_PK PRIMARY KEY (Nazwa, Klasa_nazwa)
-    CONSTRAINT Rangi_klasowe_punkty (minimalne_punkty_klasowe<punkty_klasowe_wymagane_do_awansu)
+    --CONSTRAINT Rangi_klasowe_punkty (minimalne_punkty_klasowe<punkty_klasowe_wymagane_do_awansu)
 );
 
 CREATE TABLE klasa_postaci
@@ -570,8 +601,6 @@ ALTER TABLE Punkty_Klasowe ADD CONSTRAINT Punkty_Klasowe_Klasy_FK
 
 ----TECHNIKI
 -- Techniki
-ALTER TABLE Techniki ADD CONSTRAINT Techniki_Bronie_FK 
-    FOREIGN KEY (Bronie_Umiejętności_Nazwa) REFERENCES Bronie (Umiejętności_Nazwa);
 ALTER TABLE Techniki ADD CONSTRAINT Techniki_Umiejętności_FK 
     FOREIGN KEY (Umiejętności_Nazwa) REFERENCES Umiejętności (Nazwa);
 
@@ -1186,7 +1215,7 @@ FROM r;
 -----Życie	Mana	Energia
 CREATE OR REPLACE VIEW Statystyki_Rasowe AS
 SELECT
-    Nazwa,
+    RASY.Nazwa,
     100+Mądrość*5             AS Mana,
     Inteligencja*2            AS Regeneracja_many,
     50+Wytrzymałość*5         AS Życie,
@@ -1198,7 +1227,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Cechy_Rasowe NATURAL JOIN RASY;
+FROM Cechy_Rasowe INNER JOIN RASY ON Cechy_Rasowe.Nazwa = RASY.Nazwa;
 
 --POSTACIE I
 
@@ -1350,7 +1379,7 @@ SELECT
     aktywna
 FROM POSTACIE
     INNER JOIN bonusy_klasowe_na_poziom
-        ON POSTACIE.ID_postaci=klasa_postaci.ID_postaci
+        ON POSTACIE.ID_postaci=klasa_postaci.Postacie_ID
     --INNER JOIN klasa_postaci
     --    ON POSTACIE.ID_postaci=klasa_postaci.ID_postaci
     --INNER JOIN 
@@ -1460,7 +1489,7 @@ CREATE OR REPLACE VIEW punkty_cech_z_klas AS
         ) AS rn,
         p.poziom
     FROM Postacie p 
-    INNER JOIN klasa_postaci k ON p.ID_postaci = k.ID_postaci
+    INNER JOIN klasa_postaci k ON p.ID_postaci = k.Postacie_ID
     INNER JOIN Rangi_klasowe r ON k.Klasa_Nazwa = r.Klasa_Nazwa
         AND k.Rangi_klasowe_Nazwa=r.Nazwa
     --    ON (klasa_postaci.Klasa_nazwa=Rangi_klasowe.Klasa_Nazwa 
@@ -1807,7 +1836,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+FROM KLASY_PRZECIWNIKÓW INNER JOIN Rasy ON KLASY_PRZECIWNIKÓW.Rasy_Nazwa=RASY.Nazwa--?INDEKSUJ?;
 
 ---- Statystyki minimalne 
 ---- ---policzyć która wersja byłaby wydajniejsza.
@@ -2031,12 +2060,7 @@ $$;
 
 --PRZEDMIOTY II
 
-CREATE TABLE Przedmioty_Przeciwników
-(
-    Przed_Nazwa VARCHAR(255),
-    Klasy_Przeciwników_nazwa VARCHAR(255),
-    CONSTRAINT Pieniądze_PK PRIMARY KEY (Przed_Nazwa, Klasy_Przeciwników_nazwa)
-)
+
 
 
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów_klas_przec AS
@@ -2555,22 +2579,191 @@ WHERE m.wymagania_spelnione
 
 
 --TECHNIKI
----lista technik umiejętności
----???wymagane przedmioty???
----?
+---pełne szczegóły technik
+CREATE OR REPLACE VIEW techniki_kategoryzowane AS
+SELECT
+    t.nazwa,
+    t.typ,
+    kt.nazwa AS kategoria_funkcjonalna,
+    kt.opis AS opis_kategorii,
+    t.bazowy_koszt_w_manie,
+    t.modyfikatory_kosztu_w_manie,
+    t.bazowy_koszt_w_energii,
+    t.modyfikatory_kosztu_w_energii,
+    t.efekt,
+    t.test_sukcesu,
+    t.test_trafienia,
+    t.testy_obrażeń,
+    t.test_na_zniszczenie,
+    t.ew_inne_testy
+FROM Techniki t 
+    INNER JOIN  Techniki_Kategorie tk
+        ON t.nazwa = tk.Techniki_nazwa
+    INNER JOIN Kategorie_technik kt
+        ON tk.Kategorie_technik_nazwa = kt.nazwa;
 
+CREATE OR REPLACE VIEW techniki_sumkategoryzowane AS
+SELECT
+    nazwa,
+    STRING_AGG(kategoria_funkcjonalna, ', ') AS kategorie_funkcjonalne,
+FROM techniki_kategoryzowane
+GROUP BY nazwa;
+
+---lista technik umiejętności
+CREATE OR REPLACE VIEW techniki_umiejętności AS
+SELECT
+    u.Nazwa,
+    u.Typ_umiej,
+    u.Natura,
+    u.Rodzaj,
+    u.Samodzielność,
+    u.Dostępność,
+    t.nazwa,
+    t.typ,
+    t.minimalny_poziom_nauki,
+    t.stopień_zaawansowania,
+    t.Wymaga_nauki_z_księgii,
+    t.Wymaga_nauczyciela,
+    t.Wymaga_dodatkowego_treningu,
+    t.bazowy_koszt_w_manie,
+    t.modyfikatory_kosztu_w_manie,
+    t.bazowy_koszt_w_energii,
+    t.modyfikatory_kosztu_w_energii,
+    t.efekt,
+    t.test_sukcesu,
+    t.test_trafienia,
+    t.testy_obrażeń,
+    t.test_na_zniszczenie,
+    t.ew_inne_testy
+FROM Umiejętności u 
+    INNER JOIN Techniki t
+        ON u.nazwa=t.Umiejętności_Nazwa ;
+
+---lista technik po postaciach
+CREATE OR REPLACE VIEW techniki_postaci AS
+SELECT
+    P.ID_postaci,
+    P.Imię,
+    P.Nazwisko,
+    t.nazwa AS nazwa_techniki,
+    t.typ,
+    t.bazowy_koszt_w_manie,
+    t.modyfikatory_kosztu_w_manie,
+    t.bazowy_koszt_w_energii,
+    t.modyfikatory_kosztu_w_energii,
+    t.efekt,
+    t.test_sukcesu,
+    t.test_trafienia,
+    t.testy_obrażeń,
+    t.test_na_zniszczenie,
+    t.ew_inne_testy
+FROM Techniki t 
+    INNER JOIN zna z
+        ON t.nazwa = z.Techniki_nazwa
+    INNER JOIN Postacie P
+        ON z.Postacie_ID = P.ID_postaci;
+
+---lista technik po przeciwnikach
+CREATE OR REPLACE VIEW techniki_przeciwników AS
+SELECT
+    Pz.Klasy_Przeciwników_nazwa AS Nazwa_Klasy_Przeciwnika
+    t.nazwa AS nazwa_techniki,
+    t.typ,
+    t.bazowy_koszt_w_manie,
+    t.modyfikatory_kosztu_w_manie,
+    t.bazowy_koszt_w_energii,
+    t.modyfikatory_kosztu_w_energii,
+    t.efekt,
+    t.test_sukcesu,
+    t.test_trafienia,
+    t.testy_obrażeń,
+    t.test_na_zniszczenie,
+    t.ew_inne_testy    
+FROM Techniki t 
+    INNER JOIN przeciwnicy_znają Pz
+        ON t.nazwa = Pz.Techniki_nazwa;
+
+
+---lista technik po wymaganych przedmiotach
+--plan:
+--- techniki przedmiotów - lista ogólna technik "posegregowanych" po przedmiotach,
+--- wymagane przedmioty - String_agg po technikach listy przedmiotów wymaganych do poszczególnych technik wraz z ich liczebnością(wszelkie możliwe zestawy(po typach, nie egzemplarzach))
+CREATE OR REPLACE VIEW techniki_specjalne_przedmiotów AS
+SELECT
+    Tp.Przed_Nazwa AS nazwa_przedmiotu 
+    --inne informacje o przedmiocie?
+    Tp.liczba_potrzebnych,
+    --informacje o technice? 
+    t.nazwa AS nazwa_Techniki,
+    t.typ,
+    t.bazowy_koszt_w_manie,
+    t.modyfikatory_kosztu_w_manie,
+    t.bazowy_koszt_w_energii,
+    t.modyfikatory_kosztu_w_energii,
+    t.efekt,
+    t.test_sukcesu,
+    t.test_trafienia,
+    t.testy_obrażeń,
+    t.test_na_zniszczenie,
+    t.ew_inne_testy
+FROM Techniki t 
+    INNER JOIN Techniki_przedmiotów Tp
+        ON t.nazwa = Tp.Techniki_nazwa;
+--- wymagane przedmioty - String_agg po technikach listy przedmiotów wymaganych do poszczególnych technik wraz z ich liczebnością(wszelkie możliwe zestawy(po typach, nie egzemplarzach))
+CREATE OR REPLACE VIEW wymagane_do_technik_przedmioty AS
+SELECT
+    Techniki_nazwa AS Nazwa_Techniki
+    STRING_AGG(
+        liczba_potrzebnych::text || ' ' || Przed_Nazwa,
+        ', ' ORDER BY Przed_Nazwa
+    ) AS wymagane_przedmioty
+FROM Techniki_przedmiotów tp;
+GROUP BY Nazwa_Techniki
 -- ==========================================
 -- 7. Indeksy
 -- ==========================================
 
-CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
-CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasa_nazwa); -- Kluczowe dla triggera
+--Postacie
+--CREATE INDEX idx_Postacie_imie_nazwisko ON Postacie (Imię, Nazwisko); --
+CREATE INDEX idx_Postacie_imie ON Postacie (Imię);
+CREATE INDEX idx_Postacie_nazwisko ON Postacie (Nazwisko);
+CREATE INDEX idx_Postacie_rasa ON Postacie (Rasy_Nazwa);
 
-CREATE INDEX idx_zna_Umiejetnosci_nazwa ON zna (Nazwa);
-CREATE INDEX idx_zna_Postacie_ID ON zna (Postacie_ID);
-CREATE INDEX idx_Opanowane_Umiejetnosci_nazwa ON Opanowane (Nazwa);
+--Rangi_klasowe
+CREATE INDEX idx_Rangi_klasy ON Rangi_klasowe (Klasa_nazwa); -- Kluczowe dla triggera
+CREATE INDEX idx_Rangi_Nastepna ON Rangi_klasowe (Nastepna_ranga);
+CREATE INDEX idx_Rangi_Poprzednia ON Rangi_klasowe (Poprzednia_ranga);
+
+--klasa_postaci
+CREATE INDEX idx_klasa_postaci_Ranga_klasowa ON klasa_postaci (Rangi_klasowe_Nazwa);
+CREATE INDEX idx_klasa_postaci_Klasa_nazwa ON klasa_postaci (Klasa_nazwa);
+
+--Egzemplarze_Przedmiotów
+CREATE INDEX idx_Egzemplarze_Przedmiotów_Postać ON Egzemplarze_Przedmiotów(Postacie_ID);
+CREATE INDEX idx_Egzemplarze_Przedmiotów_Przedmiot ON Egzemplarze_Przedmiotów(Przed_Nazwa);
+
+--Przedmioty_Przeciwników
+CREATE INDEX idx_Przedmioty_Przeciwników ON Przedmioty_Przeciwników(Postacie_ID);
+
+--KLASY_PRZECIWNIKÓW
+CREATE INDEX idx_KLASY_PRZECIWNIKÓW_Rasy_Nazwa ON KLASY_PRZECIWNIKÓW(Rasy_Nazwa);
+
+--Techniki
+CREATE INDEX idx_Techniki_Umiejętności ON Techniki(Umiejętności_Nazwa);
+---Techniki_kategorie
+CREATE INDEX idx_Techniki_Kategorie_Kategoria ON Techniki_kategorie(Kategorie_technik_nazwa);
+
+--opanowane
 CREATE INDEX idx_Opanowane_Postacie_ID ON Opanowane (Postacie_ID);
 
---CREATE INDEX idx_Techniki_nazwa ON Techniki (Nazwa);
---CREATE INDEX idx_Klasy_przeciwników_nazwa ON Klasy_Przeciwników (Nazwa);
+--Pieniądze
+CREATE INDEX idx_Pieniądze_Waluta ON Pieniądze(Waluta);
 
+--zna
+CREATE INDEX idx_zna_Postacie_ID ON zna(Postacie_ID);
+
+--przeciwnicy_znają
+CREATE INDEX idx_przeciwnicy_znają_Techniki ON przeciwnicy_znają(Techniki_nazwa);
+
+--Techniki_przedmiotów
+CREATE INDEX idx_Techniki_przedmiotów_Techniki ON Techniki_przedmiotów(Techniki_nazwa);
