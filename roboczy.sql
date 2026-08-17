@@ -482,3 +482,18 @@ CREATE OR REPLACE VIEW punkty_klasowe_z_cech_SI AS
         SUMA_z_awansów + punkty_z_pełnych_cech AS łącznie_punktów_z_cech,
     FROM Obliczenia
 )
+
+---gdby liczba egzemplarzy przedmiotów wzrosła
+--CREATE INDEX idx_Egzemplarze_Przedmiotów_Postać_noszone
+--ON Egzemplarze_Przedmiotów(Postacie_ID)
+--WHERE jest_noszony = TRUE;
+
+---gdyby wyszukiwać czego można nauczyć się z księgi:
+--CREATE INDEX idx_umiejetnosci_uczone_z_ksiag_ksiega
+--ON umiejętności_uczone_z_ksiąg
+--    (Księgi_i_Pisma_Przedmioty_Przed_Nazwa);
+--CREATE INDEX idx_Techniki_uczone_z_ksiąg_ksiega
+--ON Techniki_uczone_z_ksiąg
+--    (Księgi_i_Pisma_Przedmioty_Przed_Nazwa);
+
+

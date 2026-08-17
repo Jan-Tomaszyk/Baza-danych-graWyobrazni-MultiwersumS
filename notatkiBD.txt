@@ -1,3 +1,128 @@
+9-10.
+lista umiejętności opracowanych:
+Ogień
+Woda
+Lód
+Niebo
+Ziemia
+Metal
+Piasek
+Kryształy
+Drewno
+Roślinna
+Błyskawica
+Biel i Światło("holy")
+Ciemność
+Cieni
+Magia Kwasu
+Trucizna
+Magia dźwięku
+Dane i symbole
+Magia umysłu
+Czas
+Magia rozmiaru
+Magia Smoczych Zabójców(Smocza Magia)
+Magia Zabójców Demonów(Egzorcystów)
+Magia zabójców bogów
+Antymagia
+magia Tworzenia
+Arka Wcielenia
+Amaterasu
+Magia pocisku
+Telekineza
+Sługi
+Magia łańcuchów
+Magia jaj
+Czarne/Ciemne sztuki
+Magiczne więzy
+Magia luster
+Magia wspomnień
+
+lista podległych do opracowanych:
+(+1)
+
+
+Czy powinienem uwzględnić też powiązanie z klątwami w jakimś wyliczaniu pobożności? Jak? Czy powinienem je sprawdzać dla rasy czy też nie 
+
+
+Postacie + Opanowane + zna + klasa_postaci
+inne postacie z gildii Dragon Blossom
+postacie przeciwników
+postacie z anime w różnych momentach
+Pieniądze(raczej sesja gracza)?
+
+
+Do wersji beta:
+widok pancerzy posegregowany po miejscach noszenia
+
+
+
+Starożytne Języki
+Pojazdy(+1)
+czterokołowce
+Spostrzegawczość
+Ruch(+1)
+pływanie
+Wyszukiwanie informacji
+Gotowanie
+Wiedza o ethernano
+Znajomość roślin i grzybów
+Wiedza o historii
+
+58460798
+
+v
+
+broń biała 2(+1)
+fechtunek 2
+miecze jednoręczne 2
+miecze dwuręczne 1
+Wola_z_awansów
+
+v
+Technicznie rzecz biorąc jeszcze go nie oddaję bo najpierw będę musiał wypełnić bazę danych odpowiednimi danymi, chcę jednak upewnić się, że plik ze strukturą jest poprawny przed stworzeniem struktur. 
+Dokonałem modyfikacji zmieniając kolejność klucza głównego opanowane(i tworząc stosowny do tej zmiany dodatkowy indeks), dokonałem też audytu FK, CHECK, NOT NULL i UNIQUE  
+Sprawdź mój kod jeszcze raz.
+
+
+Średnia ilość bazowego doświadczenia powinna wynosić ~10.??? co to w ogóle znaczzy
+
+
+nakładki 
+
+
+20	20	20	5	5	5	10	10	10
+---funkcja obliczeniowa
+CREATE OR REPLACE FUNCTION oblicz_punkty_klasowe_z_cech
+(
+    p_postac integer,
+    p_klasa varchar
+)
+RETURNS integer
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    punkty_klasowe_wymagane_do_awansu integer;
+BEGIN
+    SELECT
+       ilość_punktów_klasowych+ilość_punktów_klasowych_z_cech 
+    INTO
+        punkty_klasowe_wymagane_do_awansu
+    FROM Postacie p
+    JOIN Klasa_postaci kp
+        ON kp.Postacie_ID=p.ID_postaci
+        AND kp.Klasa_nazwa=p_klasa
+    JOIN Klasy k
+        ON k.Nazwa=kp.Klasa_nazwa
+    WHERE p.ID_postaci=p_postac;
+    RETURN;
+END;
+$$;
+
+
+
+
 7. Przegląd joinów robionych na tabelach i stworzenie dla każdego atrybutu nie należącego do klucy głównych indeksu
 Klucze główne:
 Rasy.Nazwa
@@ -55,33 +180,6 @@ Techniki_przedmiotów.Techniki_nazwa
 
 inne:
 
---skreślone--
-Netflix do obejrzenia:
-Carmen Sandiego
-Reinkarnowany jako szlam
-7 grzechów głównych
-spy x family Code White
-Ninjago
-shangri la frontier
-wakfu
-pokemon horyzonty pl
-lttle witch academia
-death note
-hilda
-akademia skyraiders
-Horimiya
-komi cant communicate
-Nimona
-Rozkwitając z tobą
-Wednesday
-Flash
-Moje szczęśliwe małżeństwo
-love story Yamada lv 9999
-ramparts of ice
-zwierzęce zagadki
-
---Bluelock--
-
 
 
 CREATE TABLE Przedmioty_Przeciwników
@@ -93,7 +191,123 @@ CREATE TABLE Przedmioty_Przeciwników
 
 
 8. Dopracowanie sekcji kontrolnej by pokazywała inne struktury bazy danych.
+Baza danych i tabele
+SELECT table_schema, table_name
+FROM information_schema.TABLES
+ORDER BY table_schema
+table_schema to chyba baza danych a table_name to nazwa tabeli
+
+kolumny
+SELECT column_name, column_default, data_type
+FROM information_schema.COLUMNS
+ORDER BY ordinal_position
+
+Baza danych i kolumny
+SELECT table_schema, column_name, column_default, data_type
+FROM information_schema.COLUMNS
+ORDER BY table_schema
+
+kolumna + ograniczenie
+SELECT constraint_name, column_name
+FROM information_schema.constraint_column_usage
+WHERE table_schema = 'sbd12345' AND table_name = 'pracownicy'
+ORDER BY constraint_name;
+
+ograniczenia szczegóły
+SELECT t1.constraint_name, t1.constraint_type, t2.check_clause
+FROM information_schema.table_constraints t1 LEFT JOINinformation_schema.check_constraints t2
+ON t1.constraint_name = t2.constraint_name
+AND t1.constraint_schema = t2.constraint_schema
+WHERE table_schema = 'sbd12345' AND table_name = 'pracownicy'
+ORDER BY constraint_name;
+
+widoki
+SELECT view_definition, check_option,
+is_updatable, is_insertable_into
+FROM information_schema.views
+ORDER BY table_schema
+
+
+funkcje
+SELECT
+    routine_schema AS schemat,
+    routine_name AS nazwa_funkcji,
+    routine_type AS typ, -- FUNCTION, PROCEDURE
+    specific_name AS unikalna_nazwa_kodu
+FROM information_schema.routines
+WHERE routine_schema = 'public' -- Zmień 'public' na nazwę swojego schematu lub usuń filtr
+ORDER BY routine_schema, routine_name;
+
+
+szczegóły dotyczące funkcji
+SELECT
+    p.oid::regprocedure AS funkcja,
+    p.prosrc AS kod_zrodlowy, -- Kod SQL/PL/pgSQL
+    p.prolang AS nazwa_jezzyka, -- np. 'sql', 'plpgsql'
+    p.prorettype::regtype AS typ_zwrotny,
+    p.proargnames AS nazwy_argumentow
+FROM pg_catalog.pg_proc p
+JOIN pg_catalog.pg_namespace n ON p.pronamespace = n.oid
+WHERE n.nspname = 'public' -- Ograniczenie do schematu public
+ORDER BY p.proname;
+
+
+triggery:
+SELECT
+    t.tgname AS nazwa_trigera,
+    c.relname AS tabela, -- Nazwa tabeli
+    n.nspname AS schemat,
+    pg_get_expr(t.tgqual, t.tgrelid) AS warunek_when, -- Jeśli istnieje warunek "WHEN"
+    p.proname AS funkcja_wywoływana,
+    CASE 
+        WHEN t.tgtype & 1 THEN 'BEFORE'
+        WHEN t.tgtype & 2 THEN 'AFTER'
+        WHEN t.tgtype & 4 THEN 'INSTEAD OF'
+    END AS czas_wystapienia,
+    CASE 
+        WHEN t.tgtype & 8 THEN 'ROW'
+        WHEN t.tgtype & 16 THEN 'STATEMENT'
+    END AS poziom_trigera
+FROM pg_catalog.pg_trigger t
+JOIN pg_catalog.pg_class c ON t.tgrelid = c.oid
+JOIN pg_catalog.pg_namespace n ON c.relnamespace = n.oid
+LEFT JOIN pg_catalog.pg_proc p ON t.tgfoid = p.oid
+WHERE c.relkind = 'r' -- Tylko zwykłe tabele
+ORDER BY c.relname, t.tgname;
+
+indeksy:
+SELECT
+    schemaname AS schemat,
+    relname AS tabela,
+    indexname AS nazwa_indeksu,
+    idx_scan AS liczba_skanowan,
+    idx_tup_read AS przeczytanych_krotek,
+    idx_tup_fetch => fetched_krotek
+FROM pg_stat_user_indexes
+ORDER BY idx_scan DESC;
+
+indeksy szczegóły
+SELECT
+    n.nspname AS schemat,
+    c.relname AS nazwa_tabeli,
+    i.relname AS nazwa_indeksu,
+    pg_get_indexdef(i.oid) AS definicja_indeksu, -- np. CREATE INDEX ... ON ...
+    idx.indisunique AS unikalny,
+    idx.indisprimary AS klucz_glowny,
+    pg_get_expr(idx.indpred, idx.indrelid) AS warunek_partialny -- Jeśli to indeks częściowy
+FROM pg_catalog.pg_index idx
+JOIN pg_catalog.pg_class c ON idx.indrelid = c.oid
+JOIN pg_catalog.pg_namespace n ON c.relnamespace = n.oid
+LEFT JOIN pg_catalog.pg_class i ON i.oid = idx.indexrelid
+WHERE c.relkind = 'r' -- Tylko tabele
+  AND i.relkind = 'i' -- Tylko indeksy
+ORDER BY schemat, nazwa_tabeli, nazwa_indeksu;
 9. Ostatnia kontrola całości pliku z GPT.
+Chciałbym prosić cię byś jeszcze raz przejrzał całość mojego pliku tworzącego struktury bazy danych, upewnił się, że niczego nie brakuje oraz ze szczególną uwagą sprawdził indeksy, chciałbym mieć pewność, że są one potrzebne i optymalne. 
+Mój plik:
+
+
+
 10. Uruchomienie pliku w tym sekcji kontrolnych. Uznanie prac nad plikiem w wersji Alpha 0 za zakończone, rozpoczęcie prac dotyczących pliku nakładki uniwersowej.
 
 
