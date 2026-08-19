@@ -496,4 +496,108 @@ CREATE OR REPLACE VIEW punkty_klasowe_z_cech_SI AS
 --ON Techniki_uczone_z_ksiąg
 --    (Księgi_i_Pisma_Przedmioty_Przed_Nazwa);
 
+--opcjonalnie Tabela Klasy_Cechy określająca cechy premiowane (skomentuj lub usuń jeśli nie użyjesz)
+--CREATE TABLE Klasy_Cechy
+--(
+--    Klasa_nazwa VARCHAR(255) NOT NULL,
+--    Cecha VARCHAR(255),
+--    główna BOOLEAN DEFAULT TRUE,--?
+--    warunek VARCHAR(255),--?
+--    CONSTRAINT Klasy_Cechy_PK PRIMARY KEY (Klasa_nazwa, Cecha)
+--);
 
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+
+CREATE OR REPLACE VIEW bonusy_klasowe AS
+SELECT 
+    ID_postaci,
+    Imię,
+    NAZWISKO,
+    Nazwa_Klasy,
+    poziom*Mądrość_na_poziom AS Mądrość,
+    poziom*Inteligencja_na_poziom AS Inteligencja,
+    poziom*Wola_na_poziom AS Wola,
+    poziom*Pobożność_na_poziom AS Pobożność,
+    poziom*Charyzma_na_poziom AS Charyzma,
+    poziom*Wytrzymałość_na_poziom AS Wytrzymałość,
+    poziom*Siła_na_poziom AS Siła,
+    poziom*Zręczność_na_poziom AS Zręczność,
+    poziom*Zwinność_na_poziom AS Zwinność,
+    poziom*Kondycja_na_poziom AS Kondycja,
+    aktywna
+FROM POSTACIE
+    INNER JOIN bonusy_klasowe_na_poziom
+        ON POSTACIE.ID_postaci=bonusy_klasowe_na_poziom.Postacie_ID
+    --INNER JOIN klasa_postaci
+    --    ON POSTACIE.ID_postaci=klasa_postaci.ID_postaci
+    --INNER JOIN 
+    --Rangi_klasowe 
+    --    ON (klasa_postaci.Klasa_nazwa=Rangi_klasowe.Klasa_Nazwa 
+    --        AND klasa_postaci.Rangi_klasowe_Nazwa=Rangi_klasowe.Rangi_klasowe_Nazwa)
+    --INNER JOIN KLASY--Klasy_Cechy
+    --    ON klasa_postaci.Klasa_nazwa=Klasy.nazwa
+--ORDER BY ID_postaci;
+
+
+--CREATE OR REPLACE VIEW bonusy_klasowe_postaci2 AS
+--SELECT
+--    ID_postaci,
+--    Imię,
+--    NAZWISKO,
+--    floor(SUM(Mądrość))         AS Mądrość,
+--    floor(SUM(Inteligencja))    AS Inteligencja,
+--    floor(SUM(Wola))            AS Wola,
+--    floor(SUM(Pobożność))       AS Pobożność,
+--    floor(SUM(Charyzma))        AS Charyzma,
+--    floor(SUM(Wytrzymałość))    AS Wytrzymałość,
+--    floor(SUM(Siła))            AS Siła,
+--    floor(SUM(Zręczność))       AS Zręczność,
+--    floor(SUM(Zwinność))        AS Zwinność,
+--    floor(SUM(Kondycja))        AS Kondycja
+--FROM bonusy_klasowe
+--WHERE aktywna=TRUE
+--GROUP BY ID_postaci
+    
+--poziom*
+-----alternatywa: oddzielnie liczymy wartości współczynników i je sumujemy a dopiero po tym mnożymy razy poziom
+--JOIN POSTACIE
+--        ON klasa_postaci.ID_postaci=POSTACIE.ID_postaci
+
+
+CREATE OR REPLACE VIEW punkty_cech_z_klas AS
+(
+    SELECT
+        k.ID_postaci,
+        p.Imię,
+        p.Nazwisko,
+        r.punkty_cech_na_awans,
+        k.aktywna,
+        k.Klasa_Nazwa,
+        -- elementy techniczne
+        ---- Przypisz numer wiersza w ramach każdej postaci, sortując od największej wartości
+        ROW_NUMBER() OVER
+        (
+            PARTITION BY k.ID_postaci 
+            ORDER BY r.punkty_cech_na_awans DESC
+        ) AS rn,
+        p.poziom
+    FROM Postacie p 
+    INNER JOIN klasa_postaci k ON p.ID_postaci = k.Postacie_ID
+    INNER JOIN Rangi_klasowe r ON k.Klasa_Nazwa = r.Klasa_Nazwa
+        AND k.Rangi_klasowe_Nazwa=r.Nazwa
+    --    ON (klasa_postaci.Klasa_nazwa=Rangi_klasowe.Klasa_Nazwa 
+    --        AND klasa_postaci.Rangi_klasowe_Nazwa=Rangi_klasowe.Rangi_klasowe_Nazwa)
+)
+
+
+ALTER TABLE Klasy_Przeciwników RENAME COLUMN siła_z_poziom_1 TO Siła_poziom_1
+
+--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!
+--Cechy_Rasowe INNER JOIN KLASY_PRZECIWNIKÓW ON Cechy_Rasowe.Nazwa=KLASY_PRZECIWNIKÓW.Rasy_Nazwa--!INDEKSUJ!;
+
+---- Statystyki minimalne 
+---- ---policzyć która wersja byłaby wydajniejsza.
+---- ---Wydajniejsza jest:
+---- --- Klasy_Przeciwników_Cechy -> Klasy_Przeciwników_Cechy_Bazowe_minimalne -> Statystyki_Klas_Przeciwników_minimalne

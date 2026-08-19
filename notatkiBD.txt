@@ -80,12 +80,18 @@ miecze dwuręczne 1
 Wola_z_awansów
 
 v
+
+
 Technicznie rzecz biorąc jeszcze go nie oddaję bo najpierw będę musiał wypełnić bazę danych odpowiednimi danymi, chcę jednak upewnić się, że plik ze strukturą jest poprawny przed stworzeniem struktur. 
 Dokonałem modyfikacji zmieniając kolejność klucza głównego opanowane(i tworząc stosowny do tej zmiany dodatkowy indeks), dokonałem też audytu FK, CHECK, NOT NULL i UNIQUE  
 Sprawdź mój kod jeszcze raz.
 
+https://docs.google.com/spreadsheets/d/1VyhuQjI8OLt-WgrxGYgRZ6GJ_oPplTi9tA8cSzfVwZs/edit?usp=sharing
+
 
 Średnia ilość bazowego doświadczenia powinna wynosić ~10.??? co to w ogóle znaczzy
+
+https://docs.google.com/spreadsheets/d/1VyhuQjI8OLt-WgrxGYgRZ6GJ_oPplTi9tA8cSzfVwZs/edit?usp=sharing
 
 
 nakładki 
