@@ -601,3 +601,45 @@ ALTER TABLE Klasy_Przeciwników RENAME COLUMN siła_z_poziom_1 TO Siła_poziom_1
 ---- ---policzyć która wersja byłaby wydajniejsza.
 ---- ---Wydajniejsza jest:
 ---- --- Klasy_Przeciwników_Cechy -> Klasy_Przeciwników_Cechy_Bazowe_minimalne -> Statystyki_Klas_Przeciwników_minimalne
+ALTER TABLE Rasy DROP CONSTRAINT naturalne_średnia_długość_życia_Rasy;
+ALTER TABLE Rasy ADD CONSTRAINT naturalne_średnia_długość_życia_Rasy CHECK(średnia_długość_życia >= 0);
+
+ALTER TABLE Rasy ADD CONSTRAINT Typy_przejęcia CHECK(Typ_przejęcia in
+    (
+        'Zwierzęce(animal soul)',
+        'Bestii(Beast soul)',
+        'Maszyny (Machina soul)',
+        'Szatana(Satan soul)',
+        'bożka(goddo soul)'
+    )
+)
+
+ALTER TABLE Rasy
+    DROP COLUMN Zdolności_rasowe,--Zdolności_rasowe VARCHAR(255)
+    ADD COLUMN Zdolności_rasowe TEXT;
+ALTER TABLE Rasy
+    DROP COLUMN Występowanie_rola_informacje,--Występowanie_rola_informacje VARCHAR(255)
+    ADD COLUMN Występowanie_rola_informacje TEXT;
+
+ALTER TABLE Umiejętności
+    DROP COLUMN Typ_umiej,
+    ADD COLUMN Poboczna BOOLEAN NOT NULL;
+
+
+
+--odłożone ze względu na niepewność co do rodzaju:
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Metal', FALSE, 'Magia',
+        'atrybut', '', '',
+        '',
+        ''
+    );

@@ -1,3 +1,33 @@
+ALTER TABLE Rasy ADD CONSTRAINT Typy_przejęcia CHECK(Typ_przejęcia in ('Zwierzęce(animal soul)','Bestii(Beast soul)','Maszyny (Machina soul)','Szatana(Satan soul)','bożka(goddo soul)')
+
+Typ_przejęcia VARCHAR(255)
+
+Zmień inne kolumny długotekstowe na typ TEXT z typu Varchar
+
+
+konieczne do dorobienia:
+typy:
+Magia smoczych zabójców?
+magia Tworzenia
+magia oka?
+Magia przestrzeni
+Zaklinanie
+
+podległe:
+ogień:
+fioletowy ogień
+błękitny ogień
+pomarańczowy ogień
+żółty ogień
+tęczowy ogień
+ognista iluzja
+
+
+
+8
+
+zmień kolumnę typ na kolumnę poboczna
+-- ==========================================
 9-10.
 lista umiejętności opracowanych:
 Ogień
@@ -467,3 +497,7 @@ gatunek, kategoria, klasa, natura, odmiana, rodzaj,
 
 
 typ VARCHAR(255) NOT NULL,
+
+
+Do dodania dla każdej rasy/postaci w wersji beta:
+długość ramienia, rozmiar, wysokość

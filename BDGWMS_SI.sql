@@ -28,14 +28,22 @@ CREATE TABLE Rasy
     Charyzma_OCENA INTEGER NOT NULL CONSTRAINT Charyzma_ZAKRES CHECK(Charyzma_OCENA BETWEEN 1 AND 20*2),
     Pobożność_OCENA INTEGER NOT NULL CONSTRAINT Pobożność_ZAKRES CHECK(Pobożność_OCENA BETWEEN 1 AND 20*2),
     Wola_OCENA INTEGER NOT NULL CONSTRAINT Wola_ZAKRES CHECK(Wola_OCENA BETWEEN 1 AND 20*2),
-    Zdolności_rasowe VARCHAR(255),
+    Zdolności_rasowe TEXT,
     Pancerz_Ogólny INTEGER NOT NULL CONSTRAINT naturalne_Pancerz_Ogólny_Rasy CHECK(Pancerz_Ogólny>=0),
     Pancerz_miękki INTEGER NOT NULL CONSTRAINT naturalne_Pancerz_miękki_Rasy CHECK(Pancerz_miękki>=0),
     Pancerz_twardy INTEGER NOT NULL CONSTRAINT naturalne_Pancerz_twardy_Rasy CHECK(Pancerz_twardy>=0),
     Ochrona_przed_zimnem INTEGER CONSTRAINT naturalne_Ochrona_przed_zimnem_Rasy CHECK(Ochrona_przed_zimnem>=0),
-    Typ_przejęcia VARCHAR(255),
-    Występowanie_rola_informacje VARCHAR(255),
-    średnia_długość_życia INTEGER CONSTRAINT naturalne_średnia_długość_życia_Rasy CHECK(wiek_starości >= 0),
+    Typ_przejęcia VARCHAR(255) CONSTRAINT Typy_przejęcia CHECK(Typ_przejęcia in
+        (
+        'Zwierzęce(animal soul)',
+        'Bestii(Beast soul)',
+        'Maszyny (Machina soul)',
+        'Szatana(Satan soul)',
+        'bożka(goddo soul)'
+        )
+    ),
+    Występowanie_rola_informacje TEXT,
+    średnia_długość_życia INTEGER CONSTRAINT naturalne_średnia_długość_życia_Rasy CHECK(średnia_długość_życia >= 0),
     wiek_starości INTEGER NOT NULL CONSTRAINT naturalne_wiek_starości_Rasy CHECK(wiek_starości >= 0),
     inne_cechy TEXT
 );
@@ -155,7 +163,7 @@ CREATE TABLE Postacie
 CREATE TABLE Umiejętności 
 (
     Nazwa VARCHAR(255) PRIMARY KEY,
-    Typ_umiej VARCHAR(255) NOT NULL,--wyspecjalizowana(magiczna), ogólna
+    Poboczna BOOLEAN NOT NULL,
     Natura VARCHAR(255) NOT NULL CHECK(Natura in ('Fizyczna','Błogosławieństwa','Magia','Klątwy')),--Fizyczna // Błogosławieństwa / Magia / Klątwy
     Rodzaj VARCHAR(255) CHECK(Rodzaj in ('typ', 'atrybut', 'umiejętność szczegółowa', 'specjalizacja')),--typ / atrybut / umiejętność szczegółowa / specjalizacja
     Samodzielność VARCHAR(255) NOT NULL CHECK(Samodzielność in ('kategoria(+1)', 'kategoria', 'umiejętność')),--kategoria(+1) / kategoria / umiejętność
@@ -1229,7 +1237,20 @@ ORDER BY schemat, tabela, nazwa_ograniczenia;
 ---Cechy Bazowe
 CREATE OR REPLACE VIEW Cechy_Rasowe AS
 WITH r AS (
-    SELECT *,
+    SELECT 
+        Nazwa,
+        MAGICZNOŚĆ,
+        Mądrość_OCENA,
+        Inteligencja_OCENA,
+        Wola_OCENA,
+        Pobożność_OCENA,
+        Charyzma_OCENA,
+        Wytrzymałość_OCENA,
+        Siła_OCENA,
+        Zręczność_OCENA,
+        Zwinność_OCENA,
+        Kondycja_OCENA,
+        wiek_starości,
         CASE
             WHEN Rozumność THEN 10
             WHEN Rozumność IS NULL THEN 5
@@ -2612,10 +2633,10 @@ FROM techniki_kategoryzowane
 GROUP BY nazwa;
 
 ---lista technik umiejętności
+
 CREATE OR REPLACE VIEW techniki_umiejętności AS
 SELECT
     u.Nazwa AS Umiejętność,
-    u.Typ_umiej,
     u.Natura,
     u.Rodzaj,
     u.Samodzielność,
@@ -2788,9 +2809,15 @@ CREATE UNIQUE INDEX idx_jedna_glowna_waluta
 -- ==========================================
 
 --widoki
+SELECT schemaname, viewname
+FROM pg_catalog.pg_views 
+wHERE schemaname='public'
+ORDER BY viewname
+
 SELECT view_definition, check_option, is_updatable, is_insertable_into
 FROM information_schema.views
-ORDER BY table_schema
+wHERE table_schema='public'
+ORDER BY view_definition
 
 --funkcje
 SELECT
@@ -2822,17 +2849,23 @@ SELECT
     pg_get_expr(t.tgqual, t.tgrelid) AS warunek_when, -- Jeśli istnieje warunek "WHEN"
     p.proname AS funkcja_wywoływana,
     CASE 
-        WHEN t.tgtype & 1 THEN 'BEFORE'
-        WHEN t.tgtype & 2 THEN 'AFTER'
-        WHEN t.tgtype & 4 THEN 'INSTEAD OF'
+        WHEN t.tgtype = 1 THEN 'BEFORE'
+        WHEN t.tgtype = 2 THEN 'AFTER'
+        WHEN t.tgtype = 4 THEN 'INSTEAD OF'
     END AS czas_wystapienia,
     CASE 
-        WHEN t.tgtype & 8 THEN 'ROW'
-        WHEN t.tgtype & 16 THEN 'STATEMENT'
+        WHEN t.tgtype = 8 THEN 'ROW'
+        WHEN t.tgtype = 16 THEN 'STATEMENT'
     END AS poziom_trigera
 FROM pg_catalog.pg_trigger t
     JOIN pg_catalog.pg_class c ON t.tgrelid = c.oid
     JOIN pg_catalog.pg_namespace n ON c.relnamespace = n.oid
     LEFT JOIN pg_catalog.pg_proc p ON t.tgfoid = p.oid
-WHERE c.relkind = 'r' -- Tylko zwykłe tabele
+WHERE 
+    c.relkind = 'r' -- Tylko zwykłe tabele
+    AND p.proname NOT LIKE 'RI%'
 ORDER BY c.relname, t.tgname;
+
+SELECT tablename, indexname, indexdef 
+FROM pg_indexes
+WHERE schemaname='public';
