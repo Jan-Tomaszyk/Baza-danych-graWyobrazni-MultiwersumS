@@ -4,6 +4,7 @@
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>E0B44E34-0525-EE8C-2EA5-447198C19EC1</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<ordsAlias>umiejetnosci</ordsAlias>
 <abbreviation>Umiejka</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
@@ -19,6 +20,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Umiejka_Nazwa</notNullConstraintName>
 </Column>
 <Column name="Typ_umiej" id="D40FD48F-08C3-913F-45B4-0189010AB034">
 <createdBy>Jasiu</createdBy>
@@ -30,6 +32,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Umiejka_Typ_umiej</notNullConstraintName>
 </Column>
 <Column name="Natura" id="96D16A0C-EDEC-09EB-401C-9846FBED15B5">
 <createdBy>Jasiu</createdBy>
@@ -41,6 +44,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Umiejka_Natura</notNullConstraintName>
 </Column>
 <Column name="Rodzaj" id="86644802-08B3-9E5B-C2AE-4B063F1FC6BE">
 <createdBy>Jasiu</createdBy>
@@ -54,7 +58,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Samodzielność_i_stopień_zagnieżdżenia" id="C934FB59-D386-93FE-3081-919E84AE30F4">
+<Column name="Samodzielność" id="C934FB59-D386-93FE-3081-919E84AE30F4">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>6EB028BA-4DD0-F027-26CC-12B200139B26</generatorID>
@@ -64,6 +68,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Umiejka_Samodzielność_i_stopień_zagnieżdżenia</notNullConstraintName>
 </Column>
 <Column name="Dostępność" id="E883661F-FC57-5D50-718D-7EC45C2E5113">
 <createdBy>Jasiu</createdBy>
@@ -75,6 +80,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Umiejka_Dostępność</notNullConstraintName>
 </Column>
 <Column name="Opis_fabularny" id="5CC97224-2E67-5CE9-E0A4-0033705898CE">
 <createdBy>Jasiu</createdBy>

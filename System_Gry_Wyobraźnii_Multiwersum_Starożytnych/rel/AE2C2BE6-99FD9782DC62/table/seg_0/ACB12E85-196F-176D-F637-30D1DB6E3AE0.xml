@@ -3,6 +3,7 @@
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<ordsAlias>umiejetnosci_uczone_z_ksiag</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -17,11 +18,12 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_umiejętności_uczone_z_ksiąg_Umiejętności_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="AA5057E8-E463-1254-EA27-63AE5214A575" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
 </associations>
 </Column>
-<Column name="Księgi i Pisma_Przed_Nazwa" id="31D5C8FE-D083-3E8C-30E6-ED7E5827BE0B">
+<Column name="Księgi_i_Pisma_Przedmioty_Przed_Nazwa" id="31D5C8FE-D083-3E8C-30E6-ED7E5827BE0B">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -31,6 +33,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_umiejętności_uczone_z_ksiąg_Księgi i Pisma_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="D0183A95-282C-2E94-2C81-3179CCFFCF66" referredColumn="550AAD8E-5CF7-CFF5-9096-960A3AAE38E6"/>
 </associations>

@@ -19,6 +19,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Przed_Przed_Nazwa</notNullConstraintName>
 </Column>
 <Column name="Przed_Efekty" id="F71780CE-0EFD-3F93-56EE-E29F2CFE8F0C">
 <createdBy>Jasiu</createdBy>
@@ -44,7 +45,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Przed_cena_domyślna[główna_waluta]" id="61DB33EB-CC0C-69C3-E4B5-559479CBA536">
+<Column name="Przed_cena_domyślna" id="61DB33EB-CC0C-69C3-E4B5-559479CBA536">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>7747183D-A7B4-B1AF-B115-165B47A3DB6E</generatorID>
@@ -104,7 +105,7 @@
 <colAssociation fkAssociation="4537AF5C-A46A-E7EC-5688-7F2067F09DDE" referredColumn="3003CC10-B524-E823-8B35-918265421D06"/>
 </associations>
 </Column>
-<Column name="jest_noszony/używany" id="08FE263E-CAD2-4608-7D5B-F4A625E882D6">
+<Column name="jest_noszony" id="08FE263E-CAD2-4608-7D5B-F4A625E882D6">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>C913ED02-CA44-972B-675C-81AF2FE066D0</generatorID>

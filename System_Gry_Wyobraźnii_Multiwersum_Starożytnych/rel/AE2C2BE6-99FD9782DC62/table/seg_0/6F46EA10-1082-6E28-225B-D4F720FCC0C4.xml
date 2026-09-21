@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Przed_Nazwa" id="4589926B-13AC-BD9D-1242-F35A21332325">
+<Column name="Przedmioty_Przed_Nazwa" id="4589926B-13AC-BD9D-1242-F35A21332325">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>66242D26-5B07-370A-7B57-EF3D2B3C993E</generatorID>
@@ -19,6 +19,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="852EA3D3-62AE-52E9-7CFB-FD1A1D580D40" referredColumn="C812CFA9-B18C-5CC8-1B1F-8BFF5B7D5EBB"/>
 </associations>
@@ -33,8 +34,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Kategoria_Obrażeń</notNullConstraintName>
 </Column>
-<Column name="Broń_test_trafienia_-_machnięcie" id="328040CE-0DE6-4309-51AD-C84CC6C75346">
+<Column name="Broń_test_trafienia_machnięcie" id="328040CE-0DE6-4309-51AD-C84CC6C75346">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>1FBD319A-D843-21B4-74A6-EFD56D04F9A8</generatorID>
@@ -44,8 +46,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_test_trafienia_-_machnięcie</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[typ]_Machnięcie" id="F5488815-4736-0202-5700-A29E1F5F8B28">
+<Column name="Broń_Typ_Obrażeń_Machnięcie" id="F5488815-4736-0202-5700-A29E1F5F8B28">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>46203A02-6A88-2478-6B7B-25658A937DC3</generatorID>
@@ -55,8 +58,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Obrażenia[typ]_Machnięcie</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[test]_Machnięcie" id="7F912BB5-B62B-CB87-2DCC-B89379479D35">
+<Column name="Broń_Test_Obrażeń_Machnięcie" id="7F912BB5-B62B-CB87-2DCC-B89379479D35">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>EAE80166-35DB-F513-1A35-19337D5E8C09</generatorID>
@@ -66,8 +70,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Obrażenia[test]_Machnięcie</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[typ]_Machnięcie_tylne" id="00B42E69-9CE6-9F11-735D-6D8F0F431464">
+<Column name="Broń_Typ_Obrażeń_Machnięcie_tylne" id="00B42E69-9CE6-9F11-735D-6D8F0F431464">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>CA91E5C0-49C5-91D5-DECC-9F53AD7E5353</generatorID>
@@ -79,7 +84,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_Obrażenia[test]_Machnięcie_tylne" id="0A90EAA7-BA2F-E527-4A7C-0888081501D6">
+<Column name="Broń_Test_Obrażeń_Machnięcie_tylne" id="0A90EAA7-BA2F-E527-4A7C-0888081501D6">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>2D165482-CF73-FBB6-FE7A-7F0F2E1FBE64</generatorID>
@@ -91,7 +96,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_test_trafienia_-_pchnięcie" id="A1FC48E1-11B7-68A9-9FD8-0950A500657D">
+<Column name="Broń_test_trafienia_pchnięcie" id="A1FC48E1-11B7-68A9-9FD8-0950A500657D">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>4A37727A-2395-EAD6-4EA7-3CF74BA2B142</generatorID>
@@ -101,8 +106,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_test_trafienia_-_pchnięcie</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[typ]_Pchnięcie" id="5F0828ED-8B0E-2352-AFBC-5C92FDA7FC10">
+<Column name="Broń_Typ_Obrażeń_Pchnięcie" id="5F0828ED-8B0E-2352-AFBC-5C92FDA7FC10">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>2B6B8131-EBCD-4CEE-3E79-96C96F771E4A</generatorID>
@@ -112,8 +118,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Obrażenia[typ]_Pchnięcie</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[test]_Pchnięcie" id="E8430AAA-1839-A1C0-8416-778779955B85">
+<Column name="Broń_Test_Obrażeń_Pchnięcie" id="E8430AAA-1839-A1C0-8416-778779955B85">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>B94487BC-6B30-9371-4EAC-B513E28BF18B</generatorID>
@@ -125,7 +132,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_Obrażenia[typ]_Pchnięcie_pełne" id="83332FDD-8A5E-B66F-ADB3-A4EB9FEA028E">
+<Column name="Broń_Typ_Obrażeń_Pchnięcie_pełne" id="83332FDD-8A5E-B66F-ADB3-A4EB9FEA028E">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>9D8BF742-029E-D005-E9F1-290AEFF3638E</generatorID>
@@ -135,8 +142,9 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Obrażenia[typ]_Pchnięcie_pełne</notNullConstraintName>
 </Column>
-<Column name="Broń_Obrażenia[test]_Pchnięcie_pełne" id="13873124-D0A9-40CB-FECD-96CFB7ADB678">
+<Column name="Broń_Test_Obrażeń_Pchnięcie_pełne" id="13873124-D0A9-40CB-FECD-96CFB7ADB678">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>AEBAB235-6B94-F778-D806-AD3CAE34B149</generatorID>
@@ -160,7 +168,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_X-ręczność" id="868C2FC2-966C-2D18-77B1-A6044C1B60AF">
+<Column name="Broń_Xręczność" id="868C2FC2-966C-2D18-77B1-A6044C1B60AF">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>A1212239-0A4F-7A2C-8977-DFC57D4898F7</generatorID>
@@ -196,7 +204,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_długość[cm]" id="2307C364-FFC9-443D-B187-2B24787D4CC2">
+<Column name="Broń_długość_cm" id="2307C364-FFC9-443D-B187-2B24787D4CC2">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>863BE816-F367-B44F-91CF-01EBA0C2D0E6</generatorID>
@@ -208,7 +216,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Broń_długość_uchwytu[cm]" id="125FC12E-F3C9-3FED-F90B-E2FD94D959A9">
+<Column name="Broń_długość_uchwytu_cm" id="125FC12E-F3C9-3FED-F90B-E2FD94D959A9">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>F6CB0A53-28D9-C471-4663-2753E37F0E8D</generatorID>
@@ -243,6 +251,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Umiejętności_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="EDDCFAF4-1778-7AE4-AA2D-A6683E53D647" referredColumn="7D37A530-9383-2C06-D666-B039F43D1680"/>
 </associations>
@@ -257,6 +266,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_siły</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_wytrzymałości" id="7AEF6C30-1E7E-FED0-DCCF-6229E4E54049">
 <createdBy>Jasiu</createdBy>
@@ -268,6 +278,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_wytrzymałości</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_kondycji" id="D62C12A2-D07D-96A1-E90D-CC70829172F5">
 <createdBy>Jasiu</createdBy>
@@ -279,6 +290,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_kondycji</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_zręczności" id="D0BCD299-CE2C-C406-47DB-7E2AF852DB89">
 <createdBy>Jasiu</createdBy>
@@ -290,6 +302,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_zręczności</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_zwinności" id="00293CD8-8C54-A3B8-83C3-67F3DD60BA91">
 <createdBy>Jasiu</createdBy>
@@ -301,6 +314,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_zwinności</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_mądrości" id="21F0DF07-C2A7-DE03-2282-8978A6A63686">
 <createdBy>Jasiu</createdBy>
@@ -312,6 +326,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_mądrości</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_inteligencji" id="B35A402F-CC91-7E11-054D-515F70381367">
 <createdBy>Jasiu</createdBy>
@@ -323,6 +338,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_inteligencji</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_charyzmy" id="AA2797C5-521A-ECD6-36A5-44BEA81F47B1">
 <createdBy>Jasiu</createdBy>
@@ -334,6 +350,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_charyzmy</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_pobożności" id="80A5822A-9AB9-BD2B-1188-98A094A17818">
 <createdBy>Jasiu</createdBy>
@@ -345,6 +362,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_pobożności</notNullConstraintName>
 </Column>
 <Column name="Broń_Bonus_do_woli" id="29F2B08A-473C-70FE-15DF-C747D41B3CF3">
 <createdBy>Jasiu</createdBy>
@@ -356,6 +374,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Broń_Broń_Bonus_do_woli</notNullConstraintName>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -371,7 +390,7 @@
 <colUsage columnID="4589926B-13AC-BD9D-1242-F35A21332325"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="256E4050-478E-B98C-2B62-26064C63CE9E" name="Bronie_PKv1">
+<ind_PK_UK id="256E4050-478E-B98C-2B62-26064C63CE9E" name="Bronie_Umiejętności_Nazwa_UN">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>4F9D44BC-04A0-C243-D182-CC85AC48234F</generatorID>

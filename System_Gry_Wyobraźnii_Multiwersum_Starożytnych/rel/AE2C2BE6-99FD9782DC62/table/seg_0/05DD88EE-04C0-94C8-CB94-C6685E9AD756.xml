@@ -3,11 +3,12 @@
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<ordsAlias>techniki_uczone_z_ksiag</ordsAlias>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Księgi i Pisma_Przed_Nazwa" id="62EA8120-E73C-2856-665A-47C05CA973DC">
+<Column name="Księgi_i_Pisma_Przedmioty_Przed_Nazwa" id="62EA8120-E73C-2856-665A-47C05CA973DC">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -17,6 +18,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Techniki_uczone_z_ksiąg_Księgi i Pisma_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="368F6F1C-1EB3-B983-94A5-BD1006D13796" referredColumn="550AAD8E-5CF7-CFF5-9096-960A3AAE38E6"/>
 </associations>
@@ -31,6 +33,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Techniki_uczone_z_ksiąg_Techniki_nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="6C47E2B0-4BC9-D8E0-E257-E7B8A99B4916" referredColumn="14247CED-9E55-A0DD-1331-BA0718A72241"/>
 </associations>

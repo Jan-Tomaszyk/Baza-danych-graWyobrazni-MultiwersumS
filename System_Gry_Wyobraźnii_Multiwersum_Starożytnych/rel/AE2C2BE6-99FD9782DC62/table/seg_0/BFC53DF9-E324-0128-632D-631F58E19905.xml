@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="Przed_Nazwa" id="9F359EE8-F190-2F32-8389-7AB15A3FF683">
+<Column name="Przedmioty_Przed_Nazwa" id="9F359EE8-F190-2F32-8389-7AB15A3FF683">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-07 21:28:06 UTC</createdTime>
 <generatorID>66242D26-5B07-370A-7B57-EF3D2B3C993E</generatorID>
@@ -19,6 +19,7 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
+<notNullConstraintName>NNC_Różność_Przedmioty_Przed_Nazwa</notNullConstraintName>
 <associations>
 <colAssociation fkAssociation="1AC853AA-CB00-EA8C-55A1-AF5C02D56D76" referredColumn="C812CFA9-B18C-5CC8-1B1F-8BFF5B7D5EBB"/>
 </associations>
