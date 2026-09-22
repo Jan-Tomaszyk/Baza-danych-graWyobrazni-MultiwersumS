@@ -37,7 +37,7 @@ CREATE TABLE Rasy
         (
         'Zwierzęce(animal soul)',
         'Bestii(Beast soul)',
-        'Maszyny (Machina soul)',
+        'Maszyny(Machina soul)',
         'Szatana(Satan soul)',
         'bożka(goddo soul)'
         )

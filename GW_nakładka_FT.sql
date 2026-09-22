@@ -2245,16 +2245,109 @@ INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3
 -- ==========================================
 -- 3.A. Klasy Punkty_Klasowe
 -- ==========================================
+--MAG
+--- historia postaci
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Przynależność do gildii',250,250);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Rola magii w historii postaci',1,100);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Magiczne pochodzenie',1,100);
+--- rozwój postaci
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Punkt umiejętności wydany na zdolności magiczne',3,3);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Nowe nauczone zaklęcie',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Rzucenie zaklęcia',1,3);
+--- misje
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta zwykła misja',5,5);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja klasy S',15,15);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja klasy SS',30,30);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja 10-letnia',100,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja 100-letnia',1000,1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona zwykła misja',5,50);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja klasy S',15,150);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja klasy SS',30,300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja 10-letnia',100,2000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja 100-letnia',1000,30000);
+--- rola w gildii
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Reprezentowanie gildii',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Uzyskanie klasy S lub analogicznej',1000,1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zostanie mistrzem Gildii',10000,10000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Pomoc innym w nauce magii',5,500);
+-- ujemne
+--- złe czyny
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zdrada wobec swojej gildii',-500,-500);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Nauka i stosowanie klątw',-1,-1000);
+---klęski - nieudane misje
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona zwykła misja',-2,-50);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja klasy S',-7,-150);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja klasy SS',-15,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja 10-letnia',-50,-2000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja 100-letnia',-500,-30000);
+--- zaniechania
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'dłuższe zaniechanie rozwijania zdolności magicznych',-1,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'dłuższe zaniechanie praktykowania magii',-1,-1000);
+
+--RYCERZ
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Przynależność do armii lub zakonu',250,250);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Rola walki lub rycerskości w historii postaci',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Szlacheckie, rycerskie lub wojskowe pochodzenie',1,100);
+--- rozwój postaci
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Punkt umiejętności wydany na umiejętności walki(walka wręcz i broń biała)',3,3);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Nowa technika lub efekt(zdolność pasywna) związany z walką w zwarciu',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdobyta lub zakupiona część zwykłego uzbrojenia',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdobyta lub zakupiona część uzbrojenia magicznego',25,100);
+-- ujemne
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Nauka i stosowanie klątw',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdrada wobec swojego zakonu lub armii',-500,-500);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Dowolna zdrada',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Łamanie przysięgi',-500,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Łamanie prawa',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Kłamstwo',-50,-500);
+--- zaniechania
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'dłuższe zaniechanie rozwijania zdolności bitewnych',-1,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'dłuższe zaniechanie praktykowania jakiejkolwiek walki',-1,-1000);
+
 
 -- ==========================================
 -- 3.B. Rangi_klasowe
