@@ -2235,10 +2235,26 @@ INSERT
 -- ==========================================
 -- 3. Klasy
 -- ==========================================
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Mag', 'Mądrość', 'Inteligencja', 'Wola');
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Inkwizytor', 'Pobożność',  'Mądrość', 'Wola');
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Rycerz', 'Siła', 'Wytrzymałość', 'Zręczność');
 
 -- ==========================================
 -- 3.A. Klasy Punkty_Klasowe
 -- ==========================================
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Przynależność do gildii',250,250);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Rola magii w historii postaci',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Magiczne pochodzenie',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Punkt umiejętności wydany na zdolności magiczne',3,3);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Nowe nauczone zaklęcie',5,20);
 
 -- ==========================================
 -- 3.B. Rangi_klasowe

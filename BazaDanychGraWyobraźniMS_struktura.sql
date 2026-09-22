@@ -2637,6 +2637,7 @@ GROUP BY nazwa;
 CREATE OR REPLACE VIEW techniki_umiejętności AS
 SELECT
     u.Nazwa AS Umiejętność,
+    u.Poboczna,
     u.Natura,
     u.Rodzaj,
     u.Samodzielność,
