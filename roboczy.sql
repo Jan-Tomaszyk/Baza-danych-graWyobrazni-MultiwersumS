@@ -677,4 +677,20 @@ INSERT
 Niemal wszelkie formy kontroli umysłów i ciała istot żywych.',
         ''
     );
+s
 
+Select * from Umiejętności where Nazwa in ('Metal', 'Roślinna', 'Magia umysłu');
+
+DROP TABLE IF EXISTS Księgi_i_Pisma CASCADE;
+
+SELECT current_database(), current_user;
+
+SET ROLE postgres; -- lub inna rola z pełnymi prawami
+SELECT current_user, current_database();
+
+SELECT rolname, rolsuper, rolcanlogin
+FROM pg_roles
+
+SELECT * FROM information_schema.tables WHERE table_schema = 'public';
+RESET ROLE;
+SELECT 1;

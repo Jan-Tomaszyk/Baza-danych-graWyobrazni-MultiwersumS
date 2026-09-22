@@ -2698,7 +2698,22 @@ UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić po
 -- 4.A. Kategorie_technik 
 -- ==========================================
 
-
+INSERT INTO Kategorie_technik(nazwa, opis) 
+    VALUES ('Techniki walki', 'Techniki związane z walką wręcz i użyciem broni białej');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki obrażeniowe', 'Techniki zadające obrażenia');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki obszarowe', 'Techniki wpływające na obszar');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki osłabienia', 'Techniki wywierające (negatywny) wpływ na przeciwnika');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki wsparcia', 'Techniki wywierające (pozytywny) wpływ na używającego lub sojusznika');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki blokujące i bariery', 'Techniki tworzące blokady i bariery przed atakami przeciwnika, chroniące przed obrażeniami lub ograniczające ruch');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki informacyjne', 'Techniki zbierające/przekazujące informacje');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki świętej magii', 'Techniki świętej magii');
 
 -- ==========================================
 -- 4.B. Techniki

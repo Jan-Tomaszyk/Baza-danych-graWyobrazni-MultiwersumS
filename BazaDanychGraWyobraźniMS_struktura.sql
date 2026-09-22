@@ -12,7 +12,6 @@
 -- 1. TABELE NIEZALEŻNE (Tworzone pierwsze) Główne
 -- ==========================================
 
-
 CREATE TABLE Rasy 
 (
     Nazwa VARCHAR(255) PRIMARY KEY,
@@ -243,7 +242,6 @@ CREATE TABLE Klasy_Przeciwników (
     CONSTRAINT Klasy_Przeciwników_zakres_poziomów
         CHECK (minimalny_poziom <= maksymalny_poziom)
 );
-
 CREATE TABLE Waluty
 (
     nazwa VARCHAR(255) PRIMARY KEY,
@@ -258,7 +256,6 @@ CREATE TABLE Waluty
 -- ====
 -- 2.A. Posiadane rzeczy: Podtabele przedmiotów i pieniądze
 -- ====
-
 CREATE TABLE Egzemplarze_Przedmiotów
 (
     Przed_ID SERIAL PRIMARY KEY,
@@ -469,7 +466,6 @@ CREATE TABLE Techniki_przedmiotów--techniki wymagające przedmiotu do wykonania
 
 -----===============
 --2.D Tabele Klasowe
-
 CREATE TABLE Rangi_klasowe
 (
     --Stopień INTEGER NOT NULL CONSTRAINT naturalne CHECK(Stopień>=0),--która z kolei to ranga w danej klasie
@@ -602,10 +598,6 @@ ALTER TABLE Prowiant ADD CONSTRAINT Prowiant_Przedmioty_FK
     FOREIGN KEY (Przedmioty_Przed_Nazwa)
     REFERENCES Przedmioty (Przed_Nazwa);
 
--- Rózności
-ALTER TABLE Rózności ADD CONSTRAINT Rózności_Przedmioty_FK 
-    FOREIGN KEY (Przedmioty_Przed_Nazwa)
-    REFERENCES Przedmioty (Przed_Nazwa);
 
 --- KLASY_PRZECIWNIKÓW
 ALTER TABLE Klasy_Przeciwników
@@ -1193,11 +1185,11 @@ EXECUTE FUNCTION trg_klasy_wyzwol_przeliczenie_pkt_klasowych_postaci();
 
 SELECT table_schema, table_name
 FROM information_schema.TABLES
-Where table_schema='public'
+WHERE table_schema='public'
 
 SELECT table_schema, table_name, column_name, column_default, data_type
 FROM information_schema.COLUMNS
-Where table_schema='public'
+WHERE table_schema='public'
 ORDER BY table_name
 
 --ograniczenia
@@ -1537,8 +1529,7 @@ SELECT
 FROM punkty_cech_z_klas punkty
 WHERE rn <= 2  -- Wybierz tylko wiersze z rangą 1 lub 2 dla każdej postaci
 GROUP BY ID_postaci, Imię, Nazwisko, poziom;
------tu ____________\  /
---                   \/
+
 CREATE OR REPLACE VIEW kontrola_cech_postaci AS
 WITH Sumy as 
 (
