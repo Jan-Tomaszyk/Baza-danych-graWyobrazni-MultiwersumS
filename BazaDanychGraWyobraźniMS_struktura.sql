@@ -155,7 +155,7 @@ CREATE TABLE Postacie
 CREATE TABLE Umiejętności 
 (
     Nazwa VARCHAR(255) PRIMARY KEY,
-    Typ_umiej VARCHAR(255) NOT NULL,--wyspecjalizowana(magiczna), ogólna
+    Poboczna BOOLEAN NOT NULL,
     Natura VARCHAR(255) NOT NULL CHECK(Natura in ('Fizyczna','Błogosławieństwa','Magia','Klątwy')),--Fizyczna // Błogosławieństwa / Magia / Klątwy
     Rodzaj VARCHAR(255) CHECK(Rodzaj in ('typ', 'atrybut', 'umiejętność szczegółowa', 'specjalizacja')),--typ / atrybut / umiejętność szczegółowa / specjalizacja
     Samodzielność VARCHAR(255) NOT NULL CHECK(Samodzielność in ('kategoria(+1)', 'kategoria', 'umiejętność')),--kategoria(+1) / kategoria / umiejętność
@@ -2615,7 +2615,7 @@ GROUP BY nazwa;
 CREATE OR REPLACE VIEW techniki_umiejętności AS
 SELECT
     u.Nazwa AS Umiejętność,
-    u.Typ_umiej,
+    u.Poboczna,
     u.Natura,
     u.Rodzaj,
     u.Samodzielność,
