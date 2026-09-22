@@ -19,6 +19,7 @@ ALTER TABLE Rasy ALTER COLUMN Pancerz_miękki SET DEFAULT 0;
 ALTER TABLE Rasy ALTER COLUMN Pancerz_twardy SET DEFAULT 0;
 ALTER TABLE Rasy ALTER COLUMN Ochrona_przed_zimnem SET DEFAULT 0;
 --- wstawianie ras
+Begin;
 INSERT
     INTO Rasy 
     (
@@ -224,10 +225,18 @@ INSERT
 --ustawienie Rasy domyślnej:
 ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'człowiek';
 
+SELECT * FROM RASY;
+
+Commit
+Rollback
+
+
 
 -- ==========================================
 -- 2. Umiejętności
 -- ==========================================
+Begin;
+
 ----ogień i podrzędne
 INSERT
     INTO Umiejętności
@@ -2230,11 +2239,14 @@ INSERT
         'Kije','Kije Elastyczne'
     );
 
-
+Commit
+Rollback
 
 -- ==========================================
 -- 3. Klasy
 -- ==========================================
+Begin;
+
 INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
     VALUES ('Mag', 'Mądrość', 'Inteligencja', 'Wola');
 INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
@@ -2242,10 +2254,13 @@ INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3
 INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
     VALUES ('Rycerz', 'Siła', 'Wytrzymałość', 'Zręczność');
 
+Commit
+Rollback
 -- ==========================================
 -- 3.A. Klasy Punkty_Klasowe
 -- ==========================================
 --MAG
+Begin;
 --- historia postaci
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'Przynależność do gildii',250,250);
@@ -2312,8 +2327,12 @@ INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_pu
     VALUES ('Mag', 'dłuższe zaniechanie rozwijania zdolności magicznych',-1,-300);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Mag', 'dłuższe zaniechanie praktykowania magii',-1,-1000);
+Commit
+Rollback
 
 --RYCERZ
+Begin;
+--- historia postaci
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Rycerz', 'Przynależność do armii lub zakonu',250,250);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
@@ -2347,6 +2366,8 @@ INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_pu
     VALUES ('Rycerz', 'dłuższe zaniechanie rozwijania zdolności bitewnych',-1,-300);
 INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
     VALUES ('Rycerz', 'dłuższe zaniechanie praktykowania jakiejkolwiek walki',-1,-1000);
+Commit
+Rollback
 
 
 -- ==========================================
@@ -2359,7 +2380,8 @@ Begin;
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Poprzednia_ranga, Nastepna_ranga
     )
@@ -2367,79 +2389,113 @@ INSERT INTO SBD164306.Rangi_klasowe
     (
         'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+)
 Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
-        10, 100,
+        0, 0, 0,
+        10,
         'Mag',
         NULL, 'Akolita'
     );
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
         'Akolita',
-        E'dostęp do podstawowych ksiąg magicznych w bibliotekach(+)
-        Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
-        100, 1000,
+        'dostęp do podstawowych ksiąg magicznych w bibliotekach(=)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 3/5,  ponadto bazowy poziom wynosi (N^2)/1,25 (!)',
+        0, 0, 1,
+        100,
         'Mag',
         'Nowicjusz', 'Adept'
     ); 
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
-        'Adept', NULL,
-        1000, 10000,
+        'Adept',
+        'dostęp do podstawowych ksiąg magicznych w bibliotekach(=)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 5/8,  ponadto bazowy poziom wynosi (N^2)/1,35 (!)
+        20% zniżka u nauczycieli zaklęć (+)',
+        10, 1, 3,
+        1000,
         'Mag',
         'Akolita', 'Zaawansowany mag'
     );
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
-        'Zaawansowany mag', NULL,
-        10 000, 100 000,
+        'Zaawansowany mag', 
+        'dostęp do zaawansowanych ksiąg magicznych w bibliotekach (!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 8/13,  ponadto bazowy poziom wynosi (N^2)/1,5 (!)
+        1 punkt dla umiejętności pobocznych może zamiast tego być przy awansie przydzielony do zdolności magicznych (+)
+        30% zniżka u nauczycieli zaklęć (!)
+        modyfikator +1/+2/+3/+4 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią (+)
+        Czary zużywają 10% mniej many i energii (+)',
+        5, 1, 5,
+        10 000,
         'Mag',
         'Adept', 'Ekspert'
     );
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
-        'Ekspert', NULL,
-        100 000, 1 000 000,
+        'Ekspert',
+        'dostęp do zaawansowanych ksiąg magicznych w bibliotekach (=)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 13/21,  ponadto bazowy poziom wynosi (N^2)/1,75 (!)
+        1 punkt dla umiejętności pobocznych może zamiast tego być przy awansie przydzielony do zdolności magicznych (=)
+        1 dodatkowy punkt do wykorzystania na specjalizacje magiczne (+)
+        45% zniżka u nauczycieli zaklęć (!)
+        modyfikator +2/+3/+4/+5 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 20% mniej many i energii oraz mają skuteczność zwiększoną o 10% (!)',
+        3, 1, 7,
+        100 000,
         'Mag',
         'Zaawansowany mag', 'Mistrz'
     );
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
-        'Mistrz', NULL,
-        1000 000, 10 000 000,
+        'Mistrz',
+        'dostęp do legendarnych ksiąg magicznych w bibliotekach(!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 21/34,  ponadto bazowy poziom wynosi (N^2)/2 (!)
+        2 punkty dla umiejętności ogólnych mogą zamiast tego być przy awansie przydzielone do zdolności magicznych (!)
+        2 dodatkowe punkty do wykorzystania na specjalizacje magiczne (+)
+        60% zniżka u nauczycieli zaklęć (!)
+        modyfikator +3/+4/+5/+6 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 33% mniej many i energii oraz mają skuteczność zwiększoną o 20% (!)',
+        1, 1, 10,
+        1000 000,
         'Mag',
         'Ekspert', 'Arcymistrz'
     );
@@ -2447,18 +2503,185 @@ INSERT INTO SBD164306.Rangi_klasowe
 INSERT INTO SBD164306.Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
         Klasy_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
     (
-        'Arcymistrz', NULL,
-        10 000 000, NULL,
+        'Arcymistrz', 
+        'dostęp do legendarnych ksiąg magicznych w bibliotekach(!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 34/55,  ponadto bazowy poziom wynosi (N^2)/2,5 (!)
+        3 punkty dla umiejętności ogólnych mogą zamiast tego być przy awansie przydzielone do zdolności magicznych (!)
+        3 dodatkowe punkty do wykorzystania na specjalizacje magiczne (+)
+        80% zniżka u nauczycieli zaklęć (!)
+        modyfikator +4/+5/+6/+7 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 50% mniej many i energii oraz mają skuteczność zwiększoną o 33% (!)',
+        1, 1.5, 14
+        10 000 000,
         'Mag',
         'Mistrz', NULL
     );
 SELECT * FROM Rangi_klasowe;
+
+Commit
+Rollback
+
+ALTER TABLE SBD164306.Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
+UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
+    SET Nazwa = Nazwa WHERE Nazwa = 'Nowicjusz';
+
+---rangi rycerza
+Begin;
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Nowicjusz', 'dostęp do podstawowych ksiąg bitewnych w bibliotekach (+)
+dostęp do podstawowych broni w zbrojowni(+)',
+        0, 0, 0,
+        10,
+        'Rycerz',
+        NULL, 'Akolita'
+    );
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Akolita',
+        'dostęp do podstawowych ksiąg bitewnych w bibliotekach(=)
+dostęp do podstawowych broni w zbrojowni(=)',
+        0, 0, 1,
+        100,
+        'Rycerz',
+        'Nowicjusz', 'Adept'
+    ); 
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Adept',
+        'dostęp do podstawowych ksiąg bitewnych w bibliotekach(=)
+        dostęp do podstawowych broni w zbrojowni(=)
+        1 punkt dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (+)
+        20% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy (+)',
+        10, 1, 3,
+        1000,
+        'Rycerz',
+        'Akolita', 'Zaawansowany rycerz'
+    );
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Zaawansowany rycerz', 
+        'dostęp do zaawansowanych ksiąg bitewnych w bibliotekach(!)
+        dostęp do zaawansowanych broni w zbrojowni(!)
+        1 punkt dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (=)
+        30% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!)
+        modyfikator +1/+2/+3/+4 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użycia broni i testów reputacji u postaci związanych z walką (+)
+        Ataki i bloki zużywają 10% mniej energii (+)',
+        5, 1, 5,
+        10 000,
+        'Mag',
+        'Adept', 'Ekspert'
+    );
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Ekspert',
+        'dostęp do zaawansowanych ksiąg bitewnych w bibliotekach(=)
+    dostęp do zaawansowanych broni w zbrojowni(=)
+        1 punkt dla umiejętności pobocznych może być przy awansie przydzielony jako 2 pkt zdolności bitewnych (=)
+dodatkowy punkt do wykorzystania na specjalizacje bitewne (3 i większy poziom zagnieżdżenia)(+)
+        45% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!)
+        modyfikator +2/+3/+4/+5 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!)
+        Ataki i bloki zużywają 20% mniej energii oraz mają skuteczność zwiększoną o 10% (!)',
+        3, 1, 7,
+        100 000,
+        'Mag',
+        'Zaawansowany mag', 'Mistrz'
+    );
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Mistrz',
+        'dostęp do legendarnych ksiąg bitewnych w bibliotekach(!)
+dostęp do legendarnych broni w zbrojowni(!)
+        2 punkty dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (!)
+2 dodatkowe punkt do wykorzystania na specjalizacje magiczne (3 i większy poziom zagnieżdżenia)(!)
+        60% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!)
+modyfikator +3/+4/+5/+6 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!)
+        Ataki i bloki zużywają 33% mniej energii oraz mają skuteczność zwiększoną o 20% (!)',
+        1, 1, 10,
+        1000 000,
+        'Mag',
+        'Ekspert', 'Arcymistrz'
+    );
+
+INSERT INTO SBD164306.Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasy_nazwa,
+        Nastepna_ranga, Poprzednia_ranga
+    )
+    VALUES
+    (
+        'Arcymistrz', 
+        'dostęp do legendarnych ksiąg bitewnych w bibliotekach(=)
+dostęp do legendarnych broni w zbrojowni(=)
+        3 punkty dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (!)
+        3 dodatkowe punkt do wykorzystania na specjalizacje magiczne (3 i większy poziom zagnieżdżenia)(!)
+        80% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!)
+        modyfikator +4/+5/+6/+7 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!)
+        Ataki i bloki zużywają 50% mniej energii oraz mają skuteczność zwiększoną o 33% (!)',
+        1, 1.5, 14
+        10 000 000,
+        'Mag',
+        'Mistrz', NULL
+    );
+SELECT * FROM Rangi_klasowe WHERE Klasy_nazwa = 'Rycerz';
 
 Commit
 Rollback
@@ -2475,8 +2698,14 @@ UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić po
 -- 4.A. Kategorie_technik 
 -- ==========================================
 
+
+
 -- ==========================================
--- 4.B. Techniki_Kategorie 
+-- 4.B. Techniki
+-- ==========================================
+
+-- ==========================================
+-- 4.C. Techniki_Kategorie 
 -- ==========================================
 
 
