@@ -472,8 +472,40 @@ INSERT
         'Magia opierających się na manipulacji ziemią z otoczenia, czasem budując z niej proste konstrukcje, bardziej zaawansowani magowie manipulują też jej właściwościami fizycznymi utwardzając lub zmiękczając ją i zwiększajac jej plastyczność, a w nawet upłynniając. Magia ta pozwala też nurkować w ziemię i podróżować przez nią przez kopanie lub łączenie się z nią.',
         ''
     );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES Umiejętności
+    (
+        'Kamień(utwardzanie ziemi)', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna',
+        'Magia opierających się na manipulacji ziemią z otoczenia i jej utwardzaniu.
+Głównie budując z niej konstrukcje lub uderzając przy jej pomocy(w tym kamieniami).',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES Umiejętności
+    (
+        'Ziemia', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna',
+        'Magia opierających się na manipulacji ziemią z otoczenia i jej zmiękczaniu lub nawet upłynnianiu.
+Pozwala to nurkować w ziemię i podróżować przez nią przez kopanie w niej tuneli lub powodować zapadanie się ziemi pod wrogiem.',
+        ''
+    );
 
-
+--- kryształy
 INSERT
     INTO Umiejętności
     (
@@ -487,10 +519,9 @@ INSERT
         'Kryształy', FALSE, 'Magia',
         'atrybut', 'umiejętność', 'rzadka',
         'Magia polegająca na manipulacji lub tworzeniu kryształów (lub konkretnego rodzaju kryształu), między innymi przez krystalizację struktury okolicznych skał.
-Magia ta może on pozwalać też na skuteczniejszą interakcję z magicznymi kryształami.',
+Magia ta pozwala też na skuteczniejszą interakcję z magicznymi kryształami.',
         ''
     );
-
 INSERT
     INTO Umiejętności
     (
@@ -501,12 +532,94 @@ INSERT
     )
     VALUES
     (
-        'Roślinna', FALSE, 'Magia',
-        'atrybut', 'kategoria(+1)', 'powszechna',
-        'Magie opierające się na tworzeniu i manipulacji roślinami, czasem ich elementami.',
+        'Diamenty', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka',
+        'Magia polegająca na manipulacji lub tworzeniu diamentów, między innymi przez krystalizację struktury węgla w otoczeniu.
+Magia ta pozwala też na skuteczniejszą interakcję z magicznymi kryształami stworzonymi z diamentu.',
         ''
     );
 
+--- Błyskawica
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Błyskawica', FALSE, 'Magia',
+        'atrybut', 'umiejętność', 'powszechna',
+        'Magia wytwarzania błyskawic, przy ciele lub w pewnej odległości od niego, nierzadko spotykana u energicznych.
+Pozwala na szybkie ataki, zwykle omijające pancerz.
+Przez możliwość wielokierunkowości dobrze sprawdza się przeciwko wielu przeciwnikom na raz.
+Elektryzacja ciała zdaje się też zwiększać szybkość, a co istotniejsze zaawansowani magowie są w stanie dokonywać pełnej przemiany w błyskawice uzyskując szybkość poruszania się, której niewielu może jakkolwiek dorównać.',
+        ''
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Sztorm', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+
+
+--- Biel i Światło("holy")
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Biel i Światło', FALSE, 'Magia',
+        'atrybut', 'umiejętność', 'powszechna',
+        'Magia oparta o światło i świetliste ataki, szczególnie skuteczne przeciwko jakiejkolwiek czarnej magii i magii ciemności.
+Magia ta może zwiększać też szybkość.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Białe sztuki', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka',
+        'Rodzaj magii szczególnie skuteczne przeciwko jakiejkolwiek czarnej magii i magii ciemności.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Puryfikacja', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Magia anulująca i rozpraszająca efekty wszelkich rodzajów czarnej magii i magii ciemności.',
+        ''
+    );
+---Dane i symbole
 INSERT
     INTO Umiejętności
     (
@@ -523,7 +636,6 @@ INSERT
         Jest to jednak magia której efektywne użycie bitewne wymaga czasu.',
         ''
     );
-
 INSERT
     INTO Umiejętności
     (
@@ -534,13 +646,998 @@ INSERT
     )
     VALUES
     (
-        'Magia umysłu', FALSE, 'Magia',
+        'Archiwum', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka',
+        'Magia oparta na zbieraniu, przetwarzaniu i przekazywaniu danych i informacji.
+Jej stosowanie przypomina korzystanie z dużego holograficznego monitora i klawiatury.',
+        'Pozwala zbierać informacje o rzeźbie terenu i pozycji poszczególnych osób, nagrywać, przeprowadzać złożone obliczenia, prezentować na ekranie lub wysyłać bezpośrednio do głowy wszelkie informacje.'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Super Archiwum', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Wyższa forma magii archiwum pozwalająca nie tylko na przetwarzanie informacji, ale też zdalną obsługę magicznych broni a nawet częściową zmianę zaklęć pieczętujących.',
+        ''
+    );
+
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Runy', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka',
+        'Magia polegająca na pisaniu run od których treści zależy efekt zaklęcia pozwalają one tworzyć bariery wokół obszarów lub nadać na otoczonym pewne zasady mogące oddziaływać na żywioły fizyczne własności i magię wewnątrz, jest to niezwykle uniwersalna magia, ale ma jedną wadę - samo pisanie run zajmuje dużo czasu i zazwyczaj potrzebują go też by się aktywować.
+Będąc odpowiednio zaawansowanym użytkownikiem tej magii można przepisać - zmodyfikować runy stworzone przez kogoś innego, ale tym bardziej są złożone tym jest to trudniejsze.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Jutsu Shiki', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Jutsu Shiki to nazwa języka używanego w magii run, i wewnątrz uniwersum jest używane wręcz zamiennie, na potrzeby gry wyobraźni jest to specjalizacja w stawianiu statycznych run, najbardziej standardowych dla magii run.',
+        'Pozwala stawiać je efektywniej i utrzymać je dłużej lub pod większym naciskiem.'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Yami no Ekurityūru', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Yami no Ekerityure to odmiana magii run czerpiąca częściowo z magii ciemności i o znacznie wyższym potencjale ofensywnym niż standardowa.',
+        'Magia ta, przez pisanie run w powietrzu pozwala obierać na cel nawet oddalonych przeciwników i oddziaływać na nich z dystansu, ma także większe od standardowej magii run możliwości wzmacniania i transformacji użytkownika.'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Hikari no Ekurityūru', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'zaginiona',
+        'Świetlno-białomagiczno-święty odpowiednik Yamino Ecrityure, oparty na świętym świetle zamiast',
+        'Magia ta, przez pisanie run w powietrzu pozwala obierać na cel nawet oddalonych przeciwników i oddziaływać na nich z dystansu, ma także większe od standardowej magii run możliwości wzmacniania i transformacji użytkownika.'
+    );    
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Zdalne tworzenie run', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka'
+    );
+
+-- Magia Umysłu
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Magia Umysłu', FALSE, 'Magia',
         'atrybut', 'kategoria', 'rzadka',
         'Ogół magii oddziałujących na umysł lub umysły, spostrzeganie, pamięć, a także zwykłą komunikację.
 Niemal wszelkie formy kontroli umysłów i ciała istot żywych.',
         ''
     );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Telepatia', FALSE, 'Magia',
+        'atrybut', 'kategoria', 'rzadka',
+        'Magia komunikacji między umysłami, pozwalająca na czytanie w myślach, wysyłanie mentalnych wiadomości i rozmowy telepatyczne z użytkownikiem na dużą odległość, a nawet komunikację większej liczby osób używając magii użytkownika jako przekaźnika.',
+        ''
+    );
 
+-- Smocza magia
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Smocza magia', FALSE, 'Magia',
+        'Typ', 'kategoria', 'zaginiona',
+        'Magia pochodząca od smoków, przez zaklęcie w człowieku smoczej mocy danego żywiołu(niemal dowolnego atrybutu), czyni to moc skoncentrowaną i pozwala człowiekowi walczyć ze smokami - na których inne ataki zwykle nie robią wrażenia - z nawet zabójczą skutecznością (choć jej uzyskanie nie jest łatwe).',
+        'Użytkownik tej magii - Smoczy Zabójca - podobnie do smoków cieszy się niemal całkowitą odpornością na obrażenia od swojego żywiołu, pozwala ona mu też na to by jeść swój żywioł i magię tego żywiołu(ale nie swoją) aby zregenerować swoją magię i odzyskać siły, próby jedzenia innej kończą się zazwyczaj niepowodzeniem, a nawet gdy nie kończą się nim powodują ryzyko nawet kilkudniowej niestrawności, pozbawiającej wszelkich sił.
+Magia ta daje duże ogólne wzmocnienie ciała i zmysłów, ale ma też inny istotny skutek uboczny, u silnych magów tej magii występuje silna choroba lokomocyjna, zabijanie nią smoków przez dłuższy czas grozi dragonifikacją.'
+    );
+
+
+
+--Magia Tworzenia
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Magia Tworzenia', FALSE, 'Magia',
+        'Typ', 'kategoria(+1)', 'powszechna',
+        'Magia pozwalająca na tworzenie właściwie wszelkich kształtów i konstrukcji z odpowiadającego jej materiału(atrybutu), wyjątkiem jest magia tworzenia wspomnień tworząca raczej techniki magiczne.',
+        'Stworzone twory mogą służyć zarówno do ataku jak i obrony, czy zmylenia przeciwnika, mag może wprawić twór w prosty ruch zaraz po jego stworzeniu. Odmianą magii tworzenia wynoszącą to na nowy poziom jest magia dynamicznego tworzenia, pozwalająca na twory zdolne do aktywnego ruchu(choć nadal zasadniczo sterowanego przez maga), np. na bazie zwierząt, będące jak swego rodzaju golemy.'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Dynamiczne Tworzenie', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'powszechna',
+        '',
+        'Dynamiczne tworzenie w przeciwieństwie do zwykłego statycznego pozwala wprawiać twory w ruch już po ich stworzeniu pozwalając na dynamiczne zmiany kierunku czy tworzenie napędzanych magią golemów, np. w kształcie zwierząt.'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Tworzenie Diamentów', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Magia tworzenia z diamentów',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Dynamiczne Tworzenie', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka',
+        'Magia tworzenia z wszelkich kryształów, daje większy wybór materiałów niż inne ale mniejszą swobodę w kształtowaniu.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Tworzenie Kamienia', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'powszechna',
+        'Magia tworzenia z kamienia',
+        ''
+    );
+
+-- Magiczne przedmioty
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Magiczne przedmioty', FALSE, 'Magia',
+        'Typ', 'kategoria(+1)', 'powszechna',
+        'Ogólny zbiór magii i umiejętności opartych na konkretnych przedmiotach lub substancjach. Ich tworzeniu i obsłudze.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Płyny', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'kategoria(+1)', 'powszechna',
+        'Zbiór magii opartych na przygotowywaniu  i używaniu różnych rodzajów płynów do wywierania efektu na ludziach, innych istotach i otoczeniu.',
+        ''
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Mikstury', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Magia Perfum', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Magia Naparów', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+
+-- Zaklinanie
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Zaklinanie', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Zaklinanie ciała', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'rzadka'
+    );
+-- magia przestrzeni
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Magia Przestrzeni', FALSE, 'Magia',
+        'Typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Podmiana', FALSE, 'Magia',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+-- niemagiczne Umiejętności walki
+---- walka wręcz
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Walka wręcz', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Sztuki walki', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Hakowa Dłoń', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Zdolności zapaśnicze', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'rzadka'
+    );
+
+--- broń biała
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Broń Biała', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+---- Fechtunek
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Fechtunek', TRUE, 'Fizyczna',
+        'typ', 'kategoria', 'powszechna'
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Miecz', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Miecz jednoręczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Miecz dwuręczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Gigamiecz', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Katana', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Katana jednoręczna', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Katana dwuręczna', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Miecz dwuręczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Odachi(katana wielka)', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+---topory
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Topór', TRUE, 'Fizyczna',
+        'Typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Topór jednoręczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Topór dwuręczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Topór obosieczny', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+--Broń Drzewcowa
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Broń Drzewcowa', TRUE, 'Fizyczna',
+        'Typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Włócznie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Lance i kopie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+--- Broń Obuchowa
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Broń Obuchowa', TRUE, 'Fizyczna',
+        'Typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Młoty i oskardy', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Kije', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Kostury', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Kije Elastyczne', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
+
+--- Walka dystansowa(+1)
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Walka dystansowa', TRUE, 'Fizyczna',
+        'Typ', 'kategoria(+1)', 'powszechna'
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń miotana', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'oszczepy', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'noże', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+--- broń miotająca
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń miotająca', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+
+--- broń strzelecka
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń strzelecka', TRUE, 'Fizyczna',
+        'typ', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'łuki', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'kusze', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń palna', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń palna krótka', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'broń palna długa', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'strzelanie z wierzchowca', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'rzadka'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'strzelanie w ruchu', TRUE, 'Fizyczna',
+        'specjalizacja', 'umiejętność', 'rzadka'
+    );
+
+--Ogólne
+--- Sztuka przetrwania
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'łowiectwo', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'polowanie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'łowienie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'łowienie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'nawigacja', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'mapy', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+---- pierwsza pomoc
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'pierwsza pomoc', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'opatrywanie ran', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'znajomość ziół leczniczych', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'zaawansowana medycyna', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+--- Podróż
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'jeździectwo', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'prowadzenie pojazdów', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'czterokołowce', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'statki', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'poruszanie', TRUE, 'Fizyczna',
+        'typ', 'kategoria(+1)', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'pływanie', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'wspinaczka', TRUE, 'Fizyczna',
+        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
+    );
 
 -- ==========================================
 -- 2.A. Podległość
@@ -637,6 +1734,500 @@ INSERT
     VALUES
     (
         'Niebo','Niebiańska magia'
+    );
+--- Ziemia
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Ziemia','Zmiękczanie ziemi'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Ziemia','Kamień(utwardzanie ziemi)'
+    );
+-- Kryształy
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Kryształy','Diamenty'
+    );
+
+
+-- Sztorm
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna, minimalny_poziom
+    )
+    VALUES
+    (
+        'Wiatr','Sztorm', 3
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Błyskawica','Sztorm'
+    );
+-- Biel i Światło
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Biel i Światło','Białe sztuki'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Białe sztuki','Puryfikacja'
+    );
+
+-- Dane i symbole
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Dane i symbole','Archiwum'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Dane i symbole','Runy'
+    );
+--- Archiwum
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna, minimalny_poziom
+    )
+    VALUES
+    (
+        'Archiwum','Super Archiwum', 5
+    );
+--- Runy
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Runy','Jutsu Shiki'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Runy','Yami no Ekurityūru'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Runy','Hikari no Ekurityūru'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Runy','Zdalne tworzenie run'
+    );
+
+--Magia Tworzenia
+---- Tworzenie Diamentów
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Diamenty','Tworzenie Diamentów'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Magia Tworzenia','Tworzenie Diamentów'
+    );
+----Tworzenie Kryształów
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Kryształy','Tworzenie Kryształów'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Magia Tworzenia','Tworzenie Kryształów'
+    );
+----Tworzenie Kamienia
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Kamień(utwardzanie Ziemi)','Tworzenie Kamienia'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Magia Tworzenia','Tworzenie Kamienia'
+    );
+
+-- Magiczne przedmioty - Płyny
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Magiczne przedmioty','Płyny'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Płyny','Mikstury'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Płyny','Magia Perfum'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Płyny','Magia Naparów'
+    );
+-- Zaklinanie
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Zaklinanie','Zaklinanie ciała'
+    );    
+
+-- Magia Przestrzeni
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Magia Przestrzeni','Podmiana'
+    );    
+
+-- Umiejętności walki
+--- walka wręcz
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Walka Wręcz','Sztuki walki'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Walka Wręcz','Zdolności zapaśnicze'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Sztuki walki','Hakowa Dłoń'
+    );
+
+--- Broń Biała
+---- fechtunek
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Biała','Fechtunek'
+    );
+
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Fechtunek','Miecz'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Fechtunek','Katana'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Fechtunek','Szabla'
+    );
+----- Miecz
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Miecz','Miecz jednoręczny'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Miecz','Miecz dwuręczny'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Miecz','Gigamiecz'
+    );
+----- Katana
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Katana','Katana jednoręczna'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Katana','Katana dwuręczna'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Katana','Odachi(katana wielka)'
+    );
+
+--- Topór
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Biała','Topór'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Topór','Topór jednoręczny'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Topór','Topór dwuręczny'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Topór','Topór obosieczny'
+    );
+
+--- Broń Drzewcowa
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Biała','Broń Drzewcowa'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Drzewcowa','Włócznie'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Drzewcowa','Lance i kopie'
+    );
+
+--- Broń Obuchowa
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Biała','Broń Obuchowa'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Obuchowa','Młoty i oskardy'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Broń Obuchowa','Kije'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Kije','Kostury'
+    );
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+        'Kije','Kije Elastyczne'
     );
 
 

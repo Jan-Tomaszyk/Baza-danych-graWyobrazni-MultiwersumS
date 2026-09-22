@@ -643,3 +643,38 @@ INSERT
         '',
         ''
     );
+
+
+INSERT
+    INTO Umiejętności
+    (   
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Roślinna', FALSE, 'Magia',
+        'atrybut', 'kategoria(+1)', 'powszechna',
+        'Magie opierające się na tworzeniu i manipulacji roślinami, czasem ich elementami.',
+        ''
+    );
+
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność,
+        Opis_fabularny,
+        Opis_praktyczny
+    )
+    VALUES
+    (
+        'Magia umysłu', FALSE, 'Magia',
+        'atrybut', 'kategoria', 'rzadka',
+        'Ogół magii oddziałujących na umysł lub umysły, spostrzeganie, pamięć, a także zwykłą komunikację.
+Niemal wszelkie formy kontroli umysłów i ciała istot żywych.',
+        ''
+    );
+

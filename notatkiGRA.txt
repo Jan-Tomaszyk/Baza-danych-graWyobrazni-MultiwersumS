@@ -1,0 +1,64 @@
+specjalizacja
+
+Jutsu Shiki
+Natura: Magia
+Rodzaj: specjalizacja
+Umiejętności nadrzędne: 
+Archiwum
+Samodzielność: umiejętność
+Dostępność: rzadka
+Opis fabularny: Wyższa forma magii archiwum pozwalająca nie tylko na przetwarzanie informacji, ale też zdalną obsługę magicznych broni a nawet częściową zmianę zaklęć pieczętujących.
+Opis praktyczny: 
+Umiejętności podrzędne/specjalizacje:
+magia informatyczna(Nie dodajemy)króle
+
+
+rzeczy do dopytania Maćka:
+kwestia Yamino Ecrityure i Yamino Ecrityure jako magii oczu
+
+kwestia kryształów i diamentów - na ile kryształy powinny występować jako oddzielna umiejętność, a nie kategoria+1 tudzież na ile diamenty powinny być traktowane jako umiejętność a na ile jako specjalizacja...
+
+
+
+--Magia Tworzenia
+
+39 - Narodzint Rave'a
+Rok 15 kalendarza królewskiego, 51 lat temu - 
+królestwo(Leagrove?) kontrolowane przez potężne siły, by powstrzymać ich ekspansję małe państewko zadeklarowało sojusze i zadeklarowało wojnę przeciwko reżimowi (państewko: krzyż a zanim miecze(proste, rękojeść szablowa)). 
+Piekielne królestwo - "Leagrove"; Królestwo miłości i spokoju - "Symphonia"
+Resha zdaje się mieć inne rozebrania w czasie tańca niż ubrannia scenę potem.
+Leagrove tworzy Darkbringi. Symphonia w odpowiedzi tworzy Holybringi dzięki Etherionowi zwanego mocą "pochodzącą bezpośrednio od Boga". Shiba wyznaczony by razem z 4 niebiańskich wojowników(Alpine(ma róg/spiczaste ucho), Dearhound, Clea Maltese, Dalmation), 
+Śmierć Reshy podczas  stworzenia ostatniego Holybringa. Z jej życzenia zostanie dany Shibie, a on postanawia chronić ten świat wyzbywając się wcześniejszego egoizmu z miłości do niej. Musica tworzy dla niego miecz, a po włożeniu holubringa miecz stał się ciężki. Nazwę Holybringi zmieniono na "Rave'y" na upamiętnienie Reshy Valentine.
+
+
+Magia tworzenia z kamienia
+magie Łukasz:
+Magiczne przedmioty
+płyny(+1)
+mikstury
+magia perfum
+napary
+biel/światło
+Białe sztuki
+Puryfikacja
+
+Jan
+
+Zaklinanie	9
+Zaklinanie ciała	7
+
+błyskawic	3
+biel/światło	3
+
+Piotr:
+magia przestrzeni
+Runy -> zdalne tworzenie run	12
+
+Józef:
+magia drewna	10
+magia żywicy	10
+magia tworzenia(+1)	10
+tworzenie drewna 	10
+dynamiczne	10
+Autonomiczne	10
+
