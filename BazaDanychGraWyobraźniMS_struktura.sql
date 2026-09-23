@@ -473,9 +473,9 @@ CREATE TABLE Rangi_klasowe
     bonusy_za_rangę TEXT,
     --bonus_do_cech_na_poziom NUMERIC(8, 7),
     bonus_do_cech_co_poziomów INTEGER NOT NULL
-        CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe CHECK(bonus_do_cech_co_poziomów>0),
+        CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe CHECK(bonus_do_cech_co_poziomów>=0),
     bonus_do_cech_wartość NUMERIC(2, 1) NOT NULL
-        CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>0),
+        CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>=0),
     punkty_cech_na_awans INTEGER NOT NULL 
         CONSTRAINT naturalne_punkty_cech_na_awans_Rangi_klasowe CHECK(punkty_cech_na_awans>=0),
     minimalne_punkty_klasowe INTEGER NOT NULL
@@ -1631,7 +1631,7 @@ SELECT
     Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność_klasowa + r.Zwinność + COALESCE(b.Zwinność,0)                           AS Zwinność,
     Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja_klasowa + r.Kondycja + COALESCE(b.Kondycja,0) - COALESCE(Mod_wiekowy_starczy,0) AS Kondycja,
     Rasy_Nazwa                                                                                                AS Nazwa_Rasy 
-FROM r LEFT JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci 
+FROM r LEFT JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci; 
 
 ---Statystyki Naturalne(Bazowe+Klasowe)
 ---Statystyki Bazowe
@@ -1652,7 +1652,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Naturalne.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Naturalne.Nazwa_Rasy=RASY.Nazwa;
 
 
 --PRZEDMIOTY I
@@ -1706,7 +1706,7 @@ FROM Postacie Pos
     INNER JOIN Przedmioty Prz ON EP.Przed_Nazwa = Prz.Przed_Nazwa
     LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
     LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
-
+;
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów_postaci AS
 SELECT
     ID_postaci,
@@ -1754,7 +1754,7 @@ SELECT
     COALESCE(BzP.Pancerz_Twardy,0)                    AS Pancerz_Twardy,
     COALESCE(BzP.Ochrona_przed_zimnem,0)              AS Ochrona_przed_zimnem
 FROM bonusy_z_przedmiotów_postaci BzP RIGHT JOIN Postacie_Cechy_Naturalne PCN ON BzP.ID_postaci=PCN.ID_postaci
-
+;
 ---Statystyki Efektywne
 CREATE OR REPLACE VIEW Statystyki_Efektywne_Postaci AS
 SELECT
@@ -1773,7 +1773,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem
 FROM Postacie_Cechy_Efektywne
-
+;
 --KLASY_PRZECIWNIKÓW
 ---Cechy - widok techniczny - 
 CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy AS
@@ -1861,7 +1861,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników INNER JOIN Rasy ON Klasy_Przeciwników.Rasy_Nazwa=RASY.Nazwa--?INDEKSUJ?;
+FROM Klasy_Przeciwników INNER JOIN Rasy ON Klasy_Przeciwników.Rasy_Nazwa=RASY.Nazwa;
 
 ---- Statystyki minimalne 
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne AS
@@ -1880,7 +1880,7 @@ SELECT
     Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_minimalne 
     INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_minimalne.Nazwa_Rasy=RASY.Nazwa
-
+;
 
 ---- Statystyki maksymalne
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne AS
@@ -1898,7 +1898,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_maksymalne 
-    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa
+    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa;
 
 
 
@@ -2105,7 +2105,7 @@ FROM Przedmioty_Przeciwników PP
     INNER JOIN Przedmioty Prz ON PP.Przed_Nazwa = Prz.Przed_Nazwa
     LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
     LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
-
+;
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów_przeciwników AS
 SELECT
     Klasa_przeciwnika,
@@ -2125,7 +2125,7 @@ SELECT
     SUM(Ochrona_przed_zimnem) AS Ochrona_przed_zimnem
 FROM bonusy_z_przedmiotów_klas_przec
 GROUP BY Klasa_przeciwnika
-
+;
 
 --KLASY PRZECIWNIKÓW II
 
@@ -2205,7 +2205,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem,
     Nazwa_Rasy 
-FROM Klasy_Przeciwników_Cechy_Efektywne
+FROM Klasy_Przeciwników_Cechy_Efektywne;
 
 ---Statystyki Efektywne
 -----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
@@ -2229,7 +2229,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne
+FROM Klasy_Przeciwników_Cechy_Efektywne;
 
 ---- Statystyki minimalne 
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne_EFEKTYWNE AS
@@ -2246,7 +2246,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne_minimalne
+FROM Klasy_Przeciwników_Cechy_Efektywne_minimalne;
 
 ---- Statystyki maksymalne
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne_EFEKTYWNE AS
@@ -2263,11 +2263,11 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne_maksymalne 
+FROM Klasy_Przeciwników_Cechy_Efektywne_maksymalne;
 
 ---funkcje cech i statystyk efektywnych
 
-CREATE FUNCTION oblicz_cechy_efektywne_klasy_przeciwnika
+CREATE OR REPLACE FUNCTION oblicz_cechy_efektywne_klasy_przeciwnika
 (
     p_klasa varchar,
     p_poziom integer
@@ -2324,7 +2324,7 @@ WHERE Nazwa=p_klasa
 AND p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
 $$;
 
-CREATE FUNCTION oblicz_cechy_efektywne_klas_przeciwników
+CREATE OR REPLACE FUNCTION oblicz_cechy_efektywne_klas_przeciwników
 (
     p_poziom integer
 )

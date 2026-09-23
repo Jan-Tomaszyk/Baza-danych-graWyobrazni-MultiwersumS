@@ -33,7 +33,7 @@ INSERT
     )
     VALUES
     (
-        'człowiek', TRUE,
+        'Człowiek', TRUE,
         20,	20,	20,	20,	20,
         5,  	5,	5,	10,	10,	10,
         NULL,
@@ -54,7 +54,7 @@ INSERT
     )
     VALUES
     (
-        'przewyższający', TRUE,
+        'Przewyższający', TRUE,
         15,	13,	18,	18,	24,
         7,  	5,	4,	11,	10,	8,
         'Jako kocia rasa mają chowane pazury. Każdy przewyższający ma dostęp do magii area, zyskują ją od razu na 1 poziomie, ponadto mogą używać magii nawet bez ethernano.',
@@ -62,9 +62,9 @@ INSERT
         NULL, 'Pochodzą ze świata Edolas, setki jaj zostało rozrzuconych po całym Ishgardzie.
 Po upadku Extalii wszyscy zostali wciągnięci przez Animę do Ishgardu.
 Większość społeczności ma siedzibę przypuszczalnie w okolicach Magnolii.',
-        400, 350, "Mają kocie ciała, ale dwunożne jak ciała ludzi, są bardzo niskiego wzrostu sięgają człowiekowi do kolan.
+        400, 350, 'Mają kocie ciała, ale dwunożne jak ciała ludzi, są bardzo niskiego wzrostu sięgają człowiekowi do kolan.
         Mają proporcjonalnie bardzo dużą głowę i stosunkowo krótkie łapki. Wykluwają się z jajek.
-        Wszystkożerne, często gustują w rybach, najlepiej na surowo, choć nie zawsze."
+        Wszystkożerne, często gustują w rybach, najlepiej na surowo, choć nie zawsze.'
     );
 INSERT
     INTO Rasy 
@@ -79,7 +79,7 @@ INSERT
     )
     VALUES
     (
-        'smok', TRUE,
+        'Smok', TRUE,
         50,	50,	40,	32,	35,
         10, 	10,	10,	10,	5,	12,
         'Powiązane z żywiołami cechują się odpornością na swój żywioł dzięki swojej magii i różnymi rodzajami pancerza zależnymi od budowy ich łusek i skóry.
@@ -195,11 +195,11 @@ INSERT
     (
         'Vulkan', FALSE,
         27,	24,	21,	21,	21,
-        7,	3,	5,	8,	0,	8,
+        7,	3,	5,	8,	1,	8,
         'Przejęcie(wchłonięcie) - ma zawsze dostęp do alternatywnej techniki przejęcia - przejęty jest pochłonięty a ciało Vulkana czerpie z niego energię, jeśli jego energia nie została zużyta to po pokonaniu Vulcana proces zostaje cofnięty.',
         0,	0,	5,	10,
         'Bestii(Beast soul)', 'Góry i lasy.',
-        60	45, 'Polują na ludzi, wszystkożerne.'
+        60,	45, 'Polują na ludzi, wszystkożerne.'
     );
 INSERT
     INTO Rasy 
@@ -216,17 +216,17 @@ INSERT
     (
         'Wiwerna', FALSE,
         30,	30,	25,	22,	26,
-        6,	5,	6,	0,	0,	10,
+        6,	5,	6,	1,	1,	10,
         'Lot, pancerz, częściowo kolczasty pancerz - szansa na oddanie części lub całości obrażeń przeciwnikowi',
         5,	15,	0,	5,
         NULL, 'Góry i lasy.',
         110, 90, 'Roślinożerne ale bardzo terytorialne i nie dzielą się jedzeniem.'
     );
 --ustawienie Rasy domyślnej:
-ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'człowiek';
+ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'Człowiek';
+
 
 SELECT * FROM RASY;
-
 Commit
 Rollback
 
@@ -330,10 +330,9 @@ INSERT
         ''
     );
 
-
 --- woda
 INSERT
-    INTO  
+    INTO Umiejętności  
     (
         Nazwa, Poboczna, Natura,
         Rodzaj, Samodzielność, Dostępność,
@@ -441,7 +440,7 @@ INSERT
     )
     VALUES
     (
-        'wiatr', FALSE, 'Magia',
+        'Wiatr', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
         'Umożliwia użytkownikom generowanie wiatru i kontrolowanie go.',
         'Magia wiatru ma dużą moc ofensywną, pozwala potężne podmuchy wiatry, cięcia wiatrem niewielkimi wiatrowymi ostrzami i tworzenie huraganów(które również mogą czasem wręcz ciąć przeciwników). 
@@ -474,7 +473,7 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
         'Ziemia', FALSE, 'Magia',
         'atrybut', 'umiejętność', 'powszechna',
@@ -489,7 +488,7 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
         'Kamień(utwardzanie ziemi)', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
@@ -505,9 +504,9 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
-        'Ziemia', FALSE, 'Magia',
+        'Zmiękczanie ziemi', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
         'Magia opierających się na manipulacji ziemią z otoczenia i jej zmiękczaniu lub nawet upłynnianiu.
 Pozwala to nurkować w ziemię i podróżować przez nią przez kopanie w niej tuneli lub powodować zapadanie się ziemi pod wrogiem.',
@@ -677,6 +676,7 @@ INSERT
         ''
     );
 
+INSERT
     INTO Umiejętności
     (
         Nazwa, Poboczna, Natura,
@@ -794,7 +794,7 @@ INSERT
     VALUES
     (
         'Smocza magia', FALSE, 'Magia',
-        'Typ', 'kategoria', 'zaginiona',
+        'typ', 'kategoria', 'zaginiona',
         'Magia pochodząca od smoków, przez zaklęcie w człowieku smoczej mocy danego żywiołu(niemal dowolnego atrybutu), czyni to moc skoncentrowaną i pozwala człowiekowi walczyć ze smokami - na których inne ataki zwykle nie robią wrażenia - z nawet zabójczą skutecznością (choć jej uzyskanie nie jest łatwe).',
         'Użytkownik tej magii - Smoczy Zabójca - podobnie do smoków cieszy się niemal całkowitą odpornością na obrażenia od swojego żywiołu, pozwala ona mu też na to by jeść swój żywioł i magię tego żywiołu(ale nie swoją) aby zregenerować swoją magię i odzyskać siły, próby jedzenia innej kończą się zazwyczaj niepowodzeniem, a nawet gdy nie kończą się nim powodują ryzyko nawet kilkudniowej niestrawności, pozbawiającej wszelkich sił.
 Magia ta daje duże ogólne wzmocnienie ciała i zmysłów, ale ma też inny istotny skutek uboczny, u silnych magów tej magii występuje silna choroba lokomocyjna, zabijanie nią smoków przez dłuższy czas grozi dragonifikacją.'
@@ -814,7 +814,7 @@ INSERT
     VALUES
     (
         'Magia Tworzenia', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna',
+        'typ', 'kategoria(+1)', 'powszechna',
         'Magia pozwalająca na tworzenie właściwie wszelkich kształtów i konstrukcji z odpowiadającego jej materiału(atrybutu), wyjątkiem jest magia tworzenia wspomnień tworząca raczej techniki magiczne.',
         'Stworzone twory mogą służyć zarówno do ataku jak i obrony, czy zmylenia przeciwnika, mag może wprawić twór w prosty ruch zaraz po jego stworzeniu. Odmianą magii tworzenia wynoszącą to na nowy poziom jest magia dynamicznego tworzenia, pozwalająca na twory zdolne do aktywnego ruchu(choć nadal zasadniczo sterowanego przez maga), np. na bazie zwierząt, będące jak swego rodzaju golemy.'
     );
@@ -858,7 +858,7 @@ INSERT
     )
     VALUES
     (
-        'Dynamiczne Tworzenie', FALSE, 'Magia',
+        'Tworzenie Kryształów', FALSE, 'Magia',
         'specjalizacja', 'umiejętność', 'rzadka',
         'Magia tworzenia z wszelkich kryształów, daje większy wybór materiałów niż inne ale mniejszą swobodę w kształtowaniu.',
         ''
@@ -891,7 +891,7 @@ INSERT
     VALUES
     (
         'Magiczne przedmioty', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna',
+        'typ', 'kategoria(+1)', 'powszechna',
         'Ogólny zbiór magii i umiejętności opartych na konkretnych przedmiotach lub substancjach. Ich tworzeniu i obsłudze.',
         ''
     );
@@ -977,7 +977,7 @@ INSERT
     VALUES
     (
         'Magia Przestrzeni', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna'
+        'typ', 'kategoria(+1)', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -993,6 +993,7 @@ INSERT
 
 -- niemagiczne Umiejętności walki
 ---- walka wręcz
+
 INSERT
     INTO Umiejętności
     (
@@ -1149,7 +1150,7 @@ INSERT
     )
     VALUES
     (
-        'Miecz dwuręczny', TRUE, 'Fizyczna',
+        'Odachi(katana wielka)', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
 INSERT
@@ -1160,9 +1161,10 @@ INSERT
     )
     VALUES
     (
-        'Odachi(katana wielka)', TRUE, 'Fizyczna',
+        'Szabla', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
+
 
 ---topory
 INSERT
@@ -1174,7 +1176,7 @@ INSERT
     VALUES
     (
         'Topór', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1220,7 +1222,7 @@ INSERT
     VALUES
     (
         'Broń Drzewcowa', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1255,7 +1257,7 @@ INSERT
     VALUES
     (
         'Broń Obuchowa', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1312,7 +1314,7 @@ INSERT
     VALUES
     (
         'Walka dystansowa', TRUE, 'Fizyczna',
-        'Typ', 'kategoria(+1)', 'powszechna'
+        'typ', 'kategoria(+1)', 'powszechna'
     );
 
 INSERT
@@ -1474,17 +1476,6 @@ INSERT
     VALUES
     (
         'polowanie', TRUE, 'Fizyczna',
-        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
-    );
-INSERT
-    INTO Umiejętności
-    (
-        Nazwa, Poboczna, Natura,
-        Rodzaj, Samodzielność, Dostępność
-    )
-    VALUES
-    (
-        'łowienie', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
 INSERT
@@ -1733,7 +1724,7 @@ INSERT
     )
     VALUES
     (
-        'Niebo','wiatr'
+        'Niebo','Wiatr'
     );
 INSERT
     INTO Podległość
@@ -1928,7 +1919,7 @@ INSERT
     )
     VALUES
     (
-        'Kamień(utwardzanie Ziemi)','Tworzenie Kamienia'
+        'Kamień(utwardzanie ziemi)','Tworzenie Kamienia'
     );
 INSERT
     INTO Podległość
@@ -2239,6 +2230,15 @@ INSERT
         'Kije','Kije Elastyczne'
     );
 
+--test:
+SELECT * FROM Umiejętności;
+SELECT * FROM Podległość ORDER BY wymagana_nadrzędna, podrzędna;
+SELECT * 
+FROM Podległość INNER JOIN Umiejętności U ON Podległość.wymagana_nadrzędna = U.Nazwa
+WHERE U.poboczna = TRUE
+ORDER BY wymagana_nadrzędna, podrzędna;
+
+
 Commit
 Rollback
 
@@ -2374,32 +2374,33 @@ Rollback
 -- 3.B. Rangi_klasowe
 -- ==========================================
 
-ALTER TABLE SBD164306.Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
+ALTER TABLE Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
 ---rangi maga
 Begin;
-INSERT INTO SBD164306.Rangi_klasowe
+Rollback;
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+)
+        'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+) | 
 Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
         0, 0, 0,
         10,
         'Mag',
         NULL, 'Akolita'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2412,12 +2413,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Nowicjusz', 'Adept'
     ); 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2431,12 +2432,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Akolita', 'Zaawansowany mag'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2453,12 +2454,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Adept', 'Ekspert'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2476,12 +2477,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Zaawansowany mag', 'Mistrz'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2500,12 +2501,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Ekspert', 'Arcymistrz'
     );
 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2528,18 +2529,18 @@ SELECT * FROM Rangi_klasowe;
 Commit
 Rollback
 
-ALTER TABLE SBD164306.Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
-UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
+ALTER TABLE Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
+UPDATE Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
     SET Nazwa = Nazwa WHERE Nazwa = 'Nowicjusz';
 
 ---rangi rycerza
 Begin;
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
@@ -2551,12 +2552,12 @@ dostęp do podstawowych broni w zbrojowni(+)',
         'Rycerz',
         NULL, 'Akolita'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2569,12 +2570,12 @@ dostęp do podstawowych broni w zbrojowni(=)',
         'Rycerz',
         'Nowicjusz', 'Adept'
     ); 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2589,12 +2590,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Rycerz',
         'Akolita', 'Zaawansowany rycerz'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2611,12 +2612,12 @@ INSERT INTO SBD164306.Rangi_klasowe
         'Mag',
         'Adept', 'Ekspert'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
@@ -2634,7 +2635,7 @@ dodatkowy punkt do wykorzystania na specjalizacje bitewne (3 i większy poziom z
         'Mag',
         'Zaawansowany mag', 'Mistrz'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
@@ -2658,12 +2659,12 @@ modyfikator +3/+4/+5/+6 (w zależności od klasy trudności testu) do testów w 
         'Ekspert', 'Arcymistrz'
     );
 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
         bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
         minimalne_punkty_klasowe,
-        Klasy_nazwa,
+        Klasa_nazwa,
         Nastepna_ranga, Poprzednia_ranga
     )
     VALUES
