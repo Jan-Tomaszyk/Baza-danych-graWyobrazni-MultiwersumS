@@ -703,3 +703,4 @@ ALTer TABLE Rangi_klasowe DROP CONSTRAINT naturalne_bonus_do_cech_co_poziomów_R
 ALTer TABLE Rangi_klasowe DROP CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe   CHECK(bonus_do_cech_co_poziomów>=0)
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>=0)
+DELETE FROM Rangi_klasowe WHERE Klasa_nazwa = 'Rycerz'
