@@ -224,6 +224,7 @@ INSERT
     );
 --ustawienie Rasy domyślnej:
 ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'Człowiek';
+ALTER TABLE Klasy_Przeciwników ALTER COLUMN Rasy_Nazwa SET DEFAULT 'Człowiek';
 
 
 SELECT * FROM RASY;

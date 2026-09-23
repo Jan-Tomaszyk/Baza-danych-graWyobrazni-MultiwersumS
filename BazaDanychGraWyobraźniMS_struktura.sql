@@ -2496,7 +2496,7 @@ WHERE
 )
 ;
 
-CREATE OR REPLACE VIEW maksymalne_poziomy_umiejętności_postaci AS
+CREATE OR REPLACE VIEW maksymalne_poziomy_umiejętności_postaci AS--wszystkich do opanowania i podwyższenia
 SELECT
     p.ID_postaci,
     u.Nazwa AS Nazwa_Umiejętności,
