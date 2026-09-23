@@ -666,7 +666,42 @@ WHERE Imię='Michał';
 
 SELECT * FROM kontrola_cech_postaci WHERE Imię='Michał';
 
--- -- 2.1.3 sprawdzanie:  umiejętności postaci możliwych do opanowania i podwyższenia
+-- -- 2.1.3 sprawdzanie:  umiejętności postaci możliwe do opanowania lub podwyższenia
 
+SELECT u.id_postaci,  u."nazwa_umiejętności", maksymalny_poziom, o.poziom AS obecny_poziom
+FROM maksymalne_poziomy_umiejętności_postaci u LEFT JOIN Opanowane o 
+    ON u.id_postaci=o.Postacie_ID AND u."nazwa_umiejętności"=o.Umiejętności_Nazwa
+WHERE id_postaci=4 AND maksymalny_poziom>0;
 
 -- -- 2.1.4 wykonanie na umiejętnościach
+--- umiejętności magiczne o łącznie 2
+UPDATE Opanowane 
+SET 
+--podwyższamy poziom
+    Poziom=Poziom+1
+WHERE Postacie_ID=4 AND Umiejętności_Nazwa IN ('Kryształy','Diamenty');
+
+--- umiejętności poboczne, normalnie o łącznie 4, ale pierwsza pomoc w którą inwestujemy 1 to kategoria +1,
+---- więc +1 dla opatrywania ran się nie wlicza  
+UPDATE Opanowane 
+SET 
+--podwyższamy poziom
+    Poziom=2
+WHERE Postacie_ID=4 AND Umiejętności_Nazwa IN ('pierwsza pomoc','opatrywanie ran', 'Miecz dwuręczny', 'mapy');
+---- w związku z tym możemy też coś dodać, dodajemy więc
+INSERT
+    INTO Opanowane
+    (
+        Umiejętności_Nazwa,
+        Postacie_ID,
+        poziom
+    )
+    VALUES
+    (
+        'Walka Wręcz', 4, 1
+    );
+
+SELECT u.id_postaci,  u."nazwa_umiejętności", maksymalny_poziom, o.poziom AS obecny_poziom
+FROM maksymalne_poziomy_umiejętności_postaci u LEFT JOIN Opanowane o 
+    ON u.id_postaci=o.Postacie_ID AND u."nazwa_umiejętności"=o.Umiejętności_Nazwa
+WHERE id_postaci=4 AND maksymalny_poziom>0;

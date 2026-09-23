@@ -1014,7 +1014,7 @@ INSERT
     )
     VALUES
     (
-        'Walka wręcz', TRUE, 'Fizyczna',
+        'Walka Wręcz', TRUE, 'Fizyczna',
         'typ', 'umiejętność', 'powszechna'
     );
 INSERT
