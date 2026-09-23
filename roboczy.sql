@@ -704,3 +704,15 @@ ALTer TABLE Rangi_klasowe DROP CONSTRAINT naturalne_bonus_do_cech_wartość_Rang
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe   CHECK(bonus_do_cech_co_poziomów>=0)
 ALTER TABLE Rangi_klasowe ADD CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>=0)
 DELETE FROM Rangi_klasowe WHERE Klasa_nazwa = 'Rycerz'
+
+
+INSERT
+    INTO Opanowane
+    (
+        Postacie_ID, Umiejętności_Nazwa, poziom
+    )
+    VALUES
+    (
+        2, 'Sztorm', 1    
+    );
+UPDATE rangi_klasowe SET bonus_do_cech_co_poziomów=1 WHERE bonus_do_cech_co_poziomów=0

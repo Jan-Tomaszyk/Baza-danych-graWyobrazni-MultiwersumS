@@ -473,7 +473,7 @@ CREATE TABLE Rangi_klasowe
     bonusy_za_rangę TEXT,
     --bonus_do_cech_na_poziom NUMERIC(8, 7),
     bonus_do_cech_co_poziomów INTEGER NOT NULL
-        CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe CHECK(bonus_do_cech_co_poziomów>=0),
+        CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe CHECK(bonus_do_cech_co_poziomów>0),
     bonus_do_cech_wartość NUMERIC(2, 1) NOT NULL
         CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>=0),
     punkty_cech_na_awans INTEGER NOT NULL 

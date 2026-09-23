@@ -879,6 +879,17 @@ INSERT
         'Magia tworzenia z kamienia',
         ''
     );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Kamienne Osłony', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
 
 -- Magiczne przedmioty
 INSERT
@@ -1767,6 +1778,17 @@ INSERT
     );
 
 
+
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+      'Kamień(utwardzanie ziemi)','Kamienne Osłony'
+    );
+
 -- Sztorm
 INSERT
     INTO Podległość
@@ -2391,7 +2413,7 @@ INSERT INTO Rangi_klasowe
     (
         'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+) | 
 Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
-        0, 0, 0,
+        1, 0, 0,
         10,
         'Mag',
         NULL, 'Akolita'
@@ -2409,7 +2431,7 @@ INSERT INTO Rangi_klasowe
         'Akolita',
         'dostęp do podstawowych ksiąg magicznych w bibliotekach(=) | 
         Zdolności magiczne wymagają poziomu doświadczenia niższego o 3/5,  ponadto bazowy poziom wynosi (N^2)/1,25 (!)',
-        0, 0, 1,
+        1, 0, 1,
         100,
         'Mag',
         'Nowicjusz', 'Adept'
@@ -2551,7 +2573,7 @@ INSERT INTO Rangi_klasowe
     (
         'Nowicjusz', 'dostęp do podstawowych ksiąg bitewnych w bibliotekach (+) | 
 dostęp do podstawowych broni w zbrojowni(+)',
-        0, 0, 0,
+        1, 0, 0,
         10,
         'Rycerz',
         NULL, 'Akolita'
@@ -2569,7 +2591,7 @@ INSERT INTO Rangi_klasowe
         'Akolita',
         'dostęp do podstawowych ksiąg bitewnych w bibliotekach(=) | 
 dostęp do podstawowych broni w zbrojowni(=)',
-        0, 0, 1,
+        1, 0, 1,
         100,
         'Rycerz',
         'Nowicjusz', 'Adept'
