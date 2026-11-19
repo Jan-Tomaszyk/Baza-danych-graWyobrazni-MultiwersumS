@@ -19,6 +19,7 @@ ALTER TABLE Rasy ALTER COLUMN Pancerz_miękki SET DEFAULT 0;
 ALTER TABLE Rasy ALTER COLUMN Pancerz_twardy SET DEFAULT 0;
 ALTER TABLE Rasy ALTER COLUMN Ochrona_przed_zimnem SET DEFAULT 0;
 --- wstawianie ras
+Begin;
 INSERT
     INTO Rasy 
     (
@@ -32,7 +33,7 @@ INSERT
     )
     VALUES
     (
-        'człowiek', TRUE,
+        'Człowiek', TRUE,
         20,	20,	20,	20,	20,
         5,  	5,	5,	10,	10,	10,
         NULL,
@@ -53,7 +54,7 @@ INSERT
     )
     VALUES
     (
-        'przewyższający', TRUE,
+        'Przewyższający', TRUE,
         15,	13,	18,	18,	24,
         7,  	5,	4,	11,	10,	8,
         'Jako kocia rasa mają chowane pazury. Każdy przewyższający ma dostęp do magii area, zyskują ją od razu na 1 poziomie, ponadto mogą używać magii nawet bez ethernano.',
@@ -61,9 +62,9 @@ INSERT
         NULL, 'Pochodzą ze świata Edolas, setki jaj zostało rozrzuconych po całym Ishgardzie.
 Po upadku Extalii wszyscy zostali wciągnięci przez Animę do Ishgardu.
 Większość społeczności ma siedzibę przypuszczalnie w okolicach Magnolii.',
-        400, 350, "Mają kocie ciała, ale dwunożne jak ciała ludzi, są bardzo niskiego wzrostu sięgają człowiekowi do kolan.
+        400, 350, 'Mają kocie ciała, ale dwunożne jak ciała ludzi, są bardzo niskiego wzrostu sięgają człowiekowi do kolan.
         Mają proporcjonalnie bardzo dużą głowę i stosunkowo krótkie łapki. Wykluwają się z jajek.
-        Wszystkożerne, często gustują w rybach, najlepiej na surowo, choć nie zawsze."
+        Wszystkożerne, często gustują w rybach, najlepiej na surowo, choć nie zawsze.'
     );
 INSERT
     INTO Rasy 
@@ -78,7 +79,7 @@ INSERT
     )
     VALUES
     (
-        'smok', TRUE,
+        'Smok', TRUE,
         50,	50,	40,	32,	35,
         10, 	10,	10,	10,	5,	12,
         'Powiązane z żywiołami cechują się odpornością na swój żywioł dzięki swojej magii i różnymi rodzajami pancerza zależnymi od budowy ich łusek i skóry.
@@ -194,11 +195,11 @@ INSERT
     (
         'Vulkan', FALSE,
         27,	24,	21,	21,	21,
-        7,	3,	5,	8,	0,	8,
+        7,	3,	5,	8,	1,	8,
         'Przejęcie(wchłonięcie) - ma zawsze dostęp do alternatywnej techniki przejęcia - przejęty jest pochłonięty a ciało Vulkana czerpie z niego energię, jeśli jego energia nie została zużyta to po pokonaniu Vulcana proces zostaje cofnięty.',
         0,	0,	5,	10,
         'Bestii(Beast soul)', 'Góry i lasy.',
-        60	45, 'Polują na ludzi, wszystkożerne.'
+        60,	45, 'Polują na ludzi, wszystkożerne.'
     );
 INSERT
     INTO Rasy 
@@ -215,19 +216,28 @@ INSERT
     (
         'Wiwerna', FALSE,
         30,	30,	25,	22,	26,
-        6,	5,	6,	0,	0,	10,
+        6,	5,	6,	1,	1,	10,
         'Lot, pancerz, częściowo kolczasty pancerz - szansa na oddanie części lub całości obrażeń przeciwnikowi',
         5,	15,	0,	5,
         NULL, 'Góry i lasy.',
         110, 90, 'Roślinożerne ale bardzo terytorialne i nie dzielą się jedzeniem.'
     );
 --ustawienie Rasy domyślnej:
-ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'człowiek';
+ALTER TABLE Postacie ALTER COLUMN Rasy_Nazwa SET DEFAULT 'Człowiek';
+ALTER TABLE Klasy_Przeciwników ALTER COLUMN Rasy_Nazwa SET DEFAULT 'Człowiek';
+
+
+SELECT * FROM RASY;
+Commit
+Rollback
+
 
 
 -- ==========================================
 -- 2. Umiejętności
 -- ==========================================
+Begin;
+
 ----ogień i podrzędne
 INSERT
     INTO Umiejętności
@@ -321,10 +331,9 @@ INSERT
         ''
     );
 
-
 --- woda
 INSERT
-    INTO  
+    INTO Umiejętności  
     (
         Nazwa, Poboczna, Natura,
         Rodzaj, Samodzielność, Dostępność,
@@ -432,7 +441,7 @@ INSERT
     )
     VALUES
     (
-        'wiatr', FALSE, 'Magia',
+        'Wiatr', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
         'Umożliwia użytkownikom generowanie wiatru i kontrolowanie go.',
         'Magia wiatru ma dużą moc ofensywną, pozwala potężne podmuchy wiatry, cięcia wiatrem niewielkimi wiatrowymi ostrzami i tworzenie huraganów(które również mogą czasem wręcz ciąć przeciwników). 
@@ -465,7 +474,7 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
         'Ziemia', FALSE, 'Magia',
         'atrybut', 'umiejętność', 'powszechna',
@@ -480,7 +489,7 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
         'Kamień(utwardzanie ziemi)', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
@@ -496,9 +505,9 @@ INSERT
         Opis_fabularny,
         Opis_praktyczny
     )
-    VALUES Umiejętności
+    VALUES
     (
-        'Ziemia', FALSE, 'Magia',
+        'Zmiękczanie ziemi', FALSE, 'Magia',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna',
         'Magia opierających się na manipulacji ziemią z otoczenia i jej zmiękczaniu lub nawet upłynnianiu.
 Pozwala to nurkować w ziemię i podróżować przez nią przez kopanie w niej tuneli lub powodować zapadanie się ziemi pod wrogiem.',
@@ -668,6 +677,7 @@ INSERT
         ''
     );
 
+INSERT
     INTO Umiejętności
     (
         Nazwa, Poboczna, Natura,
@@ -785,7 +795,7 @@ INSERT
     VALUES
     (
         'Smocza magia', FALSE, 'Magia',
-        'Typ', 'kategoria', 'zaginiona',
+        'typ', 'kategoria', 'zaginiona',
         'Magia pochodząca od smoków, przez zaklęcie w człowieku smoczej mocy danego żywiołu(niemal dowolnego atrybutu), czyni to moc skoncentrowaną i pozwala człowiekowi walczyć ze smokami - na których inne ataki zwykle nie robią wrażenia - z nawet zabójczą skutecznością (choć jej uzyskanie nie jest łatwe).',
         'Użytkownik tej magii - Smoczy Zabójca - podobnie do smoków cieszy się niemal całkowitą odpornością na obrażenia od swojego żywiołu, pozwala ona mu też na to by jeść swój żywioł i magię tego żywiołu(ale nie swoją) aby zregenerować swoją magię i odzyskać siły, próby jedzenia innej kończą się zazwyczaj niepowodzeniem, a nawet gdy nie kończą się nim powodują ryzyko nawet kilkudniowej niestrawności, pozbawiającej wszelkich sił.
 Magia ta daje duże ogólne wzmocnienie ciała i zmysłów, ale ma też inny istotny skutek uboczny, u silnych magów tej magii występuje silna choroba lokomocyjna, zabijanie nią smoków przez dłuższy czas grozi dragonifikacją.'
@@ -805,7 +815,7 @@ INSERT
     VALUES
     (
         'Magia Tworzenia', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna',
+        'typ', 'kategoria(+1)', 'powszechna',
         'Magia pozwalająca na tworzenie właściwie wszelkich kształtów i konstrukcji z odpowiadającego jej materiału(atrybutu), wyjątkiem jest magia tworzenia wspomnień tworząca raczej techniki magiczne.',
         'Stworzone twory mogą służyć zarówno do ataku jak i obrony, czy zmylenia przeciwnika, mag może wprawić twór w prosty ruch zaraz po jego stworzeniu. Odmianą magii tworzenia wynoszącą to na nowy poziom jest magia dynamicznego tworzenia, pozwalająca na twory zdolne do aktywnego ruchu(choć nadal zasadniczo sterowanego przez maga), np. na bazie zwierząt, będące jak swego rodzaju golemy.'
     );
@@ -849,7 +859,7 @@ INSERT
     )
     VALUES
     (
-        'Dynamiczne Tworzenie', FALSE, 'Magia',
+        'Tworzenie Kryształów', FALSE, 'Magia',
         'specjalizacja', 'umiejętność', 'rzadka',
         'Magia tworzenia z wszelkich kryształów, daje większy wybór materiałów niż inne ale mniejszą swobodę w kształtowaniu.',
         ''
@@ -869,6 +879,17 @@ INSERT
         'Magia tworzenia z kamienia',
         ''
     );
+INSERT
+    INTO Umiejętności
+    (
+        Nazwa, Poboczna, Natura,
+        Rodzaj, Samodzielność, Dostępność
+    )
+    VALUES
+    (
+        'Kamienne Osłony', FALSE, 'Magia',
+        'specjalizacja', 'umiejętność', 'powszechna'
+    );
 
 -- Magiczne przedmioty
 INSERT
@@ -882,7 +903,7 @@ INSERT
     VALUES
     (
         'Magiczne przedmioty', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna',
+        'typ', 'kategoria(+1)', 'powszechna',
         'Ogólny zbiór magii i umiejętności opartych na konkretnych przedmiotach lub substancjach. Ich tworzeniu i obsłudze.',
         ''
     );
@@ -968,7 +989,7 @@ INSERT
     VALUES
     (
         'Magia Przestrzeni', FALSE, 'Magia',
-        'Typ', 'kategoria(+1)', 'powszechna'
+        'typ', 'kategoria(+1)', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -984,6 +1005,7 @@ INSERT
 
 -- niemagiczne Umiejętności walki
 ---- walka wręcz
+
 INSERT
     INTO Umiejętności
     (
@@ -1140,7 +1162,7 @@ INSERT
     )
     VALUES
     (
-        'Miecz dwuręczny', TRUE, 'Fizyczna',
+        'Odachi(katana wielka)', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
 INSERT
@@ -1151,9 +1173,10 @@ INSERT
     )
     VALUES
     (
-        'Odachi(katana wielka)', TRUE, 'Fizyczna',
+        'Szabla', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
+
 
 ---topory
 INSERT
@@ -1165,7 +1188,7 @@ INSERT
     VALUES
     (
         'Topór', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1211,7 +1234,7 @@ INSERT
     VALUES
     (
         'Broń Drzewcowa', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1246,7 +1269,7 @@ INSERT
     VALUES
     (
         'Broń Obuchowa', TRUE, 'Fizyczna',
-        'Typ', 'umiejętność', 'powszechna'
+        'typ', 'umiejętność', 'powszechna'
     );
 INSERT
     INTO Umiejętności
@@ -1303,7 +1326,7 @@ INSERT
     VALUES
     (
         'Walka dystansowa', TRUE, 'Fizyczna',
-        'Typ', 'kategoria(+1)', 'powszechna'
+        'typ', 'kategoria(+1)', 'powszechna'
     );
 
 INSERT
@@ -1478,17 +1501,6 @@ INSERT
         'łowienie', TRUE, 'Fizyczna',
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
-INSERT
-    INTO Umiejętności
-    (
-        Nazwa, Poboczna, Natura,
-        Rodzaj, Samodzielność, Dostępność
-    )
-    VALUES
-    (
-        'łowienie', TRUE, 'Fizyczna',
-        'umiejętność szczegółowa', 'umiejętność', 'powszechna'
-    );
 
 INSERT
     INTO Umiejętności
@@ -1639,8 +1651,6 @@ INSERT
         'umiejętność szczegółowa', 'umiejętność', 'powszechna'
     );
 
-
-
 -- ==========================================
 -- 2.A. Podległość
 -- ==========================================
@@ -1726,7 +1736,7 @@ INSERT
     )
     VALUES
     (
-        'Niebo','wiatr'
+        'Niebo','Wiatr'
     );
 INSERT
     INTO Podległość
@@ -1767,6 +1777,17 @@ INSERT
         'Kryształy','Diamenty'
     );
 
+
+
+INSERT
+    INTO Podległość
+    (
+        wymagana_nadrzędna, podrzędna
+    )
+    VALUES
+    (
+      'Kamień(utwardzanie ziemi)','Kamienne Osłony'
+    );
 
 -- Sztorm
 INSERT
@@ -1921,7 +1942,7 @@ INSERT
     )
     VALUES
     (
-        'Kamień(utwardzanie Ziemi)','Tworzenie Kamienia'
+        'Kamień(utwardzanie ziemi)','Tworzenie Kamienia'
     );
 INSERT
     INTO Podległość
@@ -2232,122 +2253,297 @@ INSERT
         'Kije','Kije Elastyczne'
     );
 
+--test:
+SELECT * FROM Umiejętności;
+SELECT * FROM Podległość ORDER BY wymagana_nadrzędna, podrzędna;
+SELECT * 
+FROM Podległość INNER JOIN Umiejętności U ON Podległość.wymagana_nadrzędna = U.Nazwa
+WHERE U.poboczna = TRUE
+ORDER BY wymagana_nadrzędna, podrzędna;
 
+
+Commit
+Rollback
 
 -- ==========================================
 -- 3. Klasy
 -- ==========================================
+Begin;
 
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Mag', 'Mądrość', 'Inteligencja', 'Wola');
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Inkwizytor', 'Pobożność',  'Mądrość', 'Wola');
+INSERT INTO Klasy(nazwa, premiowana_cecha1, premiowana_cecha2, premiowana_cecha3)
+    VALUES ('Rycerz', 'Siła', 'Wytrzymałość', 'Zręczność');
+SELECT * FROM Klasy;
+Commit
+Rollback
 -- ==========================================
 -- 3.A. Klasy Punkty_Klasowe
 -- ==========================================
+--MAG
+Begin;
+--- historia postaci
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Przynależność do gildii',250,250);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Rola magii w historii postaci',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Magiczne pochodzenie',1,100);
+--- rozwój postaci
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Punkt umiejętności wydany na zdolności magiczne',3,3);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Nowe nauczone zaklęcie',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Rzucenie zaklęcia',1,3);
+--- misje
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta zwykła misja',5,5);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja klasy S',15,15);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja klasy SS',30,30);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja 10-letnia',100,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Podjęta misja 100-letnia',1000,1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona zwykła misja',5,50);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja klasy S',15,150);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja klasy SS',30,300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja 10-letnia',100,2000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Ukończona misja 100-letnia',1000,30000);
+--- rola w gildii
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Reprezentowanie gildii',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Uzyskanie klasy S lub analogicznej',1000,1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zostanie mistrzem Gildii',10000,10000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Pomoc innym w nauce magii',5,500);
+-- ujemne
+--- złe czyny
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zdrada wobec swojej gildii',-500,-500);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Nauka i stosowanie klątw',-1,-1000);
+---klęski - nieudane misje
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona zwykła misja',-2,-50);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja klasy S',-7,-150);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja klasy SS',-15,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja 10-letnia',-50,-2000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'Zawalona misja 100-letnia',-500,-30000);
+--- zaniechania
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'dłuższe zaniechanie rozwijania zdolności magicznych',-1,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Mag', 'dłuższe zaniechanie praktykowania magii',-1,-1000);
+Commit
+Rollback
 
+--RYCERZ
+Begin;
+--- historia postaci
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Przynależność do armii lub zakonu',250,250);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Rola walki lub rycerskości w historii postaci',1,100);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Szlacheckie, rycerskie lub wojskowe pochodzenie',1,100);
+--- rozwój postaci
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Punkt umiejętności wydany na umiejętności walki(walka wręcz i broń biała)',3,3);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Nowa technika lub efekt(zdolność pasywna) związany z walką w zwarciu',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdobyta lub zakupiona część zwykłego uzbrojenia',5,20);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdobyta lub zakupiona część uzbrojenia magicznego',25,100);
+-- ujemne
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Nauka i stosowanie klątw',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Zdrada wobec swojego zakonu lub armii',-500,-500);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Dowolna zdrada',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Łamanie przysięgi',-500,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Łamanie prawa',-1,-1000);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'Kłamstwo',-50,-500);
+--- zaniechania
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'dłuższe zaniechanie rozwijania zdolności bitewnych',-1,-300);
+INSERT INTO Punkty_Klasowe(Klasa_nazwa, Warunek, minimalne_punkty, maksymalne_punkty)
+    VALUES ('Rycerz', 'dłuższe zaniechanie praktykowania jakiejkolwiek walki',-1,-1000);
+Commit
+Rollback
+
+SELECT * FROM Punkty_Klasowe ORDER BY Klasa_nazwa, maksymalne_punkty DESC;
 -- ==========================================
 -- 3.B. Rangi_klasowe
 -- ==========================================
-
-ALTER TABLE SBD164306.Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
----rangi maga
 Begin;
-INSERT INTO SBD164306.Rangi_klasowe
+
+ALTER TABLE Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
+---rangi maga
+Rollback;
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
         Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+)
+        'Nowicjusz', 'dostęp do podstawowych ksiąg magicznych w bibliotekach(+) | 
 Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
-        10, 100,
+        1, 0, 0,
+        10,
         'Mag',
         NULL, 'Akolita'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
         'Akolita',
-        E'dostęp do podstawowych ksiąg magicznych w bibliotekach(+)
-        Zdolności magiczne wymagają poziomu doświadczenia niższego o 2/ 3,  ponadto bazowy poziom wynosi (N^2)/1,15 (+)',
-        100, 1000,
+        'dostęp do podstawowych ksiąg magicznych w bibliotekach(=) | 
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 3/5,  ponadto bazowy poziom wynosi (N^2)/1,25 (!)',
+        1, 0, 1,
+        100,
         'Mag',
         'Nowicjusz', 'Adept'
     ); 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Adept', NULL,
-        1000, 10000,
+        'Adept',
+        'dostęp do podstawowych ksiąg magicznych w bibliotekach(=) | 
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 5/8,  ponadto bazowy poziom wynosi (N^2)/1,35 (!) | 
+        20% zniżka u nauczycieli zaklęć (+)',
+        10, 1, 3,
+        1000,
         'Mag',
         'Akolita', 'Zaawansowany mag'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Zaawansowany mag', NULL,
-        10 000, 100 000,
+        'Zaawansowany mag', 
+        'dostęp do zaawansowanych ksiąg magicznych w bibliotekach (!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 8/13,  ponadto bazowy poziom wynosi (N^2)/1,5 (!)
+        1 punkt dla umiejętności pobocznych może zamiast tego być przy awansie przydzielony do zdolności magicznych (+)
+        30% zniżka u nauczycieli zaklęć (!)
+        modyfikator +1/+2/+3/+4 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią (+)
+        Czary zużywają 10% mniej many i energii (+)',
+        5, 1, 5,
+        10000,
         'Mag',
         'Adept', 'Ekspert'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Ekspert', NULL,
-        100 000, 1 000 000,
+        'Ekspert',
+        'dostęp do zaawansowanych ksiąg magicznych w bibliotekach (=)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 13/21,  ponadto bazowy poziom wynosi (N^2)/1,75 (!)
+        1 punkt dla umiejętności pobocznych może zamiast tego być przy awansie przydzielony do zdolności magicznych (=)
+        1 dodatkowy punkt do wykorzystania na specjalizacje magiczne (+)
+        45% zniżka u nauczycieli zaklęć (!)
+        modyfikator +2/+3/+4/+5 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 20% mniej many i energii oraz mają skuteczność zwiększoną o 10% (!)',
+        3, 1, 7,
+        100000,
         'Mag',
         'Zaawansowany mag', 'Mistrz'
     );
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Mistrz', NULL,
-        1000 000, 10 000 000,
+        'Mistrz',
+        'dostęp do legendarnych ksiąg magicznych w bibliotekach(!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 21/34,  ponadto bazowy poziom wynosi (N^2)/2 (!)
+        2 punkty dla umiejętności ogólnych mogą zamiast tego być przy awansie przydzielone do zdolności magicznych (!)
+        2 dodatkowe punkty do wykorzystania na specjalizacje magiczne (+)
+        60% zniżka u nauczycieli zaklęć (!)
+        modyfikator +3/+4/+5/+6 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 33% mniej many i energii oraz mają skuteczność zwiększoną o 20% (!)',
+        1, 1, 10,
+        1000000,
         'Mag',
         'Ekspert', 'Arcymistrz'
     );
 
-INSERT INTO SBD164306.Rangi_klasowe
+INSERT INTO Rangi_klasowe
     (
         Nazwa, bonusy_za_rangę,
-        minimalne_punkty_klasowe, punkty_klasowe_wymagane_do_awansu,
-        Klasy_nazwa,
-        Nastepna_ranga, Poprzednia_ranga
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
     )
     VALUES
     (
-        'Arcymistrz', NULL,
-        10 000 000, NULL,
+        'Arcymistrz', 
+        'dostęp do legendarnych ksiąg magicznych w bibliotekach(!)
+        Zdolności magiczne wymagają poziomu doświadczenia niższego o 34/55,  ponadto bazowy poziom wynosi (N^2)/2,5 (!)
+        3 punkty dla umiejętności ogólnych mogą zamiast tego być przy awansie przydzielone do zdolności magicznych (!)
+        3 dodatkowe punkty do wykorzystania na specjalizacje magiczne (+)
+        80% zniżka u nauczycieli zaklęć (!)
+        modyfikator +4/+5/+6/+7 (w zależności od klasy trudności testu) do testów magicznych i testów reputacji u postaci związanych z magią, brak kary zaokrąglenia (!)
+        Czary zużywają 50% mniej many i energii oraz mają skuteczność zwiększoną o 33% (!)',
+        1, 1.5, 14,
+        10000000,
         'Mag',
         'Mistrz', NULL
     );
@@ -2356,9 +2552,171 @@ SELECT * FROM Rangi_klasowe;
 Commit
 Rollback
 
-ALTER TABLE SBD164306.Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
-UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
+ALTER TABLE Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
+UPDATE Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
+    SET Nazwa = Nazwa WHERE Nazwa = 'Nowicjusz';
+SELECT * FROM Rangi_klasowe;
+
+---rangi rycerza
+Begin;
+ALTER TABLE Rangi_klasowe DISABLE TRIGGER trg_check_ranga_łańcuch;
+ROLLBACK;
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Nowicjusz', 'dostęp do podstawowych ksiąg bitewnych w bibliotekach (+) | 
+dostęp do podstawowych broni w zbrojowni(+)',
+        1, 0, 0,
+        10,
+        'Rycerz',
+        NULL, 'Akolita'
+    );
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans,
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Akolita',
+        'dostęp do podstawowych ksiąg bitewnych w bibliotekach(=) | 
+dostęp do podstawowych broni w zbrojowni(=)',
+        1, 0, 1,
+        100,
+        'Rycerz',
+        'Nowicjusz', 'Adept'
+    ); 
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Adept',
+        'dostęp do podstawowych ksiąg bitewnych w bibliotekach(=) | 
+        dostęp do podstawowych broni w zbrojowni(=) | 
+        1 punkt dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (+) | 
+        20% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy (+)',
+        10, 1, 3,
+        1000,
+        'Rycerz',
+        'Akolita', 'Zaawansowany rycerz'
+    );
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Zaawansowany rycerz', 
+        'dostęp do zaawansowanych ksiąg bitewnych w bibliotekach(!) | 
+        dostęp do zaawansowanych broni w zbrojowni(!) | 
+        1 punkt dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (=) | 
+        30% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!) | 
+        modyfikator +1/+2/+3/+4 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użycia broni i testów reputacji u postaci związanych z walką (+) | 
+        Ataki i bloki zużywają 10% mniej energii (+)',
+        5, 1, 5,
+        10000,
+        'Rycerz',
+        'Adept', 'Ekspert'
+    );
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Ekspert',
+        'dostęp do zaawansowanych ksiąg bitewnych w bibliotekach(=) | 
+        dostęp do zaawansowanych broni w zbrojowni(=) | 
+        1 punkt dla umiejętności pobocznych może być przy awansie przydzielony jako 2 pkt zdolności bitewnych (=) | 
+        dodatkowy punkt do wykorzystania na specjalizacje bitewne (3 i większy poziom zagnieżdżenia)(+) | 
+        45% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!) | 
+        modyfikator +2/+3/+4/+5 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!)
+        Ataki i bloki zużywają 20% mniej energii oraz mają skuteczność zwiększoną o 10% (!)',
+        3, 1, 7,
+        100000,
+        'Rycerz',
+        'Zaawansowany rycerz', 'Mistrz'
+    );
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Mistrz',
+        'dostęp do legendarnych ksiąg bitewnych w bibliotekach(!) | 
+dostęp do legendarnych broni w zbrojowni(!) | 
+        2 punkty dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (!) | 
+2 dodatkowe punkt do wykorzystania na specjalizacje magiczne (3 i większy poziom zagnieżdżenia)(!) | 
+        60% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!) | 
+modyfikator +3/+4/+5/+6 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!) | 
+        Ataki i bloki zużywają 33% mniej energii oraz mają skuteczność zwiększoną o 20% (!)',
+        1, 1, 10,
+        1000000,
+        'Rycerz',
+        'Ekspert', 'Arcymistrz'
+    );
+
+INSERT INTO Rangi_klasowe
+    (
+        Nazwa, bonusy_za_rangę,
+        bonus_do_cech_co_poziomów, bonus_do_cech_wartość, punkty_cech_na_awans, 
+        minimalne_punkty_klasowe,
+        Klasa_nazwa,
+        Poprzednia_ranga, Nastepna_ranga
+    )
+    VALUES
+    (
+        'Arcymistrz', 
+        'dostęp do legendarnych ksiąg bitewnych w bibliotekach(=) | 
+dostęp do legendarnych broni w zbrojowni(=) | 
+        3 punkty dla umiejętności ogólnych może być przy awansie przydzielony jako 2  pkt zdolności bitewnych (!) | 
+        3 dodatkowe punkt do wykorzystania na specjalizacje magiczne (3 i większy poziom zagnieżdżenia)(!) | 
+        80% zniżka u nauczycieli technik bitewnych oraz zbrojmistrzów i płatnerzy(!) | 
+        modyfikator +4/+5/+6/+7 (w zależności od klasy trudności testu) do testów w walce w zwarciu i użyciem broni i testów reputacji u postaci związanych z walką, brak kary zaokrąglenia (!) | 
+        Ataki i bloki zużywają 50% mniej energii oraz mają skuteczność zwiększoną o 33% (!)',
+        1, 1.5, 14,
+        10000000,
+        'Rycerz',
+        'Mistrz', NULL
+    );
+SELECT * FROM Rangi_klasowe WHERE Klasa_nazwa = 'Rycerz';
+
+Commit
+Rollback
+
+ALTER TABLE Rangi_klasowe ENABLE TRIGGER trg_check_ranga_łańcuch;
+UPDATE Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić poprawność danych
     SET Nazwa = Nazwa WHERE Nazwa = 'Nowicjusz'; 
+SELECT * FROM Rangi_klasowe WHERE Klasa_nazwa = 'Rycerz';
 
 -- ==========================================
 -- 4. Techniki
@@ -2368,8 +2726,29 @@ UPDATE SBD164306.Rangi_klasowe--sztuczka uruchamiająca Trigger by sprawdzić po
 -- 4.A. Kategorie_technik 
 -- ==========================================
 
+INSERT INTO Kategorie_technik(nazwa, opis) 
+    VALUES ('Techniki walki', 'Techniki związane z walką wręcz i użyciem broni białej');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki obrażeniowe', 'Techniki zadające obrażenia');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki obszarowe', 'Techniki wpływające na obszar');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki osłabienia', 'Techniki wywierające (negatywny) wpływ na przeciwnika');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki wsparcia', 'Techniki wywierające (pozytywny) wpływ na używającego lub sojusznika');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki blokujące i bariery', 'Techniki tworzące blokady i bariery przed atakami przeciwnika, chroniące przed obrażeniami lub ograniczające ruch');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki informacyjne', 'Techniki zbierające/przekazujące informacje');
+INSERT INTO Kategorie_technik(nazwa, opis)
+    VALUES ('Techniki świętej magii', 'Techniki świętej magii');
+
 -- ==========================================
--- 4.B. Techniki_Kategorie 
+-- 4.B. Techniki
+-- ==========================================
+
+-- ==========================================
+-- 4.C. Techniki_Kategorie 
 -- ==========================================
 
 

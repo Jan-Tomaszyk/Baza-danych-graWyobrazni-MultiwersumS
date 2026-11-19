@@ -12,7 +12,6 @@
 -- 1. TABELE NIEZALEŻNE (Tworzone pierwsze) Główne
 -- ==========================================
 
-
 CREATE TABLE Rasy 
 (
     Nazwa VARCHAR(255) PRIMARY KEY,
@@ -37,7 +36,7 @@ CREATE TABLE Rasy
         (
         'Zwierzęce(animal soul)',
         'Bestii(Beast soul)',
-        'Maszyny (Machina soul)',
+        'Maszyny(Machina soul)',
         'Szatana(Satan soul)',
         'bożka(goddo soul)'
         )
@@ -243,7 +242,6 @@ CREATE TABLE Klasy_Przeciwników (
     CONSTRAINT Klasy_Przeciwników_zakres_poziomów
         CHECK (minimalny_poziom <= maksymalny_poziom)
 );
-
 CREATE TABLE Waluty
 (
     nazwa VARCHAR(255) PRIMARY KEY,
@@ -258,7 +256,6 @@ CREATE TABLE Waluty
 -- ====
 -- 2.A. Posiadane rzeczy: Podtabele przedmiotów i pieniądze
 -- ====
-
 CREATE TABLE Egzemplarze_Przedmiotów
 (
     Przed_ID SERIAL PRIMARY KEY,
@@ -290,12 +287,12 @@ CREATE TABLE Bronie (
     Broń_Test_Obrażeń_Pchnięcie_pełne VARCHAR(255),
     Broń_Wpływy TEXT,
     Broń_Dwuręczność BOOLEAN,
+    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
     Broń_Minimalny_poziom_Umiejętności INTEGER CONSTRAINT naturalne_Broń_Minimalny_poziom_Umiejętności CHECK(Broń_Minimalny_poziom_Umiejętności>=0),
     Broń_Minimalna_siła BIGINT CONSTRAINT dodatnie_Broń_Minimalna_siła CHECK(Broń_Minimalna_siła>0),
     Broń_długość_cm BIGINT CONSTRAINT dodatnie_Broń_długość_cm CHECK(Broń_długość_cm>0),
     Broń_długość_uchwytu_cm BIGINT CONSTRAINT naturalne_Broń_długość_uchwytu_cm CHECK(Broń_długość_uchwytu_cm>=0),
     Broń_zasięg BIGINT CONSTRAINT dodatnie_Broń_zasięg CHECK(Broń_zasięg>0),
-    Umiejętności_Nazwa VARCHAR(255) NOT NULL,
     Broń_Bonus_do_siły INTEGER NOT NULL DEFAULT 0,
     Broń_Bonus_do_wytrzymałości INTEGER NOT NULL DEFAULT 0,
     Broń_Bonus_do_kondycji INTEGER NOT NULL DEFAULT 0,
@@ -469,7 +466,6 @@ CREATE TABLE Techniki_przedmiotów--techniki wymagające przedmiotu do wykonania
 
 -----===============
 --2.D Tabele Klasowe
-
 CREATE TABLE Rangi_klasowe
 (
     --Stopień INTEGER NOT NULL CONSTRAINT naturalne CHECK(Stopień>=0),--która z kolei to ranga w danej klasie
@@ -479,7 +475,7 @@ CREATE TABLE Rangi_klasowe
     bonus_do_cech_co_poziomów INTEGER NOT NULL
         CONSTRAINT naturalne_bonus_do_cech_co_poziomów_Rangi_klasowe CHECK(bonus_do_cech_co_poziomów>0),
     bonus_do_cech_wartość NUMERIC(2, 1) NOT NULL
-        CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>0),
+        CONSTRAINT naturalne_bonus_do_cech_wartość_Rangi_klasowe CHECK(bonus_do_cech_wartość>=0),
     punkty_cech_na_awans INTEGER NOT NULL 
         CONSTRAINT naturalne_punkty_cech_na_awans_Rangi_klasowe CHECK(punkty_cech_na_awans>=0),
     minimalne_punkty_klasowe INTEGER NOT NULL
@@ -602,10 +598,6 @@ ALTER TABLE Prowiant ADD CONSTRAINT Prowiant_Przedmioty_FK
     FOREIGN KEY (Przedmioty_Przed_Nazwa)
     REFERENCES Przedmioty (Przed_Nazwa);
 
--- Rózności
-ALTER TABLE Rózności ADD CONSTRAINT Rózności_Przedmioty_FK 
-    FOREIGN KEY (Przedmioty_Przed_Nazwa)
-    REFERENCES Przedmioty (Przed_Nazwa);
 
 --- KLASY_PRZECIWNIKÓW
 ALTER TABLE Klasy_Przeciwników
@@ -1193,11 +1185,11 @@ EXECUTE FUNCTION trg_klasy_wyzwol_przeliczenie_pkt_klasowych_postaci();
 
 SELECT table_schema, table_name
 FROM information_schema.TABLES
-Where table_schema='public'
+WHERE table_schema='public'
 
 SELECT table_schema, table_name, column_name, column_default, data_type
 FROM information_schema.COLUMNS
-Where table_schema='public'
+WHERE table_schema='public'
 ORDER BY table_name
 
 --ograniczenia
@@ -1537,8 +1529,7 @@ SELECT
 FROM punkty_cech_z_klas punkty
 WHERE rn <= 2  -- Wybierz tylko wiersze z rangą 1 lub 2 dla każdej postaci
 GROUP BY ID_postaci, Imię, Nazwisko, poziom;
------tu ____________\  /
---                   \/
+
 CREATE OR REPLACE VIEW kontrola_cech_postaci AS
 WITH Sumy as 
 (
@@ -1640,7 +1631,7 @@ SELECT
     Zwinność_poziom_1 + Zwinność_z_awansów + Zwinność_klasowa + r.Zwinność + COALESCE(b.Zwinność,0)                           AS Zwinność,
     Kondycja_poziom_1 + Kondycja_z_awansów + Kondycja_klasowa + r.Kondycja + COALESCE(b.Kondycja,0) - COALESCE(Mod_wiekowy_starczy,0) AS Kondycja,
     Rasy_Nazwa                                                                                                AS Nazwa_Rasy 
-FROM r LEFT JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci 
+FROM r LEFT JOIN bonusy_klasowe_postaci b ON r.ID_postaci=b.ID_postaci; 
 
 ---Statystyki Naturalne(Bazowe+Klasowe)
 ---Statystyki Bazowe
@@ -1661,7 +1652,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Naturalne.Nazwa_Rasy=RASY.Nazwa--?INDEKSUJ?;
+FROM Postacie_Cechy_Naturalne INNER JOIN Rasy ON Postacie_Cechy_Naturalne.Nazwa_Rasy=RASY.Nazwa;
 
 
 --PRZEDMIOTY I
@@ -1715,7 +1706,7 @@ FROM Postacie Pos
     INNER JOIN Przedmioty Prz ON EP.Przed_Nazwa = Prz.Przed_Nazwa
     LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
     LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
-
+;
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów_postaci AS
 SELECT
     ID_postaci,
@@ -1763,7 +1754,7 @@ SELECT
     COALESCE(BzP.Pancerz_Twardy,0)                    AS Pancerz_Twardy,
     COALESCE(BzP.Ochrona_przed_zimnem,0)              AS Ochrona_przed_zimnem
 FROM bonusy_z_przedmiotów_postaci BzP RIGHT JOIN Postacie_Cechy_Naturalne PCN ON BzP.ID_postaci=PCN.ID_postaci
-
+;
 ---Statystyki Efektywne
 CREATE OR REPLACE VIEW Statystyki_Efektywne_Postaci AS
 SELECT
@@ -1782,7 +1773,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem
 FROM Postacie_Cechy_Efektywne
-
+;
 --KLASY_PRZECIWNIKÓW
 ---Cechy - widok techniczny - 
 CREATE OR REPLACE VIEW Klasy_Przeciwników_Cechy AS
@@ -1870,7 +1861,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników INNER JOIN Rasy ON Klasy_Przeciwników.Rasy_Nazwa=RASY.Nazwa--?INDEKSUJ?;
+FROM Klasy_Przeciwników INNER JOIN Rasy ON Klasy_Przeciwników.Rasy_Nazwa=RASY.Nazwa;
 
 ---- Statystyki minimalne 
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne AS
@@ -1889,7 +1880,7 @@ SELECT
     Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_minimalne 
     INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_minimalne.Nazwa_Rasy=RASY.Nazwa
-
+;
 
 ---- Statystyki maksymalne
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne AS
@@ -1907,7 +1898,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem
 FROM Klasy_Przeciwników_Cechy_Bazowe_maksymalne 
-    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa
+    INNER JOIN Rasy ON Klasy_Przeciwników_Cechy_Bazowe_maksymalne.Nazwa_Rasy=RASY.Nazwa;
 
 
 
@@ -2114,7 +2105,7 @@ FROM Przedmioty_Przeciwników PP
     INNER JOIN Przedmioty Prz ON PP.Przed_Nazwa = Prz.Przed_Nazwa
     LEFT JOIN Bronie B ON Prz.Przed_Nazwa=B.Przedmioty_Przed_Nazwa
     LEFT JOIN Pancerze_i_stroje Pis ON Prz.Przed_Nazwa=Pis.Przedmioty_Przed_Nazwa
-
+;
 CREATE OR REPLACE VIEW bonusy_z_przedmiotów_przeciwników AS
 SELECT
     Klasa_przeciwnika,
@@ -2134,7 +2125,7 @@ SELECT
     SUM(Ochrona_przed_zimnem) AS Ochrona_przed_zimnem
 FROM bonusy_z_przedmiotów_klas_przec
 GROUP BY Klasa_przeciwnika
-
+;
 
 --KLASY PRZECIWNIKÓW II
 
@@ -2214,7 +2205,7 @@ SELECT
     Pancerz_twardy,
     Ochrona_przed_zimnem,
     Nazwa_Rasy 
-FROM Klasy_Przeciwników_Cechy_Efektywne
+FROM Klasy_Przeciwników_Cechy_Efektywne;
 
 ---Statystyki Efektywne
 -----Statystyki_Klas_Przeciwników - tymczasowo zachowane, ale raczej do usunięcia w docelowej wersji
@@ -2238,7 +2229,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne
+FROM Klasy_Przeciwników_Cechy_Efektywne;
 
 ---- Statystyki minimalne 
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_minimalne_EFEKTYWNE AS
@@ -2255,7 +2246,7 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne_minimalne
+FROM Klasy_Przeciwników_Cechy_Efektywne_minimalne;
 
 ---- Statystyki maksymalne
 CREATE OR REPLACE VIEW Statystyki_Klas_Przeciwników_maksymalne_EFEKTYWNE AS
@@ -2272,11 +2263,11 @@ SELECT
     Pancerz_miękki,
     Pancerz_twardy,
     Ochrona_przed_zimnem
-FROM Klasy_Przeciwników_Cechy_Efektywne_maksymalne 
+FROM Klasy_Przeciwników_Cechy_Efektywne_maksymalne;
 
 ---funkcje cech i statystyk efektywnych
 
-CREATE FUNCTION oblicz_cechy_efektywne_klasy_przeciwnika
+CREATE OR REPLACE FUNCTION oblicz_cechy_efektywne_klasy_przeciwnika
 (
     p_klasa varchar,
     p_poziom integer
@@ -2333,7 +2324,7 @@ WHERE Nazwa=p_klasa
 AND p_poziom BETWEEN minimalny_poziom AND maksymalny_poziom;
 $$;
 
-CREATE FUNCTION oblicz_cechy_efektywne_klas_przeciwników
+CREATE OR REPLACE FUNCTION oblicz_cechy_efektywne_klas_przeciwników
 (
     p_poziom integer
 )
@@ -2505,7 +2496,7 @@ WHERE
 )
 ;
 
-CREATE OR REPLACE VIEW maksymalne_poziomy_umiejętności_postaci AS
+CREATE OR REPLACE VIEW maksymalne_poziomy_umiejętności_postaci AS--wszystkich do opanowania i podwyższenia
 SELECT
     p.ID_postaci,
     u.Nazwa AS Nazwa_Umiejętności,
@@ -2637,6 +2628,7 @@ GROUP BY nazwa;
 CREATE OR REPLACE VIEW techniki_umiejętności AS
 SELECT
     u.Nazwa AS Umiejętność,
+    u.Poboczna,
     u.Natura,
     u.Rodzaj,
     u.Samodzielność,
