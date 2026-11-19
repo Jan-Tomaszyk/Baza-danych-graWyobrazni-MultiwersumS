@@ -5,6 +5,12 @@ Typ_przejęcia VARCHAR(255)
 Zmień inne kolumny długotekstowe na typ TEXT z typu Varchar
 
 
+
+szafka na buty - wyjąć buty i odkręcić
+pokój Maćka - przygotować
+
+
+
 konieczne do dorobienia:
 typy:
 Magia smoczych zabójców?
@@ -21,7 +27,6 @@ pomarańczowy ogień
 żółty ogień
 tęczowy ogień
 ognista iluzja
-
 
 
 8
