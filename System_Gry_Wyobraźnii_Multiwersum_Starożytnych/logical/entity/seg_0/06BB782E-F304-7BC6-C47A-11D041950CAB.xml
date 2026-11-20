@@ -26,7 +26,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="minimalny poziom" id="459C10B0-7F40-DB05-DA4A-68D9D9926B1E">
@@ -36,10 +35,8 @@
 <engineerTo>
 <item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="maksymalny poziom" id="A4E739D2-5914-AA5C-A311-4752525EB2C1">
@@ -49,13 +46,11 @@
 <engineerTo>
 <item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Siła z pierwszego poziomu" id="A881D94C-D5EC-E7CF-820C-8EFF8FA9431D">
+<Attribute name="Siła poziom_1" id="A881D94C-D5EC-E7CF-820C-8EFF8FA9431D">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -64,10 +59,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Wytrzymałość z pierwszego poziomu" id="B1CE7CCD-ECF9-7752-F695-4BADE91D71B2">
+<Attribute name="Wytrzymałość poziom_1" id="B1CE7CCD-ECF9-7752-F695-4BADE91D71B2">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -76,10 +70,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Kondycja z pierwszego poziomu" id="CDC133B2-F403-A081-624F-265B09550EFE">
+<Attribute name="Kondycja poziom_1" id="CDC133B2-F403-A081-624F-265B09550EFE">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -88,10 +81,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Zręczność z pierwszego poziomu" id="0235D621-B6A7-CE20-EB87-C9D424943E34">
+<Attribute name="Zręczność poziom_1" id="0235D621-B6A7-CE20-EB87-C9D424943E34">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -100,10 +92,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Zwinność z pierwszego poziomu" id="8F05B058-9626-3FB9-E329-ECE1AEF5EDEC">
+<Attribute name="Zwinność poziom_1" id="8F05B058-9626-3FB9-E329-ECE1AEF5EDEC">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -112,10 +103,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Mądrość z pierwszego poziomu" id="ADEB03B4-C17E-E863-F72E-4E7FB62F4488">
+<Attribute name="Mądrość poziom_1" id="ADEB03B4-C17E-E863-F72E-4E7FB62F4488">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -124,10 +114,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Inteligencja z pierwszego poziomu" id="9AE2BD9D-F75F-B24B-6917-28D88717D9CD">
+<Attribute name="Inteligencja poziom_1" id="9AE2BD9D-F75F-B24B-6917-28D88717D9CD">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -136,10 +125,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Charyzma z pierwszego poziomu" id="C710DD08-50C8-590D-C535-69F30A483D68">
+<Attribute name="Charyzma poziom_1" id="C710DD08-50C8-590D-C535-69F30A483D68">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -148,10 +136,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Pobożność z pierwszego poziomu" id="0FD3FCBF-CC85-EB68-09D1-3CF501B50276">
+<Attribute name="Pobożność poziom_1" id="0FD3FCBF-CC85-EB68-09D1-3CF501B50276">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -160,10 +147,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Wola z pierwszego poziomu" id="918AEB76-6F29-D235-9F47-CADAFFC006BE">
+<Attribute name="Wola poziom_1" id="918AEB76-6F29-D235-9F47-CADAFFC006BE">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 23:03:00 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -172,7 +158,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Siła na awans" id="929A3680-01E6-C9FC-6599-522A4B0AD814">
@@ -184,7 +169,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wytrzymałość na awans" id="6C64CFC7-0F41-9EDE-BC70-027EF0471730">
@@ -196,7 +180,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Kondycja na awans" id="F34D7594-6989-9244-4F32-C95D36D10DE5">
@@ -208,7 +191,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zręczność na awans" id="5ABCD5EA-DA28-D31D-1347-63DB57169A3F">
@@ -220,7 +202,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zwinność na awans" id="112C5D3B-8F18-FCFD-4DDF-43B66C3719EA">
@@ -232,7 +213,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Mądrość na awans" id="E20518AB-C021-CA1A-8B7D-D649BDE6853F">
@@ -244,7 +224,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Inteligencja na awans" id="E1D62C17-9A39-7391-5C2D-527558F006C6">
@@ -256,7 +235,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Charyzma na awans" id="1905D8F9-4280-F103-EEAD-8C4DA3C8C442">
@@ -268,7 +246,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Pobożność na awans" id="F1C2A360-6022-D779-252C-C88880935B13">
@@ -280,7 +257,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wola na awans" id="3AE2F1CF-F46D-F24E-60D1-0A941AA4AC07">
@@ -292,7 +268,17 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="opis" id="4573389A-D256-70A2-EAB3-19FE1014EDCA">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:49:45 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Nazwa1" id="D7EE62C4-2CC7-7216-1B35-0F5DF7E5D23A">
@@ -306,7 +292,6 @@
 <referedAttribute>98BD9DCB-82FF-8010-3980-5D839A25F343</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT035</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

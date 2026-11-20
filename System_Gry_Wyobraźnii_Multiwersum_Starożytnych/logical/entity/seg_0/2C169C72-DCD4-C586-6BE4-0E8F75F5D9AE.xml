@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2C169C72-DCD4-C586-6BE4-0E8F75F5D9AE" name="Kampania">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:55:36 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Nazwa" id="775195EE-962D-D052-409A-EB68AB8963B4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:56:46 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data początku" id="CA05D102-9E36-1566-FFFE-B092C554A4C4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:56:54 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data obecna" id="9B6C9125-8573-D5C7-14CA-4D0CD0B884F2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:57:06 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data końca" id="14ABDE97-59CD-750C-57CD-9EC33540CCDA">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:57:20 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data rozpoczęcia" id="01F22DD1-43C5-881A-2891-4B07B17C72A3">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 01:00:52 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data zakończenia" id="D139058B-8452-2000-C79B-793A656DFF0D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 01:01:00 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="73C0572E-3FA7-B2C7-5CD7-22277FCF78D0" name="Kampania PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:56:53 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>775195EE-962D-D052-409A-EB68AB8963B4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

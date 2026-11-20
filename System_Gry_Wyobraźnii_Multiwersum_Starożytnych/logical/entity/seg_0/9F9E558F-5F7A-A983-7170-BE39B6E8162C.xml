@@ -27,7 +27,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT035</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Nazwisko" id="FC9D96ED-6141-CA63-F435-3E123E4B8DE4">
@@ -39,7 +38,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT035</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Poziom" id="454C2FFB-C9FD-747B-566C-105B335A16D5">
@@ -51,7 +49,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="PD" id="B46C088A-537B-39B3-670C-F1E0F4CFBCBF">
@@ -63,7 +60,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT027</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wiek" id="3D6A9D0C-442E-57C8-3765-8A7127ADC176">
@@ -73,10 +69,20 @@
 <engineerTo>
 <item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Rok urodzenia" id="20C62C1A-C16F-D43F-6A0C-489E0E0CCB3D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:16:51 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Siła z pierwszego poziomu" id="CF318D2A-2ADA-139C-7B82-4F780DDD3344">
@@ -88,7 +94,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wytrzymałość z pierwszego poziomu" id="E34274DB-CCD1-DCED-611C-38A0C96992BE">
@@ -100,7 +105,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Kondycja z pierwszego poziomu" id="921F0FD2-F841-CD86-4E0B-F5F5A4D864D5">
@@ -112,7 +116,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zręczność z pierwszego poziomu" id="6DD95BBF-9332-5560-2BD9-DA8954152BF5">
@@ -124,7 +127,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zwinność z pierwszego poziomu" id="4CC305F5-F63C-2690-C3B2-4E633959B62D">
@@ -136,7 +138,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Mądrość z pierwszego poziomu" id="E9BB0A2D-6608-4265-FEDE-84A075F59AD8">
@@ -148,7 +149,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Inteligencja z pierwszego poziomu" id="83324956-7B2F-872F-191E-1EFC72A13671">
@@ -160,7 +160,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Charyzma z pierwszego poziomu" id="6278C258-7A85-20C1-867B-7A1C4984168C">
@@ -172,7 +171,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Pobożność z pierwszego poziomu" id="F32C4308-873D-D0F7-8BA5-398014D36652">
@@ -184,7 +182,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wola z pierwszego poziomu" id="2CC83DE0-4CDD-3C68-8FA6-97779EB3CC45">
@@ -196,7 +193,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Siła z awansów" id="8C550685-9EB1-7C73-25D6-329A7A503113">
@@ -209,7 +205,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wytrzymałość z awansów" id="63104DFC-4400-AADF-7B4B-773ECB2B386A">
@@ -222,7 +217,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Kondycja z awansów" id="0A10A08B-DC95-866A-B169-4BA7105DCDC9">
@@ -235,7 +229,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zręczność z awansów" id="5795A5E3-10C5-FE01-7995-87AAAB661116">
@@ -248,7 +241,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Zwinność z awansów" id="4A7C2B52-52AD-37EF-72BA-B8DDE37957F4">
@@ -261,7 +253,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Mądrość z awansów" id="C00FBD5E-50F3-F5FC-55F7-0983DE708B37">
@@ -274,7 +265,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Inteligencja z awansów" id="3BA2832C-D77F-5A32-0967-29931B17031C">
@@ -287,7 +277,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Charyzma z awansów" id="92B824D9-641A-CEB5-E8A0-434B9383B8C5">
@@ -300,7 +289,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Pobożność z awansów" id="D23FE358-422F-E4AC-C3A3-1CD947C81DF9">
@@ -313,7 +301,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Wola z awansów" id="9496C5E5-9BC9-AD07-22B8-B0A2C684CDB4">
@@ -326,7 +313,114 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Wytrzymałość_klasowa" id="B7D5D534-8953-5044-E49B-49AB2E11D96D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Kondycja_klasowa" id="79421CE4-7C53-1963-8F3C-9E445FDE8731">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zręczność_klasowa" id="532588C9-3A57-2917-1CD1-1A6CA8A140CA">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zwinność_klasowa" id="FB92BC49-9E47-1E23-CB87-51531DCEC55E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Mądrość_klasowa" id="64D8CD3D-9EAD-34A2-93EC-C1953689B306">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Inteligencja_klasowa" id="DF9C75D5-51DB-D233-8D22-9FFDF9DEA8F2">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Charyzma_klasowa" id="9CE58923-525A-8CA6-4C69-CBF825F9E636">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Pobożność_klasowa" id="8C8F3BDD-418A-289C-53C1-E912545735AC">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Wola_klasowa" id="57217512-1F57-24CF-B3B9-4C418E418909">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 22:24:39 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Nazwa" id="D520425A-8926-BAED-9614-104147AE7CB3">
@@ -340,20 +434,30 @@
 <referedAttribute>98BD9DCB-82FF-8010-3980-5D839A25F343</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT035</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Gracz" id="13DDB582-6A27-BF2B-66C7-1C326E695B47">
+<Attribute name="Nazwa1" id="1F16BC26-53C6-8AA8-6632-7FE7C97C9A54">
 <createdBy>Jasiu</createdBy>
-<createdTime>2026-06-04 23:45:17 UTC</createdTime>
+<createdTime>2026-11-20 01:04:06 UTC</createdTime>
+<generatorID>F6CD01BB-0DF3-5243-245F-DF3FE31A4345</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
 <item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
+<referedAttribute>775195EE-962D-D052-409A-EB68AB8963B4</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nick" id="18B7A60A-F423-1650-1C7E-2C75444A0E48">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 01:07:00 UTC</createdTime>
+<generatorID>5FA4A31A-0DB6-3E2D-FA6C-E22E4EEA854D</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<referedAttribute>4DB9EC79-F3A8-AA56-A5FF-8233C87661C2</referedAttribute>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -367,8 +471,8 @@
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>2B54F2D4-9E1E-D1EF-8C76-CE982A95DBF4</attributeRef>
 <attributeRef>FC9D96ED-6141-CA63-F435-3E123E4B8DE4</attributeRef>
+<attributeRef>2B54F2D4-9E1E-D1EF-8C76-CE982A95DBF4</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

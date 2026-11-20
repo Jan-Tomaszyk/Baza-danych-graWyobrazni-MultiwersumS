@@ -4,7 +4,7 @@
 <createdTime>2026-06-06 19:13:10 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,11 +22,41 @@
 <createdTime>2026-06-06 21:52:24 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="bonus_do_cech_co_poziomów" id="E0CFDFD7-D3CA-3FF4-552C-C5DC79068652">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-06-06 21:53:28 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="bonus_do_cech_wartość" id="1E8FA44B-2251-D7BD-4A24-1D8B970FD20E">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:01:44 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="punkty_cech_na_awans" id="5CF74820-6D49-5770-B321-92354F501C7D">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:01:44 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="bonusy za rangę" id="AE8052F7-1194-B091-C9D6-6A6A11D67C8D">
@@ -34,12 +64,11 @@
 <createdTime>2026-06-06 21:52:44 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="minimalne punkty klasowe" id="80FC3D50-3186-144F-18E6-C581E5231B39">
@@ -47,25 +76,10 @@
 <createdTime>2026-06-06 21:53:16 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="?maksymalne punkty klasowe (wymagane do awansu) " id="E0CFDFD7-D3CA-3FF4-552C-C5DC79068652">
-<createdBy>Jasiu</createdBy>
-<createdTime>2026-06-06 21:53:28 UTC</createdTime>
-<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
-<engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="nazwa1" id="BCEBD3A6-00F4-8AA7-DC2E-9A3E5B89FFD5">
@@ -74,12 +88,11 @@
 <generatorID>9201EE2A-95DE-C8AC-33C3-0CD7CBDEA49B</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <referedAttribute>F10F2E4B-F463-52B2-7652-9A4F806271D6</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Nazwa2" id="3A1C987E-BECE-5844-EB22-79A5738A99A9">
@@ -88,13 +101,12 @@
 <generatorID>9DD11DF5-01BD-8CCB-D649-8CDD2097689A</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <referedAttribute>60BAC5A5-2B56-25A9-5863-F05E9C1FB113</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="nazwa11" id="C7811218-3FC4-CF0A-D7EE-79C10453108D">
@@ -103,13 +115,12 @@
 <generatorID>9DD11DF5-01BD-8CCB-D649-8CDD2097689A</generatorID>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <referedAttribute>BCEBD3A6-00F4-8AA7-DC2E-9A3E5B89FFD5</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -119,7 +130,7 @@
 <createdTime>2026-06-06 21:55:07 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

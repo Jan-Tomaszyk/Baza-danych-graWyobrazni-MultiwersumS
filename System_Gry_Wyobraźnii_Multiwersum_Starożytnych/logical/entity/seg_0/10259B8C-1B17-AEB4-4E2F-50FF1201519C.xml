@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="10259B8C-1B17-AEB4-4E2F-50FF1201519C" name="Egzemplarze_Przedmiotów">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:32:55 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>Egzemplarze</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Przed_ID" id="09952657-51E6-47C8-6AA2-9D923B1CF863">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:33:50 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="jest_noszony" id="347626BB-85A9-8DE0-3882-3906BEAD293A">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:33:22 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stan" id="6C8CD057-BC42-2C7A-A58C-2383148B61B6">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:33:24 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwisko" id="3AED36E0-C559-1C25-4180-9221C3295C32">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:36:55 UTC</createdTime>
+<generatorID>296AA4F5-9ECB-5336-0C10-62649DA59327</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>FC9D96ED-6141-CA63-F435-3E123E4B8DE4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Imię" id="8A3961A5-CE88-D432-6A8D-113527C22108">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:36:55 UTC</createdTime>
+<generatorID>296AA4F5-9ECB-5336-0C10-62649DA59327</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>2B54F2D4-9E1E-D1EF-8C76-CE982A95DBF4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwa" id="C4B74F36-F1D1-FE7B-10BA-3CBDF9CF1048">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:38:31 UTC</createdTime>
+<generatorID>B8898691-A670-6870-56A7-6D1C9413A673</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<referedAttribute>66242D26-5B07-370A-7B57-EF3D2B3C993E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nazwa1" id="8D36F7D9-CB19-8AF0-C275-A7E1A211543F">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 01:04:26 UTC</createdTime>
+<generatorID>5AD66F5F-D688-E21D-69C1-8634D5A5EFD2</generatorID>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<referedAttribute>775195EE-962D-D052-409A-EB68AB8963B4</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4C4F1B2B-AEA2-CD85-4AA7-9C2F345F138B" name="Egzemplarze_Przedmiotów PK">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:34:08 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>09952657-51E6-47C8-6AA2-9D923B1CF863</attributeRef>
+<attributeRef>C4B74F36-F1D1-FE7B-10BA-3CBDF9CF1048</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

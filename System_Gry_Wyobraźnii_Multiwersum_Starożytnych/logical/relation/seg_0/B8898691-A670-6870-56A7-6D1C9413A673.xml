@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="typy_przedmiotów" directorySegmentName="seg_0" id="B8898691-A670-6870-56A7-6D1C9413A673">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:38:31 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<sourcePk>891293CD-8750-3751-976C-7CA458C33636</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>typ</nameOnSource>
+<nameOnTarget>egzemplarz</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4EF04BDD-97D1-58AB-FD7E-C8A0767AC96B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>10259B8C-1B17-AEB4-4E2F-50FF1201519C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -4,7 +4,7 @@
 <createdTime>2026-06-03 23:10:49 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,11 +21,10 @@
 <createdTime>2026-06-06 17:23:36 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="czas spożycia" id="CF9E91E5-70FD-664F-16A7-FFB0EAED3BB0">
@@ -33,11 +32,10 @@
 <createdTime>2026-06-06 17:25:55 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="przywracane punkty energii" id="A9EF9008-9515-994B-09A0-45257B3F917C">
@@ -45,11 +43,10 @@
 <createdTime>2026-06-06 17:23:36 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="przywracane punkty życia" id="C3E88512-0577-32B6-3591-676C8F84EBE2">
@@ -57,11 +54,10 @@
 <createdTime>2026-06-06 17:23:36 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="przywracana mana" id="22FD4C48-FBC6-E70D-2B9F-544BAABD4185">
@@ -69,11 +65,21 @@
 <createdTime>2026-06-06 17:23:36 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="bonusy i efekty" id="6922CA17-3DE2-6648-800D-999632030DB4">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-20 00:26:03 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="czas trwania bonusów i efektów" id="2AE1F351-B7B5-8166-8F88-91B899116D52">
@@ -81,12 +87,11 @@
 <createdTime>2026-06-06 17:26:05 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

@@ -26,10 +26,9 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Typ_umiej" id="E508CB83-5B9D-7DE1-3F12-3F9C02757735">
+<Attribute name="Poboczna" id="E508CB83-5B9D-7DE1-3F12-3F9C02757735">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-04 22:41:26 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -38,7 +37,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Natura" id="FFD99C41-DBBF-467A-C2B9-AFFC43C2C70F">
@@ -50,7 +48,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Rodzaj" id="73B214B0-8227-02BB-FB7B-2A57CF7C4156">
@@ -63,10 +60,9 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Samodzielność i stopień zagnieżdżenia" id="6EB028BA-4DD0-F027-26CC-12B200139B26">
+<Attribute name="Samodzielność" id="6EB028BA-4DD0-F027-26CC-12B200139B26">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-04 22:50:51 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
@@ -75,7 +71,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Dostępność" id="C6C35701-6636-355B-6A95-426CC44A5341">
@@ -87,7 +82,6 @@
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Opis fabularny" id="BA8610DA-E4A4-9985-F8CF-1DC8F68DFE6F">
@@ -100,7 +94,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Opis praktyczny" id="926B331B-4577-211A-80F1-1B46B59C1315">
@@ -113,7 +106,6 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

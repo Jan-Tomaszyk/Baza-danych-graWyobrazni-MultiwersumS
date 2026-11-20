@@ -4,7 +4,7 @@
 <createdTime>2026-06-04 15:03:47 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,24 +22,44 @@
 <createdTime>2026-06-06 21:43:37 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="premiowane cechy" id="31A9299B-E84C-3337-7458-E72E1D9B8C46">
+<Attribute name="premiowana_cecha1" id="31A9299B-E84C-3337-7458-E72E1D9B8C46">
 <createdBy>Jasiu</createdBy>
 <createdTime>2026-06-06 21:44:51 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="premiowana_cecha2" id="A09B9209-4A6D-D7D5-E8C2-BB21D05D18FE">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 23:58:59 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="premiowana_cecha3" id="BD678C24-6521-01AF-D9BC-4BB3A4EFE55C">
+<createdBy>Jasiu</createdBy>
+<createdTime>2026-11-19 23:58:59 UTC</createdTime>
+<ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
+<engineerTo>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -49,7 +69,7 @@
 <createdTime>2026-06-06 21:44:55 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
