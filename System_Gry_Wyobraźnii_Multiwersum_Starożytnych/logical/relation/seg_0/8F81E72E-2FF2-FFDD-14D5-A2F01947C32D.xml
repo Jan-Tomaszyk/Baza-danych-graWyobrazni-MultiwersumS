@@ -4,11 +4,11 @@
 <createdTime>2026-06-04 23:10:44 UTC</createdTime>
 <ownerDesignName>System_Gry_Wyobraźnii_Multiwersum_Starożytnych</ownerDesignName>
 <engineerTo>
-<item key="2E7E2234-E01C-AA44-D3B2-5926F38E4C51" value="true"/>
+<item key="AE2C2BE6-4EDE-9808-AE8C-99FD9782DC62" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<nameOnSource>nadrzędna(jest wymagana)</nameOnSource>
-<nameOnTarget>umiejętność podrzędna(wymaga) </nameOnTarget>
+<nameOnSource>wymagana_nadrzędna</nameOnSource>
+<nameOnTarget>podrzędna</nameOnTarget>
 <optionalSource>true</optionalSource>
 <optionalTarget>true</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
